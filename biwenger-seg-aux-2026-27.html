@@ -19,6 +19,7 @@
     --red-bright: #ff2a45;
     --gold: #c59b27;
     --silver: #7a8288;
+    --bronze: #b07246;
     --green: #15803d;
     --black: #120d0d;
     --radius: 14px;
@@ -156,15 +157,15 @@
   .tab-panel.active { display: block; animation: fadeIn .2s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* TABLAS ESTÁNDAR */
+  /* TABLAS ESTÁNDAR & STICKY COLUMNS */
   .card-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
   .box-header {
     padding: 12px 16px; background: var(--black); color: #fff;
-    display: flex; align-items: center; justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
     font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
   }
   .box-header .badge-live { color: #4ade80; }
-  .table-scroll { overflow-x: auto; }
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .std-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   .std-table th {
     text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 10px;
@@ -172,12 +173,47 @@
     border-bottom: 2px solid var(--line); background: var(--card-hi); white-space: nowrap;
   }
   .std-table th.l, .std-table td.l { text-align: left; }
-  .std-table td { padding: 10px 10px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
+  .std-table td { padding: 10px 10px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; background: var(--card); }
   .std-table tbody tr:last-child td { border-bottom: none; }
-  .std-table tbody tr:hover { background: var(--card-hi); }
-  .std-table tr.prize-row { background: #fff8f8; }
-  .std-table tr.oro-zone { border-left: 4px solid var(--gold); background: #fffdf5; }
-  .std-table tr.plata-zone { border-left: 4px solid var(--silver); }
+  .std-table tbody tr:hover td { background: var(--card-hi); }
+  .std-table tr.prize-row td { background: #fff8f8; }
+  .std-table tr.oro-zone td { background: #fffdf5; }
+  .std-table tr.oro-zone td:first-child { box-shadow: inset 4px 0 0 var(--gold); }
+  .std-table tr.plata-zone td:first-child { box-shadow: inset 4px 0 0 var(--silver); }
+
+  /* INMOVILIZAR POS + EQUIPO/MANAGER (2 PRIMERAS COLUMNAS) */
+  .sticky-2col th:nth-child(1),
+  .sticky-2col td:nth-child(1) {
+    position: sticky; left: 0; z-index: 3;
+    width: 44px; min-width: 44px; max-width: 44px;
+    padding-left: 8px; padding-right: 4px;
+  }
+  .sticky-2col th:nth-child(2),
+  .sticky-2col td:nth-child(2) {
+    position: sticky; left: 44px; z-index: 3;
+    border-right: 2px solid var(--line);
+    box-shadow: 4px 0 8px rgba(20, 10, 10, 0.05);
+  }
+  .sticky-2col thead th:nth-child(1),
+  .sticky-2col thead th:nth-child(2) { z-index: 5; background: var(--card-hi); }
+
+  /* INMOVILIZAR 1ª COLUMNA (TABLA DESGLOSE OFICIAL DE PREMIOS) */
+  .sticky-1col th:first-child,
+  .sticky-1col td:first-child {
+    position: sticky; left: 0; z-index: 3;
+    border-right: 2px solid var(--line);
+    box-shadow: 4px 0 8px rgba(20, 10, 10, 0.05);
+    font-size: 11.5px;
+    padding-left: 10px; padding-right: 10px;
+  }
+  .sticky-1col thead th:first-child { z-index: 5; background: var(--card-hi); }
+
+  @media (max-width: 640px) {
+    .sticky-2col td:nth-child(2) .eq-cell { max-width: 135px; }
+    .sticky-2col td:nth-child(2) .eq-cell span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; }
+    .sticky-2col td:nth-child(2) .eq-cell img { width: 24px; height: 24px; }
+    .sticky-1col td:first-child { font-size: 11px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+  }
 
   .pos-badge {
     display: inline-flex; align-items: center; justify-content: center;
@@ -188,7 +224,7 @@
   .pos-2 { background: #ffccd3; color: var(--red-dark); }
   .pos-3 { background: #ffe6ea; color: var(--red); }
 
-  .eq-cell { display: flex; align-items: center; gap: 10px; font-weight: 600; text-align: left; }
+  .eq-cell { display: flex; align-items: center; gap: 8px; font-weight: 600; text-align: left; }
   .eq-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; }
   .pts-big { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--red); }
   .inc-up { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; }
@@ -198,18 +234,22 @@
   .accordion { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; }
   .acc-btn {
     width: 100%; padding: 13px 18px; background: var(--card); border: none;
-    display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer;
     font-family: 'Anton', sans-serif; font-size: 15px; letter-spacing: 0.03em; color: var(--ink);
-    text-transform: uppercase; transition: background .15s;
+    text-transform: uppercase; transition: background .15s; text-align: left;
   }
   .acc-btn:hover { background: var(--card-hi); }
-  .acc-btn .acc-sub { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--red); font-weight: 600; }
+  .acc-btn .acc-sub { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--red); font-weight: 600; flex-shrink: 0; }
   .acc-body { display: none; padding: 16px; border-top: 1px solid var(--line); background: #fcf9f9; }
   .acc-body.open { display: block; }
 
   .bracket-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
   .b-card { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--red); border-radius: 10px; padding: 14px; }
-  .b-card h4 { font-family: 'Anton', sans-serif; font-size: 15px; margin-bottom: 4px; }
+  .b-card h4 { font-family: 'Anton', sans-serif; font-size: 15.5px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+  .b-card h4 .comp-ico {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 7px; font-size: 14px; background: var(--card-hi); border: 1px solid var(--line); flex-shrink: 0;
+  }
   .b-card p { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
   .b-card .b-meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--red); font-weight: 600; }
 
@@ -265,11 +305,40 @@
   /* CALENDARIO */
   .cal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .cal-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; color: var(--muted); padding: 10px 12px; background: var(--card-hi); border-bottom: 2px solid var(--line); }
-  .cal-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  .cal-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--card); }
   .cal-table tr.inter td { background: #fff2f2; }
-  .month-cell { font-family: 'Anton', sans-serif; color: var(--red); font-size: 13px; border-right: 1px solid var(--line); background: #fff; }
-  .jnum { font-family: 'JetBrains Mono', monospace; font-weight: 700; width: 50px; }
-  .jdate { white-space: nowrap; width: 130px; }
+  .cal-table tr.past td:not(.month-cell) {
+    background: #ece3e3;
+    color: var(--muted);
+  }
+  .cal-table tr.past .tag { opacity: 0.55; }
+  .cal-table tr.current td:not(.month-cell) {
+    background: #fff0f2;
+    border-top: 2px solid var(--red);
+    border-bottom: 2px solid var(--red);
+  }
+  .cal-table tr.current td.jnum {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    font-weight: 800;
+  }
+  .cal-table tr.current td.jdate {
+    font-weight: 700;
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--red);
+    text-underline-offset: 3px;
+  }
+  .now-pill {
+    display: inline-block; background: var(--red); color: #fff;
+    font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 4px; margin-left: 6px; text-transform: uppercase;
+    vertical-align: middle; text-decoration: none;
+  }
+  .month-cell { font-family: 'Anton', sans-serif; color: var(--red); font-size: 13px; border-right: 1px solid var(--line); background: #fff !important; }
+  .jnum { font-family: 'JetBrains Mono', monospace; font-weight: 700; width: 58px; white-space: nowrap; }
+  .jdate { white-space: nowrap; width: 145px; }
   .dow { color: var(--muted); font-size: 10px; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; }
   .jtags { display: flex; gap: 5px; flex-wrap: wrap; }
   .tag { font-size: 10px; padding: 2px 8px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-weight: 600; white-space: nowrap; }
@@ -280,12 +349,75 @@
   .tag-superliga { background: #dcfce7; color: #166534; }
   .tag-supercup { background: var(--red); color: #fff; }
 
-  /* PALMARÉS */
+  /* PODIO TOP 3 HISTÓRICO */
+  .podium-box {
+    background: linear-gradient(180deg, #1b1113 0%, var(--black) 100%);
+    border: 1px solid var(--line); border-bottom: 4px solid var(--red);
+    border-radius: var(--radius); padding: 26px 16px 0; margin-bottom: 20px;
+    color: #fff; box-shadow: var(--shadow); overflow: hidden;
+  }
+  .podium-title {
+    text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 20px;
+  }
+  .podium-title span { color: var(--gold); font-weight: 700; }
+  .podium-stage {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    max-width: 680px; margin: 0 auto; align-items: end;
+  }
+  .podium-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .podium-av { position: relative; margin-bottom: 8px; }
+  .podium-av img {
+    width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
+    border: 3px solid #fff; background: var(--black); display: block;
+  }
+  .podium-col.p-1 .podium-av img { width: 72px; height: 72px; border-color: var(--gold); box-shadow: 0 0 20px rgba(197,155,39,0.45); }
+  .podium-col.p-2 .podium-av img { border-color: #cbd5e1; }
+  .podium-col.p-3 .podium-av img { border-color: var(--bronze); }
+  .podium-crown {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    font-size: 20px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+  }
+  .podium-name { font-family: 'Anton', sans-serif; font-size: 16px; letter-spacing: 0.03em; color: #fff; line-height: 1.1; }
+  .podium-col.p-1 .podium-name { font-size: 19px; color: #fde047; }
+  .podium-pts { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.75); margin: 3px 0 6px; }
+  .podium-badges { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+  .podium-step {
+    width: 100%; border-radius: 12px 12px 0 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; padding: 12px 8px; position: relative;
+  }
+  .podium-step .step-rank { font-family: 'Anton', sans-serif; font-size: 30px; line-height: 1; }
+  .podium-step .step-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; opacity: 0.85; margin-top: 3px; }
+  .p-1 .podium-step {
+    height: 118px;
+    background: linear-gradient(180deg, #eab308 0%, #a16207 100%);
+    color: #140f0f; box-shadow: 0 -4px 18px rgba(234,179,8,0.3);
+  }
+  .p-2 .podium-step {
+    height: 90px;
+    background: linear-gradient(180deg, #94a3b8 0%, #475569 100%);
+    color: #fff;
+  }
+  .p-3 .podium-step {
+    height: 72px;
+    background: linear-gradient(180deg, #c27849 0%, #7c3f1c 100%);
+    color: #fff;
+  }
+  @media (max-width: 540px) {
+    .podium-stage { gap: 6px; }
+    .podium-name { font-size: 13px; }
+    .podium-col.p-1 .podium-name { font-size: 15px; }
+    .podium-av img { width: 46px; height: 46px; }
+    .podium-col.p-1 .podium-av img { width: 58px; height: 58px; }
+    .podium-badges { font-size: 8.5px; }
+  }
+
+  /* PALMARÉS TABLAS */
   .hist-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
   .hist-table th, .hist-table td { padding: 8px 9px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
   .hist-table th { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; color: var(--muted); background: var(--card-hi); }
-  .hist-table td:first-child, .hist-table th:first-child { text-align: left; position: sticky; left: 0; background: var(--card); font-weight: 700; border-right: 1px solid var(--line); }
-  .hist-table th:first-child { background: var(--card-hi); }
+  .hist-table td:first-child, .hist-table th:first-child { text-align: left; position: sticky; left: 0; background: var(--card); font-weight: 700; border-right: 1px solid var(--line); z-index: 2; }
+  .hist-table th:first-child { background: var(--card-hi); z-index: 4; }
   .hist-table .rk { color: var(--red); font-family: 'Anton', sans-serif; font-size: 14px; }
 
   footer { padding: 28px 20px; text-align: center; color: var(--muted); font-size: 11.5px; background: var(--card); border-top: 1px solid var(--line); }
@@ -374,7 +506,7 @@
           <span class="badge-live">● J8 Disputada (1º: 11,25 € | 2º: 5 € | 3º: 2,50 €)</span>
         </div>
         <div class="table-scroll">
-          <table class="std-table">
+          <table class="std-table sticky-2col">
             <thead><tr><th>Pos</th><th class="l">Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th></tr></thead>
             <tbody id="tbody-apertura"></tbody>
           </table>
@@ -400,7 +532,7 @@
           <span class="badge-live">● 1º: 22,50 € | 2º: 10 € | 3º: 5 €</span>
         </div>
         <div class="table-scroll">
-          <table class="std-table">
+          <table class="std-table sticky-2col">
             <thead><tr><th>Pos</th><th class="l">Equipo</th><th>Victorias J.</th><th>Jug.</th><th>Valor Equipo</th><th>Subida Día</th><th>Picas AS</th></tr></thead>
             <tbody id="tbody-fifa"></tbody>
           </table>
@@ -416,7 +548,7 @@
           <span>1º a 5º: Superliga ORO · 6º a 10º: Superliga PLATA</span>
         </div>
         <div class="table-scroll">
-          <table class="std-table">
+          <table class="std-table sticky-2col">
             <thead><tr><th>Pos</th><th class="l">Equipo</th><th>Pts Apertura</th><th>Pts Clausura</th><th>DG Total</th><th>Pts Totales</th><th>Acceso J28</th></tr></thead>
             <tbody id="tbody-regular"></tbody>
           </table>
@@ -432,7 +564,7 @@
           <span>Arranca el 8 ene 2027</span>
         </div>
         <div class="table-scroll">
-          <table class="std-table">
+          <table class="std-table sticky-2col">
             <thead><tr><th>Pos</th><th class="l">Equipo</th><th>PJ</th><th>PG</th><th>PE</th><th>PP</th><th>GF</th><th>GC</th><th>DG</th><th>Pts</th></tr></thead>
             <tbody id="tbody-clausura"></tbody>
           </table>
@@ -440,36 +572,36 @@
       </div>
     </div>
 
-    <!-- ACORDEÓN FASE FINAL Y COPAS PLEGADO -->
+    <!-- ACORDEÓN FASE FINAL Y COPAS PLEGADO CON ICONOS -->
     <div class="accordion">
       <button class="acc-btn" onclick="toggleAcc('acc-fase-final')">
-        <span>Fase Final y Copas (Superliga Oro/Plata, Copa del Rey y Champions)</span>
+        <span>&#127942; Fase Final y Copas (Superliga Oro/Plata, Copa del Rey y Champions)</span>
         <span class="acc-sub">Plegado · Ver cuadros &#9660;</span>
       </button>
       <div class="acc-body" id="acc-fase-final">
         <div class="bracket-grid">
           <div class="b-card">
-            <h4>Copa del Rey (15 €)</h4>
+            <h4><span class="comp-ico">&#128081;</span> Copa del Rey (15 €)</h4>
             <p>Eliminatorias Ida/Vuelta por sorteo puro. Campeón: 10 € · Subcampeón: 5 €.</p>
             <div class="b-meta">Jornadas 14 a 18</div>
           </div>
           <div class="b-card">
-            <h4>Champions League (26,25 €)</h4>
-            <p>Fase de grupos + Semis y Final. Campeón: 17,50 € · Subcampeón: 8,75 €.</p>
-            <div class="b-meta">Jornadas 28 a 36</div>
+            <h4><span class="comp-ico">&#11088;</span> Champions League (26,25 €)</h4>
+            <p>2 grupos de 5 equipos (G1-G8) + Semis (Top 2 por grupo) y Final. 1º: 17,50 € · 2º: 8,75 €.</p>
+            <div class="b-meta">Jornadas 26 a 36</div>
           </div>
           <div class="b-card">
-            <h4>Superliga Oro (30 €)</h4>
+            <h4><span class="comp-ico">&#129351;</span> Superliga Oro (30 €)</h4>
             <p>5 primeros Temp. Regular (1º al 5º). 1º: 17,50 € · 2º: 8,75 € · 3º: 3,75 €.</p>
             <div class="b-meta">Jornadas 28 a 35</div>
           </div>
           <div class="b-card">
-            <h4>Superliga Plata (7,50 €)</h4>
+            <h4><span class="comp-ico">&#129352;</span> Superliga Plata (7,50 €)</h4>
             <p>5 últimos Temp. Regular (6º al 10º). 1º: 5 € · 2º: 2,50 €.</p>
             <div class="b-meta">Jornadas 28 a 35</div>
           </div>
           <div class="b-card">
-            <h4>Supercopas y Super Final (21,25 €)</h4>
+            <h4><span class="comp-ico">&#127942;</span> Supercopas y Super Final (21,25 €)</h4>
             <p>Supercup Ligas (5 € · J28), Supercup Copas (5 € · J37), Copa Superliga (5 € · J37) y Super Final (6,25 € · J38).</p>
             <div class="b-meta">Jornadas 28, 37 y 38</div>
           </div>
@@ -499,9 +631,10 @@
         <span class="badge-live">● Bote 200 € (10 x 20 €)</span>
       </div>
       <div class="table-scroll">
-        <table class="std-table">
+        <table class="std-table sticky-2col">
           <thead>
             <tr>
+              <th>Pos</th>
               <th class="l">Manager</th>
               <th>R. FIFA</th>
               <th>Apertura</th>
@@ -525,7 +658,7 @@
       </button>
       <div class="acc-body" id="acc-tabla-premios">
         <div class="table-scroll">
-          <table class="std-table">
+          <table class="std-table sticky-1col">
             <thead><tr><th class="l">Competición</th><th>Fase</th><th>1º</th><th>2º</th><th>3º</th><th>Total</th></tr></thead>
             <tbody>
               <tr><td class="l"><strong>Ranking FIFA (Picas AS)</strong></td><td>Regular (J1-38)</td><td>22,50 €</td><td>10,00 €</td><td>5,00 €</td><td class="pts-big">37,50 €</td></tr>
@@ -533,13 +666,13 @@
               <tr><td class="l"><strong>Liga Clausura</strong></td><td>Regular (J19-27)</td><td>11,25 €</td><td>5,00 €</td><td>2,50 €</td><td class="pts-big">18,75 €</td></tr>
               <tr><td class="l"><strong>Supercup Ligas</strong></td><td>Regular (J28)</td><td>5,00 €</td><td>—</td><td>—</td><td class="pts-big">5,00 €</td></tr>
               <tr><td class="l"><strong>Copa del Rey</strong></td><td>Copas (J14-18)</td><td>10,00 €</td><td>5,00 €</td><td>—</td><td class="pts-big">15,00 €</td></tr>
-              <tr><td class="l"><strong>Champions League</strong></td><td>Copas (J28-36)</td><td>17,50 €</td><td>8,75 €</td><td>—</td><td class="pts-big">26,25 €</td></tr>
+              <tr><td class="l"><strong>Champions League</strong></td><td>Copas (J26-36)</td><td>17,50 €</td><td>8,75 €</td><td>—</td><td class="pts-big">26,25 €</td></tr>
               <tr><td class="l"><strong>Supercup Copas</strong></td><td>Copas (J37)</td><td>5,00 €</td><td>—</td><td>—</td><td class="pts-big">5,00 €</td></tr>
               <tr><td class="l"><strong>Superliga ORO (Top 5)</strong></td><td>Fase Final (J28-35)</td><td>17,50 €</td><td>8,75 €</td><td>3,75 €</td><td class="pts-big">30,00 €</td></tr>
               <tr><td class="l"><strong>Superliga PLATA (6º al 10º)</strong></td><td>Fase Final (J28-35)</td><td>5,00 €</td><td>2,50 €</td><td>—</td><td class="pts-big">7,50 €</td></tr>
               <tr><td class="l"><strong>Copa Superliga</strong></td><td>Fase Final (J37)</td><td>5,00 €</td><td>—</td><td>—</td><td class="pts-big">5,00 €</td></tr>
               <tr><td class="l"><strong>Super Final</strong></td><td>Fase Final (J38)</td><td>6,25 €</td><td>—</td><td>—</td><td class="pts-big">6,25 €</td></tr>
-              <tr><td class="l"><strong>5 Premios Individuales (5 € c/u)</strong></td><td>Goles, Asist., XI, Fichaje, Récord</td><td>25,00 €</td><td>—</td><td>—</td><td class="pts-big">25,00 €</td></tr>
+              <tr><td class="l"><strong>5 Premios Individuales</strong></td><td>Goles, Asist., XI, Fichaje, Récord</td><td>25,00 €</td><td>—</td><td>—</td><td class="pts-big">25,00 €</td></tr>
             </tbody>
           </table>
         </div>
@@ -580,7 +713,7 @@
         <span class="badge-live">● Premio: 5 €</span>
       </div>
       <div class="table-scroll">
-        <table class="std-table">
+        <table class="std-table sticky-2col">
           <thead><tr><th>#</th><th class="l">Jugador</th><th>Club</th><th class="l">Propietario</th><th>Valor Actual</th><th>Puntos</th></tr></thead>
           <tbody id="tbody-fichajes"></tbody>
         </table>
@@ -600,15 +733,15 @@
         <table class="cal-table">
           <thead><tr><th>Mes</th><th>Jornada</th><th>Inicio</th><th>Competiciones en juego</th></tr></thead>
           <tbody>
-            <tr><td class="month-cell" rowspan="3">AGO 26</td><td class="jnum">J1</td><td class="jdate">14 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J1</span></div></td></tr>
-            <tr><td class="jnum">J2</td><td class="jdate">21 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J2</span></div></td></tr>
-            <tr><td class="jnum">J3</td><td class="jdate">28 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J3</span></div></td></tr>
-            <tr><td class="month-cell" rowspan="4">SEP 26</td><td class="jnum">J4</td><td class="jdate">4 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J4</span></div></td></tr>
-            <tr><td class="jnum">J5</td><td class="jdate">11 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J5</span></div></td></tr>
-            <tr class="inter"><td class="jnum">J6</td><td class="jdate">15 sep <span class="dow">mar</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J6</span></div></td></tr>
-            <tr><td class="jnum">J7</td><td class="jdate">18 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J7</span></div></td></tr>
-            <tr><td class="month-cell" rowspan="3">OCT 26</td><td class="jnum">J8</td><td class="jdate">9 oct <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J8</span></div></td></tr>
-            <tr><td class="jnum">J9</td><td class="jdate">16 oct <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J9</span></div></td></tr>
+            <tr class="past"><td class="month-cell" rowspan="3">AGO 26</td><td class="jnum">J1</td><td class="jdate">14 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J1</span></div></td></tr>
+            <tr class="past"><td class="jnum">J2</td><td class="jdate">21 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J2</span></div></td></tr>
+            <tr class="past"><td class="jnum">J3</td><td class="jdate">28 ago <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J3</span></div></td></tr>
+            <tr class="past"><td class="month-cell" rowspan="4">SEP 26</td><td class="jnum">J4</td><td class="jdate">4 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J4</span></div></td></tr>
+            <tr class="past"><td class="jnum">J5</td><td class="jdate">11 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J5</span></div></td></tr>
+            <tr class="past inter"><td class="jnum">J6</td><td class="jdate">15 sep <span class="dow">mar</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J6</span></div></td></tr>
+            <tr class="past"><td class="jnum">J7</td><td class="jdate">18 sep <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J7</span></div></td></tr>
+            <tr class="past"><td class="month-cell" rowspan="3">OCT 26</td><td class="jnum">J8</td><td class="jdate">9 oct <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J8</span></div></td></tr>
+            <tr class="current"><td class="jnum">J9</td><td class="jdate">16 oct <span class="dow">vie</span><span class="now-pill">Actual</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J9</span></div></td></tr>
             <tr><td class="jnum">J10</td><td class="jdate">23 oct <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J10</span></div></td></tr>
             <tr><td class="month-cell" rowspan="4">NOV 26</td><td class="jnum">J11</td><td class="jdate">30 oct <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J11</span></div></td></tr>
             <tr><td class="jnum">J12</td><td class="jdate">6 nov <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-apertura">Apertura J12</span></div></td></tr>
@@ -625,14 +758,14 @@
             <tr><td class="jnum">J23</td><td class="jdate">5 feb <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J5</span></div></td></tr>
             <tr><td class="jnum">J24</td><td class="jdate">12 feb <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J6</span></div></td></tr>
             <tr><td class="jnum">J25</td><td class="jdate">19 feb <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J7</span></div></td></tr>
-            <tr><td class="month-cell" rowspan="4">MAR 27</td><td class="jnum">J26</td><td class="jdate">26 feb <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J8</span></div></td></tr>
-            <tr><td class="jnum">J27</td><td class="jdate">5 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J9</span></div></td></tr>
-            <tr><td class="jnum">J28</td><td class="jdate">12 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J1</span><span class="tag tag-champions">Champions G1</span><span class="tag tag-supercup">Supercup Ligas</span></div></td></tr>
-            <tr><td class="jnum">J29</td><td class="jdate">19 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J2</span><span class="tag tag-champions">Champions G2</span></div></td></tr>
-            <tr><td class="month-cell" rowspan="4">ABR 27</td><td class="jnum">J30</td><td class="jdate">2 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J3</span><span class="tag tag-champions">Champions G3</span></div></td></tr>
-            <tr><td class="jnum">J31</td><td class="jdate">9 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J4</span><span class="tag tag-champions">Champions G4</span></div></td></tr>
-            <tr><td class="jnum">J32</td><td class="jdate">16 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J5</span><span class="tag tag-champions">Champions G5</span></div></td></tr>
-            <tr class="inter"><td class="jnum">J33</td><td class="jdate">20 abr <span class="dow">mar</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J6</span><span class="tag tag-champions">Champions G6</span></div></td></tr>
+            <tr><td class="month-cell" rowspan="4">MAR 27</td><td class="jnum">J26</td><td class="jdate">26 feb <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J8</span><span class="tag tag-champions">Champions G1</span></div></td></tr>
+            <tr><td class="jnum">J27</td><td class="jdate">5 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-clausura">Clausura J9</span><span class="tag tag-champions">Champions G2</span></div></td></tr>
+            <tr><td class="jnum">J28</td><td class="jdate">12 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J1</span><span class="tag tag-champions">Champions G3</span><span class="tag tag-supercup">Supercup Ligas</span></div></td></tr>
+            <tr><td class="jnum">J29</td><td class="jdate">19 mar <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J2</span><span class="tag tag-champions">Champions G4</span></div></td></tr>
+            <tr><td class="month-cell" rowspan="4">ABR 27</td><td class="jnum">J30</td><td class="jdate">2 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J3</span><span class="tag tag-champions">Champions G5</span></div></td></tr>
+            <tr><td class="jnum">J31</td><td class="jdate">9 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J4</span><span class="tag tag-champions">Champions G6</span></div></td></tr>
+            <tr><td class="jnum">J32</td><td class="jdate">16 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J5</span><span class="tag tag-champions">Champions G7</span></div></td></tr>
+            <tr class="inter"><td class="jnum">J33</td><td class="jdate">20 abr <span class="dow">mar</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J6</span><span class="tag tag-champions">Champions G8</span></div></td></tr>
             <tr><td class="month-cell" rowspan="5">MAY 27</td><td class="jnum">J34</td><td class="jdate">30 abr <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J7</span><span class="tag tag-champions">Champions SF Ida</span></div></td></tr>
             <tr><td class="jnum">J35</td><td class="jdate">7 may <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-superliga">Superliga J8</span><span class="tag tag-champions">Champions SF Vuelta</span></div></td></tr>
             <tr><td class="jnum">J36</td><td class="jdate">14 may <span class="dow">vie</span></td><td><div class="jtags"><span class="tag tag-champions">Champions FINAL</span></div></td></tr>
@@ -660,6 +793,53 @@
   <div class="wrap">
     <div class="sec-bar">
       <div class="sec-head"><span class="sec-num">06</span><h2>Palmarés Histórico (2016 - 2026)</h2></div>
+    </div>
+
+    <!-- PODIO TOP 3 HISTÓRICO -->
+    <div class="podium-box">
+      <div class="podium-title">&#127942; Hall of Fame · <span>Top 3 Histórico Ponderado (2016 - 2026)</span></div>
+      <div class="podium-stage">
+        <!-- 2º PUESTO -->
+        <div class="podium-col p-2">
+          <div class="podium-av">
+            <img src="https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=JUAN%20VELASCO" alt="JUAN VELASCO">
+          </div>
+          <div class="podium-name">JUAN VELASCO</div>
+          <div class="podium-pts"><strong>7,40</strong> pts hist.</div>
+          <div class="podium-badges">2 FIFA · 1 Champ · 2 Copas</div>
+          <div class="podium-step">
+            <span class="step-rank">2º</span>
+            <span class="step-lbl">Plata</span>
+          </div>
+        </div>
+        <!-- 1º PUESTO -->
+        <div class="podium-col p-1">
+          <div class="podium-av">
+            <span class="podium-crown">&#128081;</span>
+            <img src="https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=Quitate%20el%20toz" alt="Quitate el toz">
+          </div>
+          <div class="podium-name">Quitate el toz</div>
+          <div class="podium-pts"><strong>9,75</strong> pts hist.</div>
+          <div class="podium-badges">4 FIFA · 1 Champ · 2 S.Oro</div>
+          <div class="podium-step">
+            <span class="step-rank">1º</span>
+            <span class="step-lbl">Rey Histórico</span>
+          </div>
+        </div>
+        <!-- 3º PUESTO -->
+        <div class="podium-col p-3">
+          <div class="podium-av">
+            <img src="https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=MarkLenders" alt="MarkLenders">
+          </div>
+          <div class="podium-name">MarkLenders</div>
+          <div class="podium-pts"><strong>4,60</strong> pts hist.</div>
+          <div class="podium-badges">1 FIFA · 2 Champ · 1 S.Oro</div>
+          <div class="podium-step">
+            <span class="step-rank">3º</span>
+            <span class="step-lbl">Bronce</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="card-box" style="margin-bottom: 18px;">
@@ -750,7 +930,7 @@
 <!-- DATOS REALES INYECTADOS DE LA LIGA 1444772 -->
 <script id="biwenger-live-data" type="application/json">
 {
-  "ultima_actualizacion": "20/10/2026 11:47",
+  "ultima_actualizacion": "20/10/2026 12:47",
   "bote_total_euros": 200,
   "clasificacion": [
     {
@@ -6232,7 +6412,7 @@
         </tr>
       `).join('');
 
-      // 5. BOTE EN VIVO POR PARTICIPANTE (200 €)
+      // 5. BOTE EN VIVO POR PARTICIPANTE (200 €) CON POS Y MANAGER SEPARADOS E INMOVILIZADOS
       const boteMap = {};
       clasif.forEach(r => {
         boteMap[r.equipo] = { fifa: 0, ap: 0, goles: 0, asist: 0, ideal: 0, fichaje: 0, record: 0 };
@@ -6257,7 +6437,8 @@
       const fmtEur = v => v > 0 ? `<strong>${v.toFixed(2).replace('.00', '')} €</strong>` : '<span style="color:var(--muted)">—</span>';
       document.getElementById('tbody-bote-vivo').innerHTML = boteRows.map((r, i) => `
         <tr class="${r.total > 0 ? 'prize-row' : ''}">
-          <td class="l"><div class="eq-cell">${posBadge(i + 1)}<span>${r.equipo}</span></div></td>
+          <td>${posBadge(i + 1)}</td>
+          <td class="l"><div class="eq-cell"><img src="${avatarUrl(r.equipo)}" alt=""><span>${r.equipo}</span></div></td>
           <td class="mono">${fmtEur(r.fifa)}</td>
           <td class="mono">${fmtEur(r.ap)}</td>
           <td class="mono">${fmtEur(r.goles)}</td>

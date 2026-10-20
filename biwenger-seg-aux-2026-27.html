@@ -4,30 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biwenger Seg.Aux · 2026/27</title>
+<meta name="theme-color" content="#120d0d">
+<meta name="description" content="Clasificación en vivo, Liga Apertura/Clausura, Ranking FIFA, Bote de 200 € y Palmarés Histórico (2016-2026).">
+
+<!-- Favicon SVG personalizado (Escudo Negro/Rojo/Oro) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23120d0d'/%3E%3Cpath d='M0 68 L100 32 L100 100 L0 100 Z' fill='%23d1001f'/%3E%3Crect x='5' y='5' width='90' height='90' rx='18' fill='none' stroke='%23c59b27' stroke-width='4'/%3E%3Ctext x='50' y='67' font-family='Impact, sans-serif' font-size='52' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3ESA%3C/text%3E%3Ccircle cx='80' cy='22' r='8' fill='%234ade80'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23120d0d'/%3E%3Cpath d='M0 68 L100 32 L100 100 L0 100 Z' fill='%23d1001f'/%3E%3Ctext x='50' y='67' font-family='Impact, sans-serif' font-size='52' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3ESA%3C/text%3E%3C/svg%3E">
+
+<!-- Open Graph / Tarjeta de vista previa para WhatsApp y Telegram -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="10 managers, 0 ideas · Temporada 2026/27">
+<meta property="og:title" content="🏆 Liga Biwenger Seg.Aux 26/27 · En Vivo">
+<meta property="og:description" content="📊 Ranking FIFA Picas AS, Liga Apertura, Reparto del Bote (200 €), Estadísticas y Palmarés Histórico.">
+<meta property="og:url" content="https://marc-post.github.io/biwenger-seg-aux/">
+<meta property="og:image" content="https://placehold.co/1200x630/120d0d/d1001f.png?text=LIGA+BIWENGER+SEG.AUX%0A10+MANAGERS,+0+IDEAS+%C2%B7+200+%E2%82%AC&font=oswald">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="🏆 Liga Biwenger Seg.Aux 26/27 · En Vivo">
+<meta name="twitter:description" content="📊 Clasificaciones al día, Bote de 200 €, Cruces de Apertura y Hall of Fame.">
+<meta name="twitter:image" content="https://placehold.co/1200x630/120d0d/d1001f.png?text=LIGA+BIWENGER+SEG.AUX%0A10+MANAGERS,+0+IDEAS+%C2%B7+200+%E2%82%AC&font=oswald">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
 <style>
   :root {
-    --bg: #f4efef;
+    --bg: #f3eeee;
     --card: #ffffff;
-    --card-hi: #fff5f5;
-    --line: #e6d6d6;
-    --ink: #140f0f;
-    --muted: #756565;
+    --card-hi: #fff5f6;
+    --line: #e5d5d7;
+    --ink: #140f10;
+    --muted: #736264;
     --red: #d1001f;
     --red-dark: #990017;
     --red-bright: #ff2a45;
-    --gold: #c59b27;
+    --gold: #d4a528;
     --silver: #7a8288;
     --bronze: #b07246;
-    --green: #15803d;
-    --black: #120d0d;
-    --radius: 14px;
-    --shadow: 0 4px 20px rgba(20, 10, 10, 0.06);
+    --green: #16a34a;
+    --black: #110c0d;
+    --radius: 16px;
+    --shadow: 0 8px 28px rgba(20, 10, 12, 0.07);
   }
+
+  /* VARIABLES Y AJUSTES DEL MODO OSCURO */
+  html[data-theme="dark"] {
+    --bg: #0b090a;
+    --card: #151113;
+    --card-hi: #1f181b;
+    --line: #2c2124;
+    --ink: #f6f0f1;
+    --muted: #a39093;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  }
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Space Grotesk', sans-serif; line-height: 1.45; padding-bottom: 72px; }
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(rgba(209, 0, 31, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.45;
+    padding-bottom: 76px;
+    transition: background-color .2s, color .2s;
+  }
   h1, h2, h3, .display { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.02em; font-weight: 400; }
   .mono { font-family: 'JetBrains Mono', monospace; }
   a { color: inherit; text-decoration: none; }
@@ -35,13 +81,14 @@
   /* TOPBAR & NAVIGATION */
   .topbar {
     position: sticky; top: 0; z-index: 60;
-    background: var(--black); color: #fff;
+    background: rgba(17, 12, 13, 0.94); backdrop-filter: blur(10px); color: #fff;
     border-bottom: 3px solid var(--red);
-    padding: 0 20px; height: 60px;
+    padding: 0 18px; height: 62px;
     display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
   }
-  .topbar-left { display: flex; align-items: center; gap: 14px; }
+  .topbar-left { display: flex; align-items: center; gap: 12px; }
+  .topbar-right { display: flex; align-items: center; gap: 8px; }
   .hamburger {
     width: 38px; height: 38px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.14);
     background: rgba(255,255,255,0.06); display: flex; flex-direction: column;
@@ -49,16 +96,34 @@
   }
   .hamburger:hover { background: var(--red); border-color: var(--red); }
   .hamburger span { width: 18px; height: 2px; background: #fff; border-radius: 2px; }
-  .brand-title { font-family: 'Anton', sans-serif; font-size: 19px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 10px; }
-  .brand-title .badge { background: var(--red); font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.06em; }
-  
-  .QuickNav { display: flex; gap: 4px; }
+  .brand-title { font-family: 'Anton', sans-serif; font-size: 19px; letter-spacing: 0.04em; display: flex; align-items: center; gap: 9px; }
+  .brand-title .badge { background: linear-gradient(135deg, var(--red), var(--red-dark)); font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.06em; }
+
+  .QuickNav { display: flex; gap: 3px; }
   .QuickNav a {
     font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase;
-    padding: 7px 12px; border-radius: 8px; color: rgba(255,255,255,0.7); transition: .15s;
+    padding: 7px 11px; border-radius: 8px; color: rgba(255,255,255,0.72); transition: .15s;
   }
   .QuickNav a:hover, .QuickNav a.active { background: var(--red); color: #fff; }
-  @media (max-width: 860px) { .QuickNav { display: none; } }
+  @media (max-width: 960px) { .QuickNav { display: none; } }
+
+  .wa-btn {
+    height: 38px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(37, 211, 102, 0.4);
+    background: rgba(37, 211, 102, 0.14); color: #4ade80; font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; transition: .15s; white-space: nowrap;
+  }
+  .wa-btn:hover { background: #25d366; color: #0b090a; border-color: #25d366; transform: translateY(-1px); }
+  @media (max-width: 520px) { .wa-btn span.wa-txt { display: none; } .wa-btn { padding: 0 10px; } }
+
+  .theme-toggle {
+    width: 38px; height: 38px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.06); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; cursor: pointer; transition: .15s; flex-shrink: 0;
+  }
+  .theme-toggle:hover { background: var(--red); border-color: var(--red); transform: scale(1.05); }
 
   /* DRAWER LATERAL */
   .overlay { position: fixed; inset: 0; background: rgba(10,5,5,0.65); backdrop-filter: blur(3px); z-index: 70; opacity: 0; pointer-events: none; transition: opacity .25s; }
@@ -87,7 +152,7 @@
   /* BARRA INFERIOR MÓVIL */
   .bottom-nav {
     position: fixed; bottom: 0; left: 0; right: 0; z-index: 55;
-    background: var(--black); border-top: 2px solid var(--red);
+    background: rgba(17, 12, 13, 0.96); backdrop-filter: blur(8px); border-top: 2px solid var(--red);
     display: none; justify-content: space-around; padding: 6px 4px;
   }
   .bottom-nav a {
@@ -97,40 +162,57 @@
   }
   .bottom-nav a.active, .bottom-nav a:hover { color: #fff; background: rgba(209,0,31,0.35); }
   .bottom-nav a .ico { font-size: 15px; }
-  @media (max-width: 860px) { .bottom-nav { display: flex; } }
+  @media (max-width: 960px) { .bottom-nav { display: flex; } }
 
-  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 18px; }
+  .wrap { max-width: 1140px; margin: 0 auto; padding: 0 18px; }
 
-  /* HERO COMPACTO */
+  /* HERO BROADCAST CON CAMPO TÁCTICO SVG */
   .hero {
-    background: linear-gradient(135deg, var(--black) 0%, #2a080d 60%, var(--red-dark) 100%);
-    color: #fff; padding: 28px 0 24px; border-bottom: 4px solid var(--red);
+    position: relative; overflow: hidden;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(255, 42, 69, 0.28) 0%, transparent 45%),
+      linear-gradient(135deg, #0b0708 0%, #24070c 58%, #5e000e 100%);
+    color: #fff; padding: 32px 0 26px; border-bottom: 4px solid var(--red);
   }
-  .hero-top { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; opacity: 0.08; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='400' height='240' viewBox='0 0 400 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Crect x='10' y='10' width='380' height='220' rx='8'/%3E%3Cline x1='200' y1='10' x2='200' y2='230'/%3E%3Ccircle cx='200' cy='120' r='36'/%3E%3Crect x='10' y='65' width='55' height='110'/%3E%3Crect x='335' y='65' width='55' height='110'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 380px; background-position: right -40px center; background-repeat: no-repeat;
+  }
+  .hero-top { position: relative; z-index: 2; display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace;
     font-size: 11px; color: #fff; background: rgba(209,0,31,0.45); border: 1px solid var(--red-bright);
-    padding: 4px 12px; border-radius: 100px; margin-bottom: 10px; text-transform: uppercase;
+    padding: 5px 13px; border-radius: 100px; margin-bottom: 10px; text-transform: uppercase;
+    box-shadow: 0 0 20px rgba(255,42,69,0.25);
   }
-  .hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
-  .hero h1 { font-size: clamp(30px, 6vw, 48px); line-height: 0.98; }
+  .hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 10px #4ade80; animation: pulseDot 1.6s infinite; }
+  @keyframes pulseDot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.6; } }
+  .hero h1 { font-size: clamp(32px, 6vw, 52px); line-height: 0.96; text-shadow: 0 4px 18px rgba(0,0,0,0.4); }
   .hero h1 em { font-style: normal; color: var(--red-bright); }
-  .hero-kpis { display: grid; grid-template-columns: repeat(4, auto); gap: 12px; }
-  .kpi-box {
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px; padding: 10px 16px; min-width: 110px;
-  }
-  .kpi-box .k { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; color: rgba(255,255,255,0.6); display: block; }
-  .kpi-box .v { font-family: 'Anton', sans-serif; font-size: 21px; color: #fff; margin-top: 2px; display: block; }
-  .kpi-box .v.hi { color: var(--red-bright); }
-  @media (max-width: 640px) { .hero-kpis { grid-template-columns: repeat(2, 1fr); width: 100%; } }
+  .hero-sub { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; font-family: 'JetBrains Mono', monospace; }
 
-  .lineup-strip { display: flex; gap: 10px; overflow-x: auto; margin-top: 20px; padding-bottom: 4px; }
+  .hero-kpis { display: grid; grid-template-columns: repeat(4, auto); gap: 10px; }
+  .kpi-box {
+    background: rgba(255,255,255,0.07); backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.14); border-top: 2px solid var(--red-bright);
+    border-radius: 12px; padding: 10px 15px; min-width: 118px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .kpi-box img.kpi-av { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; background: #fff; }
+  .kpi-box .k { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; color: rgba(255,255,255,0.65); display: block; }
+  .kpi-box .v { font-family: 'Anton', sans-serif; font-size: 20px; color: #fff; margin-top: 1px; display: block; letter-spacing: 0.02em; }
+  .kpi-box .v.hi { color: #fde047; }
+  @media (max-width: 720px) { .hero-kpis { grid-template-columns: repeat(2, 1fr); width: 100%; } }
+
+  .lineup-strip { position: relative; z-index: 2; display: flex; gap: 9px; overflow-x: auto; margin-top: 22px; padding-bottom: 6px; }
   .hero-av {
     flex: 0 0 auto; display: flex; align-items: center; gap: 8px;
-    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
-    padding: 5px 11px 5px 6px; border-radius: 100px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    padding: 5px 12px 5px 6px; border-radius: 100px;
+    transition: transform .15s, background .15s, border-color .15s; cursor: pointer;
   }
+  .hero-av:hover { background: rgba(209,0,31,0.55); transform: translateY(-2px); border-color: var(--red-bright); }
   .hero-av img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--red-bright); background: #fff; }
   .hero-av span { font-size: 11.5px; font-weight: 600; white-space: nowrap; color: #fff; }
 
@@ -139,32 +221,34 @@
   .sec-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
   .sec-head { display: flex; align-items: center; gap: 12px; }
   .sec-num {
-    font-family: 'Anton', sans-serif; background: var(--red); color: #fff;
-    font-size: 14px; padding: 3px 10px; border-radius: 6px; letter-spacing: 0.04em;
+    font-family: 'Anton', sans-serif; background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff;
+    font-size: 14px; padding: 4px 11px; border-radius: 8px; letter-spacing: 0.04em;
+    box-shadow: 0 3px 10px rgba(209,0,31,0.28);
   }
   .sec-head h2 { font-size: clamp(22px, 3.8vw, 30px); color: var(--ink); }
 
   /* PESTAÑAS (SELECTORES) */
   .tabs-bar { display: inline-flex; background: #e9dede; padding: 4px; border-radius: 12px; gap: 4px; flex-wrap: wrap; }
+  html[data-theme="dark"] .tabs-bar { background: #1f1719; border: 1px solid var(--line); }
   .tab-btn {
     font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
-    text-transform: uppercase; padding: 8px 16px; border-radius: 9px; border: none;
+    text-transform: uppercase; padding: 8px 15px; border-radius: 9px; border: none;
     background: transparent; color: var(--muted); cursor: pointer; transition: all .15s;
   }
   .tab-btn:hover { color: var(--ink); }
-  .tab-btn.active { background: var(--red); color: #fff; box-shadow: 0 2px 8px rgba(209,0,31,0.3); }
+  .tab-btn.active { background: var(--red); color: #fff; box-shadow: 0 2px 10px rgba(209,0,31,0.35); }
   .tab-panel { display: none; }
-  .tab-panel.active { display: block; animation: fadeIn .2s ease; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+  .tab-panel.active { display: block; animation: fadeIn .22s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
-  /* TABLAS ESTÁNDAR & STICKY COLUMNS */
+  /* TABLAS ESTÁNDAR, DATA-BARS & STICKY COLUMNS */
   .card-box { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
   .box-header {
-    padding: 12px 16px; background: var(--black); color: #fff;
+    padding: 12px 16px; background: linear-gradient(90deg, var(--black) 0%, #261014 100%); color: #fff;
     display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap;
     font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em;
   }
-  .box-header .badge-live { color: #4ade80; }
+  .box-header .badge-live { color: #4ade80; font-weight: 700; }
   .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .std-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   .std-table th {
@@ -180,6 +264,16 @@
   .std-table tr.oro-zone td { background: #fffdf5; }
   .std-table tr.oro-zone td:first-child { box-shadow: inset 4px 0 0 var(--gold); }
   .std-table tr.plata-zone td:first-child { box-shadow: inset 4px 0 0 var(--silver); }
+
+  html[data-theme="dark"] .std-table tr.prize-row td { background: #211417; }
+  html[data-theme="dark"] .std-table tr.oro-zone td { background: #211c12; }
+  html[data-theme="dark"] .std-table tbody tr:hover td { background: #281d20; }
+
+  /* BARRA DE PROGRESO EN CELDAS (DATA-BAR) */
+  .pts-wrap { display: inline-flex; flex-direction: column; align-items: center; min-width: 58px; }
+  .pts-big { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--red); line-height: 1.05; }
+  .data-bar { width: 100%; height: 4px; background: rgba(209,0,31,0.12); border-radius: 4px; overflow: hidden; margin-top: 3px; }
+  .data-bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--red), #ff6b81); border-radius: 4px; }
 
   /* INMOVILIZAR POS + EQUIPO/MANAGER (2 PRIMERAS COLUMNAS) */
   .sticky-2col th:nth-child(1),
@@ -220,18 +314,31 @@
     width: 26px; height: 26px; border-radius: 7px; font-family: 'JetBrains Mono', monospace;
     font-weight: 700; font-size: 12px; background: #f0e6e6; color: var(--ink);
   }
-  .pos-1 { background: var(--red); color: #fff; }
+  .pos-1 { background: linear-gradient(135deg, #eab308, #ca8a04); color: #140f0f; box-shadow: 0 2px 6px rgba(234,179,8,0.35); }
   .pos-2 { background: #ffccd3; color: var(--red-dark); }
   .pos-3 { background: #ffe6ea; color: var(--red); }
+  html[data-theme="dark"] .pos-badge:not(.pos-1):not(.pos-2):not(.pos-3) { background: #281e21; color: var(--ink); }
+  html[data-theme="dark"] .pos-2 { background: #4a1520; color: #ff8fa0; }
+  html[data-theme="dark"] .pos-3 { background: #361219; color: #ff6b81; }
 
   .eq-cell { display: flex; align-items: center; gap: 8px; font-weight: 600; text-align: left; }
-  .eq-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); flex-shrink: 0; }
-  .pts-big { font-family: 'Anton', sans-serif; font-size: 17px; color: var(--red); }
-  .inc-up { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; }
-  .inc-down { color: var(--red); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600; }
+  .eq-cell img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1.5px solid var(--line); flex-shrink: 0; background: #fff; }
+  .inc-up { color: var(--green); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; }
+  .inc-down { color: var(--red); font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; }
+
+  /* CENTRO ANALÍTICO DE GRÁFICAS (CHART.JS) */
+  .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 16px; margin-top: 16px; }
+  .chart-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 16px; box-shadow: var(--shadow);
+  }
+  .chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
+  .chart-head h3 { font-size: 16px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+  .chart-head span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; }
+  .chart-canvas-wrap { position: relative; height: 250px; width: 100%; }
 
   /* ACORDEÓN PLEGABLE */
-  .accordion { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; }
+  .accordion { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; box-shadow: var(--shadow); }
   .acc-btn {
     width: 100%; padding: 13px 18px; background: var(--card); border: none;
     display: flex; align-items: center; justify-content: space-between; gap: 10px; cursor: pointer;
@@ -241,14 +348,16 @@
   .acc-btn:hover { background: var(--card-hi); }
   .acc-btn .acc-sub { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--red); font-weight: 600; flex-shrink: 0; }
   .acc-body { display: none; padding: 16px; border-top: 1px solid var(--line); background: #fcf9f9; }
+  html[data-theme="dark"] .acc-body { background: #120e10; }
   .acc-body.open { display: block; }
 
   .bracket-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
-  .b-card { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--red); border-radius: 10px; padding: 14px; }
+  .b-card { background: var(--card); border: 1px solid var(--line); border-top: 3px solid var(--red); border-radius: 12px; padding: 14px; transition: transform .15s; }
+  .b-card:hover { transform: translateY(-2px); }
   .b-card h4 { font-family: 'Anton', sans-serif; font-size: 15.5px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
   .b-card h4 .comp-ico {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 26px; height: 26px; border-radius: 7px; font-size: 14px; background: var(--card-hi); border: 1px solid var(--line); flex-shrink: 0;
+    width: 28px; height: 28px; border-radius: 8px; font-size: 15px; background: var(--card-hi); border: 1px solid var(--line); flex-shrink: 0;
   }
   .b-card p { font-size: 12px; color: var(--muted); margin-bottom: 6px; }
   .b-card .b-meta { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--red); font-weight: 600; }
@@ -257,79 +366,105 @@
   .rounds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
   .rnd-card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
   .rnd-head { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--red); border-bottom: 1px solid var(--line); padding-bottom: 6px; margin-bottom: 8px; display: flex; justify-content: space-between; }
-  .fix-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 4px 0; border-bottom: 1px dashed #f0e4e4; }
+  .fix-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 4px 0; border-bottom: 1px dashed var(--line); }
   .fix-row:last-child { border-bottom: none; }
   .fix-team { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .fix-team.r { text-align: right; }
   .fix-team.w { font-weight: 700; color: var(--ink); }
   .fix-score { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; background: var(--card-hi); color: var(--red); padding: 2px 7px; border-radius: 5px; margin: 0 6px; }
 
-  /* PREMIOS Y BOTE EN VIVO */
-  .pot-banner {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px;
+  /* PREMIOS Y BOTE EN VIVO CON MINI DONUT */
+  .pot-overview {
+    display: grid; grid-template-columns: 1fr 260px; gap: 14px; margin-bottom: 16px; align-items: stretch;
   }
+  @media (max-width: 820px) { .pot-overview { grid-template-columns: 1fr; } }
+  .pot-banner {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
+  }
+  @media (max-width: 480px) { .pot-banner { grid-template-columns: 1fr; } }
   .pot-pill {
     background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--red);
-    border-radius: 10px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center;
+    border-radius: 12px; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
+    box-shadow: var(--shadow);
   }
-  .pot-pill .lbl { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; text-transform: uppercase; color: var(--muted); }
-  .pot-pill .val { font-family: 'Anton', sans-serif; font-size: 22px; color: var(--red); }
+  .pot-pill .lbl { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; color: var(--muted); display: block; }
+  .pot-pill .sub-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .pot-pill .val { font-family: 'Anton', sans-serif; font-size: 24px; color: var(--red); }
+  .pot-donut-box {
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: var(--shadow);
+  }
+  .pot-donut-wrap { width: 130px; height: 130px; position: relative; }
 
   /* ESTADÍSTICAS INDIVIDUALES */
-  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin-bottom: 18px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin-bottom: 18px; }
   .stat-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-  .stat-head { background: var(--red); color: #fff; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
-  .stat-head h3 { font-size: 15px; letter-spacing: 0.03em; }
-  .stat-head span { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(0,0,0,0.25); padding: 2px 7px; border-radius: 5px; }
-  .stat-list { padding: 6px 12px; }
+  .stat-head { background: linear-gradient(135deg, var(--red), var(--red-dark)); color: #fff; padding: 11px 14px; display: flex; justify-content: space-between; align-items: center; }
+  .stat-head h3 { font-size: 15px; letter-spacing: 0.03em; display: flex; align-items: center; gap: 6px; }
+  .stat-head span { font-family: 'JetBrains Mono', monospace; font-size: 11px; background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 6px; }
+  .stat-list { padding: 8px 12px; }
   .stat-item { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
   .stat-item:last-child { border-bottom: none; }
   .stat-item .st-left { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .stat-item .st-left img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
   .stat-item .st-val { font-family: 'Anton', sans-serif; font-size: 16px; color: var(--red); }
 
-  /* PARTICIPANTES TARJETAS */
-  .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 12px; }
+  /* PARTICIPANTES TARJETAS ESTILO FIFA ULTIMATE TEAM / SCOUTING */
+  .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
   .p-card {
-    background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 16px 14px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 0 14px 16px; display: flex; flex-direction: column; align-items: center; text-align: center;
     box-shadow: var(--shadow); position: relative; overflow: hidden;
+    scroll-margin-top: 80px; transition: transform .2s, box-shadow .3s, border-color .3s;
   }
-  .p-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--red); }
-  .p-avatar img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 2px solid var(--red); background: #fff; }
-  .p-name { font-family: 'Anton', sans-serif; font-size: 16px; margin-top: 8px; }
-  .p-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #fff; background: var(--black); padding: 2px 9px; border-radius: 100px; margin-top: 4px; }
+  .p-card:hover { transform: translateY(-4px); border-color: var(--red); }
+  .p-card:target { border-color: var(--red); box-shadow: 0 0 0 3px rgba(209,0,31,0.35), var(--shadow); }
+  .p-card-banner {
+    width: calc(100% + 28px); height: 54px; margin-bottom: -32px;
+    background: linear-gradient(135deg, #1b0c0e 0%, var(--red-dark) 100%);
+    position: relative; display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 12px;
+  }
+  .p-card-banner .p-rank-chip {
+    font-family: 'Anton', sans-serif; font-size: 13px; color: #fff;
+    background: rgba(0,0,0,0.45); padding: 2px 8px; border-radius: 6px;
+  }
+  .p-card-banner .p-val-chip {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #fde047;
+    background: rgba(0,0,0,0.45); padding: 2px 7px; border-radius: 6px; font-weight: 700;
+  }
+  .p-avatar { position: relative; z-index: 2; }
+  .p-avatar img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--card); box-shadow: 0 4px 12px rgba(0,0,0,0.25); background: #fff; }
+  .p-name { font-family: 'Anton', sans-serif; font-size: 17px; margin-top: 8px; letter-spacing: 0.02em; }
+  .p-badge { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #fff; background: var(--red); padding: 3px 10px; border-radius: 100px; margin-top: 4px; font-weight: 600; }
+  .p-power-bar { width: 100%; margin-top: 10px; text-align: left; }
+  .p-power-bar .pb-top { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted); margin-bottom: 3px; }
+  .p-power-bar .pb-track { height: 5px; background: var(--line); border-radius: 4px; overflow: hidden; }
+  .p-power-bar .pb-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--red)); border-radius: 4px; }
   .p-stats-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11px; }
   .p-stats-mini div span { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); text-transform: uppercase; }
-  .p-stats-mini div strong { font-family: 'Anton', sans-serif; font-size: 14px; color: var(--ink); font-weight: 400; }
+  .p-stats-mini div strong { font-family: 'Anton', sans-serif; font-size: 15px; color: var(--ink); font-weight: 400; }
 
   /* CALENDARIO */
   .cal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .cal-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; color: var(--muted); padding: 10px 12px; background: var(--card-hi); border-bottom: 2px solid var(--line); }
   .cal-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--card); }
   .cal-table tr.inter td { background: #fff2f2; }
-  .cal-table tr.past td:not(.month-cell) {
-    background: #ece3e3;
-    color: var(--muted);
-  }
+  .cal-table tr.past td:not(.month-cell) { background: #ece3e3; color: var(--muted); }
   .cal-table tr.past .tag { opacity: 0.55; }
   .cal-table tr.current td:not(.month-cell) {
     background: #fff0f2;
     border-top: 2px solid var(--red);
     border-bottom: 2px solid var(--red);
   }
-  .cal-table tr.current td.jnum {
-    color: var(--red);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    font-weight: 800;
-  }
-  .cal-table tr.current td.jdate {
-    font-weight: 700;
-    color: var(--ink);
-    text-decoration: underline;
-    text-decoration-color: var(--red);
-    text-underline-offset: 3px;
-  }
+  .cal-table tr.current td.jnum { color: var(--red); text-decoration: underline; text-underline-offset: 3px; font-weight: 800; }
+  .cal-table tr.current td.jdate { font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 3px; }
+
+  html[data-theme="dark"] .cal-table tr.inter td { background: #221417; }
+  html[data-theme="dark"] .cal-table tr.past td:not(.month-cell) { background: #120e0f; color: #66585a; }
+  html[data-theme="dark"] .cal-table tr.current td:not(.month-cell) { background: #2b1217; }
+  html[data-theme="dark"] .month-cell { background: #171214 !important; }
+
   .now-pill {
     display: inline-block; background: var(--red); color: #fff;
     font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700;
@@ -349,16 +484,24 @@
   .tag-superliga { background: #dcfce7; color: #166534; }
   .tag-supercup { background: var(--red); color: #fff; }
 
+  html[data-theme="dark"] .tag-apertura { background: rgba(225, 29, 72, 0.22); color: #fda4af; }
+  html[data-theme="dark"] .tag-clausura { background: rgba(217, 119, 6, 0.22); color: #fcd34d; }
+  html[data-theme="dark"] .tag-copa { background: rgba(37, 99, 235, 0.22); color: #93c5fd; }
+  html[data-theme="dark"] .tag-champions { background: rgba(147, 51, 234, 0.25); color: #d8b4fe; }
+  html[data-theme="dark"] .tag-superliga { background: rgba(22, 163, 74, 0.22); color: #86efac; }
+
   /* PODIO TOP 3 HISTÓRICO */
   .podium-box {
-    background: linear-gradient(180deg, #1b1113 0%, var(--black) 100%);
+    background:
+      radial-gradient(circle at 50% 0%, rgba(212, 165, 40, 0.22) 0%, transparent 55%),
+      linear-gradient(180deg, #1b1113 0%, var(--black) 100%);
     border: 1px solid var(--line); border-bottom: 4px solid var(--red);
-    border-radius: var(--radius); padding: 26px 16px 0; margin-bottom: 20px;
+    border-radius: var(--radius); padding: 28px 16px 0; margin-bottom: 20px;
     color: #fff; box-shadow: var(--shadow); overflow: hidden;
   }
   .podium-title {
     text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 11px;
-    text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 20px;
+    text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.65); margin-bottom: 22px;
   }
   .podium-title span { color: var(--gold); font-weight: 700; }
   .podium-stage {
@@ -371,12 +514,12 @@
     width: 58px; height: 58px; border-radius: 50%; object-fit: cover;
     border: 3px solid #fff; background: var(--black); display: block;
   }
-  .podium-col.p-1 .podium-av img { width: 72px; height: 72px; border-color: var(--gold); box-shadow: 0 0 20px rgba(197,155,39,0.45); }
+  .podium-col.p-1 .podium-av img { width: 74px; height: 74px; border-color: var(--gold); box-shadow: 0 0 24px rgba(197,155,39,0.55); }
   .podium-col.p-2 .podium-av img { border-color: #cbd5e1; }
   .podium-col.p-3 .podium-av img { border-color: var(--bronze); }
   .podium-crown {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    font-size: 20px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
+    position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+    font-size: 21px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.6));
   }
   .podium-name { font-family: 'Anton', sans-serif; font-size: 16px; letter-spacing: 0.03em; color: #fff; line-height: 1.1; }
   .podium-col.p-1 .podium-name { font-size: 19px; color: #fde047; }
@@ -420,6 +563,15 @@
   .hist-table th:first-child { background: var(--card-hi); z-index: 4; }
   .hist-table .rk { color: var(--red); font-family: 'Anton', sans-serif; font-size: 14px; }
 
+  /* TOAST DE NOTIFICACIÓN */
+  .toast {
+    position: fixed; bottom: 84px; right: 20px; z-index: 100;
+    background: #16a34a; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    padding: 12px 18px; border-radius: 10px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    transform: translateY(20px); opacity: 0; pointer-events: none; transition: .25s;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
   footer { padding: 28px 20px; text-align: center; color: var(--muted); font-size: 11.5px; background: var(--card); border-top: 1px solid var(--line); }
   footer .brand { display: flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Anton', sans-serif; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
   footer .brand .dot { width: 8px; height: 8px; background: var(--red); transform: rotate(45deg); }
@@ -449,14 +601,18 @@
     <button class="hamburger" id="hamburgerBtn" aria-label="Menú"><span></span><span></span><span></span></button>
     <div class="brand-title">BIWENGER SEG.AUX <span class="badge">2026/27</span></div>
   </div>
-  <nav class="QuickNav">
-    <a href="#clasificaciones" class="active">01 Clasificaciones</a>
-    <a href="#premios">02 Premios</a>
-    <a href="#individuales">03 Individuales</a>
-    <a href="#calendario">04 Calendario</a>
-    <a href="#participantes">05 Managers</a>
-    <a href="#palmares">06 Palmarés</a>
-  </nav>
+  <div class="topbar-right">
+    <nav class="QuickNav">
+      <a href="#clasificaciones" class="active">01 Clasificaciones</a>
+      <a href="#premios">02 Premios</a>
+      <a href="#individuales">03 Individuales</a>
+      <a href="#calendario">04 Calendario</a>
+      <a href="#participantes">05 Managers</a>
+      <a href="#palmares">06 Palmarés</a>
+    </nav>
+    <button class="wa-btn" id="waShareBtn" title="Copiar resumen para WhatsApp">📲 <span class="wa-txt">WhatsApp</span></button>
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema" title="Modo Oscuro / Claro">🌙</button>
+  </div>
 </div>
 
 <nav class="bottom-nav">
@@ -473,12 +629,23 @@
       <div>
         <div class="hero-badge" id="live-badge">En vivo · Jornada 9 en juego</div>
         <h1>LIGA BIWENGER <em>SEG.AUX</em></h1>
+        <p class="hero-sub">10 Managers, 0 Ideas · Picas Diario AS · Temporada Oficial 2026/27</p>
       </div>
       <div class="hero-kpis">
-        <div class="kpi-box"><span class="k">Líder FIFA</span><span class="v hi" id="kpi-fifa">Diomande</span></div>
-        <div class="kpi-box"><span class="k">Líder Apertura</span><span class="v" id="kpi-apertura">Girafa Camello</span></div>
-        <div class="kpi-box"><span class="k">Récord J.</span><span class="v" id="kpi-record">78 pts</span></div>
-        <div class="kpi-box"><span class="k">Bote Total</span><span class="v hi">200 €</span></div>
+        <div class="kpi-box">
+          <img class="kpi-av" id="kpi-fifa-img" src="https://api.dicebear.com/7.x/initials/svg?seed=DI" alt="">
+          <div><span class="k">Líder FIFA</span><span class="v hi" id="kpi-fifa">Diomande</span></div>
+        </div>
+        <div class="kpi-box">
+          <img class="kpi-av" id="kpi-ap-img" src="https://api.dicebear.com/7.x/initials/svg?seed=GC" alt="">
+          <div><span class="k">Líder Apertura</span><span class="v" id="kpi-apertura">Girafa Camello</span></div>
+        </div>
+        <div class="kpi-box">
+          <div><span class="k">Récord 1 J.</span><span class="v" id="kpi-record">78 pts</span></div>
+        </div>
+        <div class="kpi-box">
+          <div><span class="k">Bote Oficial</span><span class="v hi">200 €</span></div>
+        </div>
       </div>
     </div>
     <div class="lineup-strip" id="hero-strip"></div>
@@ -515,7 +682,7 @@
 
       <div class="accordion">
         <button class="acc-btn" onclick="toggleAcc('acc-partidos-ap')">
-          <span>Resultados y Cruces · Liga Apertura (J2 a J9)</span>
+          <span>&#9917; Resultados y Cruces · Liga Apertura (J2 a J9)</span>
           <span class="acc-sub">Desplegar &#9660;</span>
         </button>
         <div class="acc-body" id="acc-partidos-ap">
@@ -572,6 +739,28 @@
       </div>
     </div>
 
+    <!-- GRÁFICAS INTERACTIVAS EN VIVO -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>&#128202; Puntos FIFA vs. Valor de Plantilla</h3>
+          <span>Barras: Picas · Línea: M€</span>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="chartFifaValor"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="chart2-title">&#128200; Rendimiento y Potencial Ofensivo</h3>
+          <span id="chart2-sub">Comparativa de Managers</span>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="chartRendimiento"></canvas>
+        </div>
+      </div>
+    </div>
+
     <!-- ACORDEÓN FASE FINAL Y COPAS PLEGADO CON ICONOS -->
     <div class="accordion">
       <button class="acc-btn" onclick="toggleAcc('acc-fase-final')">
@@ -618,16 +807,35 @@
       <div class="sec-head"><span class="sec-num">02</span><h2>Reparto de Premios · 200 €</h2></div>
     </div>
 
-    <div class="pot-banner">
-      <div class="pot-pill"><span class="lbl">Temp. Regular</span><span class="val">80,00 €</span></div>
-      <div class="pot-pill"><span class="lbl">Copas</span><span class="val">46,25 €</span></div>
-      <div class="pot-pill"><span class="lbl">Fase Final</span><span class="val">48,75 €</span></div>
-      <div class="pot-pill"><span class="lbl">Individuales</span><span class="val">25,00 €</span></div>
+    <div class="pot-overview">
+      <div class="pot-banner">
+        <div class="pot-pill">
+          <div><span class="lbl">Temporada Regular</span><div class="sub-lbl">FIFA, Apertura, Clausura y S.Ligas</div></div>
+          <span class="val">80,00 €</span>
+        </div>
+        <div class="pot-pill">
+          <div><span class="lbl">Copas Oficiales</span><div class="sub-lbl">Copa del Rey, Champions y S.Copas</div></div>
+          <span class="val">46,25 €</span>
+        </div>
+        <div class="pot-pill">
+          <div><span class="lbl">Fase Final</span><div class="sub-lbl">Superliga Oro/Plata, C.Superliga y Final</div></div>
+          <span class="val">48,75 €</span>
+        </div>
+        <div class="pot-pill">
+          <div><span class="lbl">Premios Individuales</span><div class="sub-lbl">Pichichi, Asist., 11 Ideal, Fichaje y Récord</div></div>
+          <span class="val">25,00 €</span>
+        </div>
+      </div>
+      <div class="pot-donut-box">
+        <div class="pot-donut-wrap">
+          <canvas id="chartPotDonut"></canvas>
+        </div>
+      </div>
     </div>
 
     <div class="card-box">
       <div class="box-header">
-        <span>Acumulado Virtual en Vivo (Según posiciones actuales J8)</span>
+        <span>Acumulado Virtual en Vivo (Según posiciones actuales)</span>
         <span class="badge-live">● Bote 200 € (10 x 20 €)</span>
       </div>
       <div class="table-scroll">
@@ -690,19 +898,19 @@
 
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-head"><h3>Máximo Goleador</h3><span>5 €</span></div>
+        <div class="stat-head"><h3>&#9917; Máximo Goleador</h3><span>5 €</span></div>
         <div class="stat-list" id="list-goles"></div>
       </div>
       <div class="stat-card">
-        <div class="stat-head"><h3>Máximo Asistente</h3><span>5 €</span></div>
+        <div class="stat-head"><h3>&#127919; Máximo Asistente</h3><span>5 €</span></div>
         <div class="stat-list" id="list-asistencias"></div>
       </div>
       <div class="stat-card">
-        <div class="stat-head"><h3>Más Veces 11 Ideal</h3><span>5 €</span></div>
+        <div class="stat-head"><h3>&#11088; Más Veces 11 Ideal</h3><span>5 €</span></div>
         <div class="stat-list" id="list-ideal"></div>
       </div>
       <div class="stat-card">
-        <div class="stat-head"><h3>Récord 1 Jornada</h3><span>5 €</span></div>
+        <div class="stat-head"><h3>&#128293; Récord 1 Jornada</h3><span>5 €</span></div>
         <div class="stat-list" id="list-records"></div>
       </div>
     </div>
@@ -782,7 +990,7 @@
 <section id="participantes">
   <div class="wrap">
     <div class="sec-bar">
-      <div class="sec-head"><span class="sec-num">05</span><h2>Participantes</h2></div>
+      <div class="sec-head"><span class="sec-num">05</span><h2>Participantes · Scouting</h2></div>
     </div>
     <div class="p-grid" id="participants-grid"></div>
   </div>
@@ -806,7 +1014,7 @@
           </div>
           <div class="podium-name">JUAN VELASCO</div>
           <div class="podium-pts"><strong>7,40</strong> pts hist.</div>
-          <div class="podium-badges">2 FIFA · 1 Champ · 2 Copas</div>
+          <div class="podium-badges">2 FIFA · 1 Champ · 1 Copa · 1 S.Oro</div>
           <div class="podium-step">
             <span class="step-rank">2º</span>
             <span class="step-lbl">Plata</span>
@@ -820,7 +1028,7 @@
           </div>
           <div class="podium-name">Quitate el toz</div>
           <div class="podium-pts"><strong>9,75</strong> pts hist.</div>
-          <div class="podium-badges">3 Ligas Gen. · 1 Apert · 2 FIFA</div>
+          <div class="podium-badges">3 Ligas · 2 FIFA · 2 Champ · 1 Copa</div>
           <div class="podium-step">
             <span class="step-rank">1º</span>
             <span class="step-lbl">Rey Histórico</span>
@@ -833,7 +1041,7 @@
           </div>
           <div class="podium-name">MarkLenders</div>
           <div class="podium-pts"><strong>4,60</strong> pts hist.</div>
-          <div class="podium-badges">1 Liga Gen. · 1 Apert · 2 S. Oro</div>
+          <div class="podium-badges">1 Liga · 1 Champ · 1 S.Oro · 2 C.Sup</div>
           <div class="podium-step">
             <span class="step-rank">3º</span>
             <span class="step-lbl">Bronce</span>
@@ -846,7 +1054,7 @@
     <div class="card-box" style="margin-bottom: 18px;">
       <div class="box-header">
         <span>Ranking Histórico de Títulos Ponderados</span>
-        <span>Actualizado según tabla maestra</span>
+        <span>Actualizado hasta Temporada 2025/26</span>
       </div>
       <div class="table-scroll">
         <table class="hist-table">
@@ -860,79 +1068,191 @@
               <th>Ranking FIFA (1p)</th>
               <th>Copa Rey (0,5p)</th>
               <th>Champions (1p)</th>
-              <th>S. Copas (0,5p)</th>
-              <th>S. Oro (0,2p)</th>
-              <th>S. Plata (0,2p)</th>
+              <th>S. Copas (0,2p)</th>
+              <th>S. Oro (0,5p)</th>
+              <th>S. Plata (0,15p)</th>
               <th>C. Superliga (0,2p)</th>
-              <th>Super Final (1p)</th>
+              <th>Super Final (0,25p)</th>
+              <th>Premios Indiv. (0,2p)</th>
               <th>Puntos Hist.</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Quitate el toz</td><td>3</td><td>1</td><td>1</td><td>—</td><td>2</td><td>1</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td class="rk">9,75</td></tr>
-            <tr><td>JUAN VELASCO</td><td>—</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1</td><td>1</td><td>2</td><td>—</td><td>—</td><td>1</td><td>2</td><td class="rk">7,40</td></tr>
-            <tr><td>MarkLenders</td><td>1</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>2</td><td>2</td><td>—</td><td>—</td><td class="rk">4,60</td></tr>
-            <tr><td>Girafa Camello</td><td>—</td><td>2</td><td>—</td><td>—</td><td>2</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">3,70</td></tr>
-            <tr><td>Tripode G L</td><td>1</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>2</td><td>—</td><td>—</td><td>—</td><td class="rk">2,70</td></tr>
-            <tr><td>Carlos Gaggotas</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td class="rk">0,95</td></tr>
-            <tr><td>Dalai-Lama</td><td>—</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,90</td></tr>
-            <tr><td>Didier</td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,50</td></tr>
-            <tr><td>Auo FC</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,20</td></tr>
-            <tr><td>Xadrian</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>G.Mate</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>quinin eleskin</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>El árbitro</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
+            <tr><td>Quitate el toz</td><td>3</td><td>1</td><td>1</td><td>—</td><td>2</td><td>1</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td>4 <small style="color:var(--muted)">(0,8p)</small></td><td class="rk">9,75</td></tr>
+            <tr><td>JUAN VELASCO</td><td>—</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1</td><td>—</td><td>1</td><td>2</td><td>2 <small style="color:var(--muted)">(0,4p)</small></td><td class="rk">7,40</td></tr>
+            <tr><td>MarkLenders</td><td>1</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>1</td><td>2</td><td>2</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">4,60</td></tr>
+            <tr><td>Girafa Camello</td><td>—</td><td>2</td><td>—</td><td>—</td><td>—</td><td>2</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>5 <small style="color:var(--muted)">(1,0p)</small></td><td class="rk">3,70</td></tr>
+            <tr><td>Tripode G L</td><td>1</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>2</td><td>—</td><td>—</td><td>—</td><td class="rk">2,70</td></tr>
+            <tr><td>Carlos Gaggotas</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>1</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,95</td></tr>
+            <tr><td>Dalai-Lama</td><td>—</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,90</td></tr>
+            <tr><td>Didier <small style="color:var(--muted)">(Diomande)</small></td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,50</td></tr>
+            <tr><td>Auo FC</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,20</td></tr>
+            <tr><td>Xadrian</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
+            <tr><td>G.Mate <small style="color:var(--muted)">(Extintores FC)</small></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
+            <tr><td>quinin eleskin</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
+            <tr><td>El árbitro</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
           </tbody>
         </table>
       </div>
     </div>
 
-    <!-- CUADRO DE HONOR POR TEMPORADA (AJUSTADO A LA TABLA OFICIAL) -->
+    <!-- CUADRO DE HONOR POR TEMPORADA -->
     <div class="card-box">
       <div class="box-header">
         <span>Cuadro de Honor por Temporada (2016/17 a 2025/26)</span>
+        <span>Premios individuales registrados desde 2023/24</span>
       </div>
       <div class="table-scroll">
         <table class="hist-table">
           <thead>
             <tr>
               <th>Temporada</th>
-              <th>Liga Gen.</th>
-              <th>Apertura</th>
-              <th>Clausura</th>
-              <th>S. Ligas</th>
+              <th>Liga</th>
+              <th>Liga Apertura</th>
+              <th>Liga Clausura</th>
+              <th>Supercopa Ligas</th>
               <th>Ranking FIFA</th>
-              <th>Copa Rey</th>
-              <th>Champions</th>
-              <th>S. Copas</th>
-              <th>S. Oro</th>
-              <th>S. Plata</th>
-              <th>C. Superliga</th>
+              <th>Copa del Rey</th>
+              <th>Champions League</th>
+              <th>Supercopa Copas</th>
+              <th>Superliga Oro</th>
+              <th>Superliga Plata</th>
+              <th>Copa Superliga</th>
               <th>Super Final</th>
               <th>Pichichi</th>
-              <th>Máx. Asist.</th>
+              <th>Máx. Asistente</th>
               <th>Máx. 11 Ideal</th>
               <th>Mejor Fichaje</th>
-              <th>Récord Pts</th>
+              <th>Récord Puntos</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>2016-17</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2017-18</td><td class="rk">MarkLenders</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2018-19</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2019-20</td><td class="rk">Tripode G L</td><td>MarkLenders</td><td>Didier</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2020-21</td><td>—</td><td>JUAN VELASCO</td><td>MarkLenders</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2021-22</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>MarkLenders</td><td>Tripode G L</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2022-23</td><td>—</td><td>Quitate el toz</td><td>Tripode G L</td><td>Tripode G L</td><td>JUAN VELASCO</td><td>Girafa Camello</td><td>JUAN VELASCO</td><td>JUAN VELASCO</td><td>Tripode G L</td><td>—</td><td>—</td><td>JUAN VELASCO</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-            <tr><td>2023-24</td><td>—</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>Girafa Camello</td><td>Quitate el toz</td><td>Quitate el toz</td><td>Carlos Gaggotas</td><td>MarkLenders</td><td>MarkLenders</td><td>Carlos Gaggotas</td><td>JUAN VELASCO</td><td>Girafa Camello</td><td>Quitate el toz</td><td>Mosquera</td><td>Quitate el toz</td></tr>
-            <tr><td>2024-25</td><td>—</td><td>Girafa Camello</td><td>JUAN VELASCO</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>JUAN VELASCO</td><td>MarkLenders</td><td>Tripode G L</td><td>MarkLenders</td><td>JUAN VELASCO</td><td>Auo FC</td><td>Quitate el toz</td><td>Girafa Camello</td><td>Carlos Gaggotas</td><td>Quitate el toz</td></tr>
-            <tr><td>2025-26</td><td>—</td><td>Girafa Camello</td><td>Dalai-Lama</td><td>Dalai-Lama</td><td>JUAN VELASCO</td><td>Girafa Camello</td><td>MarkLenders</td><td>Girafa Camello</td><td>Girafa Camello</td><td>MarkLenders</td><td>MarkLenders</td><td>JUAN VELASCO</td><td>Dalai-LAMA</td><td>Girafa Camello</td><td>Girafa Camello</td><td>Juan Velasco Muriqi</td><td>MarkLenders</td></tr>
+            <tr>
+              <td>2016-17</td>
+              <td class="rk">Quitate el toz</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2017-18</td>
+              <td class="rk">Mark Lenders</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2018-19</td>
+              <td class="rk">Quitate el toz</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2019-20</td>
+              <td class="rk">Tripode G L</td>
+              <td>Mark Lenders</td>
+              <td>Didier</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2020-21</td>
+              <td>—</td>
+              <td>JUAN VELASCO</td>
+              <td>Mark Lenders</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2021-22</td>
+              <td class="rk">Quitate el toz</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+              <td>Mark Lenders</td>
+              <td>Tripode G L</td>
+              <td>—</td><td>—</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2022-23</td>
+              <td>—</td>
+              <td>Quitate el toz</td>
+              <td>Tripode G L</td>
+              <td>Tripode G L</td>
+              <td class="rk">JUAN VELASCO</td>
+              <td>Girafa Camello</td>
+              <td>JUAN VELASCO</td>
+              <td>JUAN VELASCO</td>
+              <td>Tripode G L</td>
+              <td>—</td><td>—</td>
+              <td>JUAN VELASCO</td>
+              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+            </tr>
+            <tr>
+              <td>2023-24</td>
+              <td>—</td>
+              <td>JUAN VELASCO</td>
+              <td>Quitate el toz</td>
+              <td>JUAN VELASCO</td>
+              <td class="rk">Quitate el toz</td>
+              <td>Quitate el toz</td>
+              <td>Quitate el toz</td>
+              <td>Quitate el toz</td>
+              <td>Carlos Gaggotas</td>
+              <td>Mark Lenders</td>
+              <td>Mark Lenders</td>
+              <td>Carlos Gaggotas</td>
+              <td>JUAN VELASCO <small style="color:var(--muted)">(49 G)</small></td>
+              <td>Girafa Camello <small style="color:var(--muted)">(37 A)</small></td>
+              <td>Quitate el toz <small style="color:var(--muted)">(28 XI)</small></td>
+              <td>Girafa Camello <small style="color:var(--muted)">(Mosquera)</small></td>
+              <td>Quitate el toz <small style="color:var(--muted)">(91 Pts)</small></td>
+            </tr>
+            <tr>
+              <td>2024-25</td>
+              <td>—</td>
+              <td>Girafa Camello</td>
+              <td>JUAN VELASCO</td>
+              <td>JUAN VELASCO</td>
+              <td class="rk">Quitate el toz</td>
+              <td>JUAN VELASCO</td>
+              <td>Quitate el toz</td>
+              <td>JUAN VELASCO</td>
+              <td>JUAN VELASCO</td>
+              <td>Tripode G L</td>
+              <td>JUAN VELASCO</td>
+              <td>Quitate el toz</td>
+              <td>Auo FC <small style="color:var(--muted)">(50 G)</small></td>
+              <td>Quitate el toz <small style="color:var(--muted)">(35 A)</small></td>
+              <td>Girafa Camello <small style="color:var(--muted)">(29 XI)</small></td>
+              <td>Carlos Gaggotas</td>
+              <td>Quitate el toz <small style="color:var(--muted)">(71 Pts)</small></td>
+            </tr>
+            <tr>
+              <td>2025-26</td>
+              <td>—</td>
+              <td>Girafa Camello</td>
+              <td>Dalai-Lama</td>
+              <td>Dalai-Lama</td>
+              <td class="rk">JUAN VELASCO</td>
+              <td>Girafa Camello</td>
+              <td>Mark Lenders</td>
+              <td>Girafa Camello</td>
+              <td>Girafa Camello</td>
+              <td>Mark Lenders</td>
+              <td>Mark Lenders</td>
+              <td>JUAN VELASCO</td>
+              <td>Dalai-LAMA <small style="color:var(--muted)">(73 G)</small></td>
+              <td>Girafa Camello <small style="color:var(--muted)">(30 A)</small></td>
+              <td>Girafa Camello <small style="color:var(--muted)">(38 XI)</small></td>
+              <td>Juan Velasco <small style="color:var(--muted)">(Muriqui)</small></td>
+              <td>MarkLenders <small style="color:var(--muted)">(87 Pts)</small></td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </section>
+
+<div class="toast" id="waToast">✅ Resumen copiado al portapapeles. ¡Pégalo en WhatsApp!</div>
 
 <footer>
   <div class="wrap">
@@ -944,14 +1264,14 @@
 <!-- DATOS REALES INYECTADOS DE LA LIGA 1444772 -->
 <script id="biwenger-live-data" type="application/json">
 {
-  "ultima_actualizacion": "20/10/2026 13:52",
+  "ultima_actualizacion": "21/10/2026 01:06",
   "bote_total_euros": 200,
   "clasificacion": [
     {
       "posicion": 1,
       "cambio_posicion": 0,
       "equipo": "Diomande",
-      "puntos": 350,
+      "puntos": 397,
       "valor_equipo": 64670000,
       "incremento_diario": 300000,
       "num_jugadores": 14,
@@ -963,19 +1283,19 @@
       "posicion": 2,
       "cambio_posicion": 0,
       "equipo": "Extintores FC",
-      "puntos": 321,
+      "puntos": 379,
       "valor_equipo": 47330000,
       "incremento_diario": -50000,
       "num_jugadores": 16,
       "id": 14282520,
       "icono": "https://lh3.googleusercontent.com/a/ACg8ocKjRjPT2-2pvY1gp4o3u_XcoJNC0ZAEy762YOFaKWS_00UNUw=s300-c",
-      "victorias_jornada": 2
+      "victorias_jornada": 3
     },
     {
       "posicion": 3,
       "cambio_posicion": 0,
       "equipo": "caillou",
-      "puntos": 271,
+      "puntos": 315,
       "valor_equipo": 48760000,
       "incremento_diario": 10000,
       "num_jugadores": 15,
@@ -985,21 +1305,9 @@
     },
     {
       "posicion": 4,
-      "cambio_posicion": 0,
-      "equipo": "Auo FC",
-      "puntos": 266,
-      "valor_equipo": 53910000,
-      "incremento_diario": -20000,
-      "num_jugadores": 15,
-      "id": 8331184,
-      "icono": null,
-      "victorias_jornada": 0
-    },
-    {
-      "posicion": 5,
-      "cambio_posicion": 0,
+      "cambio_posicion": 1,
       "equipo": "MarkLenders",
-      "puntos": 262,
+      "puntos": 302,
       "valor_equipo": 54190000,
       "incremento_diario": 150000,
       "num_jugadores": 15,
@@ -1008,22 +1316,22 @@
       "victorias_jornada": 1
     },
     {
-      "posicion": 6,
-      "cambio_posicion": 0,
-      "equipo": "Quitate el toz",
-      "puntos": 255,
-      "valor_equipo": 46210000,
-      "incremento_diario": -450000,
-      "num_jugadores": 21,
-      "id": 8331186,
+      "posicion": 5,
+      "cambio_posicion": -1,
+      "equipo": "Auo FC",
+      "puntos": 300,
+      "valor_equipo": 53910000,
+      "incremento_diario": -20000,
+      "num_jugadores": 15,
+      "id": 8331184,
       "icono": null,
-      "victorias_jornada": 1
+      "victorias_jornada": 0
     },
     {
-      "posicion": 7,
-      "cambio_posicion": 0,
+      "posicion": 6,
+      "cambio_posicion": 1,
       "equipo": "Una girafa Camello",
-      "puntos": 240,
+      "puntos": 289,
       "valor_equipo": 39190000,
       "incremento_diario": -210000,
       "num_jugadores": 15,
@@ -1032,10 +1340,22 @@
       "victorias_jornada": 0
     },
     {
+      "posicion": 7,
+      "cambio_posicion": -1,
+      "equipo": "Quitate el toz",
+      "puntos": 276,
+      "valor_equipo": 46210000,
+      "incremento_diario": -450000,
+      "num_jugadores": 21,
+      "id": 8331186,
+      "icono": null,
+      "victorias_jornada": 1
+    },
+    {
       "posicion": 8,
-      "cambio_posicion": 1,
+      "cambio_posicion": 0,
       "equipo": "JUAN VELASCO",
-      "puntos": 239,
+      "puntos": 269,
       "valor_equipo": 41290000,
       "incremento_diario": 210000,
       "num_jugadores": 13,
@@ -1045,9 +1365,9 @@
     },
     {
       "posicion": 9,
-      "cambio_posicion": -1,
+      "cambio_posicion": 0,
       "equipo": "Dalai-Lama",
-      "puntos": 221,
+      "puntos": 255,
       "valor_equipo": 51460000,
       "incremento_diario": -180000,
       "num_jugadores": 14,
@@ -1059,7 +1379,7 @@
       "posicion": 10,
       "cambio_posicion": 0,
       "equipo": "Carlos Gaggotas",
-      "puntos": 208,
+      "puntos": 245,
       "valor_equipo": 47050000,
       "incremento_diario": -140000,
       "num_jugadores": 13,
@@ -1086,130 +1406,130 @@
                   "posicion": 1,
                   "user_id": 8331180,
                   "equipo": "Una girafa Camello",
-                  "pj": 7,
-                  "pg": 6,
+                  "pj": 8,
+                  "pg": 7,
                   "pe": 0,
                   "pp": 1,
-                  "gf": 204,
-                  "gc": 194,
-                  "dg": 10,
-                  "pts": 18
+                  "gf": 253,
+                  "gc": 228,
+                  "dg": 25,
+                  "pts": 21
                 },
                 {
                   "posicion": 2,
                   "user_id": 14282520,
                   "equipo": "Extintores FC",
-                  "pj": 7,
-                  "pg": 5,
+                  "pj": 8,
+                  "pg": 6,
                   "pe": 0,
                   "pp": 2,
-                  "gf": 299,
-                  "gc": 245,
-                  "dg": 54,
-                  "pts": 15
+                  "gf": 357,
+                  "gc": 279,
+                  "dg": 78,
+                  "pts": 18
                 },
                 {
                   "posicion": 3,
                   "user_id": 14282362,
                   "equipo": "Diomande",
-                  "pj": 7,
-                  "pg": 4,
+                  "pj": 8,
+                  "pg": 5,
                   "pe": 0,
                   "pp": 3,
-                  "gf": 323,
-                  "gc": 247,
-                  "dg": 76,
-                  "pts": 12
+                  "gf": 370,
+                  "gc": 284,
+                  "dg": 86,
+                  "pts": 15
                 },
                 {
                   "posicion": 4,
-                  "user_id": 8331184,
-                  "equipo": "Auo FC",
-                  "pj": 7,
-                  "pg": 4,
+                  "user_id": 14282307,
+                  "equipo": "caillou",
+                  "pj": 8,
+                  "pg": 5,
                   "pe": 0,
                   "pp": 3,
-                  "gf": 242,
-                  "gc": 197,
-                  "dg": 45,
-                  "pts": 12
+                  "gf": 297,
+                  "gc": 336,
+                  "dg": -39,
+                  "pts": 15
                 },
                 {
                   "posicion": 5,
-                  "user_id": 14282307,
-                  "equipo": "caillou",
-                  "pj": 7,
+                  "user_id": 8331184,
+                  "equipo": "Auo FC",
+                  "pj": 8,
                   "pg": 4,
                   "pe": 0,
-                  "pp": 3,
-                  "gf": 253,
-                  "gc": 296,
-                  "dg": -43,
+                  "pp": 4,
+                  "gf": 276,
+                  "gc": 255,
+                  "dg": 21,
                   "pts": 12
                 },
                 {
                   "posicion": 6,
                   "user_id": 8331187,
                   "equipo": "MarkLenders",
-                  "pj": 7,
+                  "pj": 8,
                   "pg": 3,
                   "pe": 0,
-                  "pp": 4,
-                  "gf": 231,
-                  "gc": 232,
-                  "dg": -1,
+                  "pp": 5,
+                  "gf": 271,
+                  "gc": 276,
+                  "dg": -5,
                   "pts": 9
                 },
                 {
                   "posicion": 7,
-                  "user_id": 12941229,
-                  "equipo": "Dalai-Lama",
-                  "pj": 7,
+                  "user_id": 8331183,
+                  "equipo": "JUAN VELASCO",
+                  "pj": 8,
                   "pg": 3,
                   "pe": 0,
-                  "pp": 4,
-                  "gf": 207,
-                  "gc": 246,
-                  "dg": -39,
+                  "pp": 5,
+                  "gf": 253,
+                  "gc": 258,
+                  "dg": -5,
                   "pts": 9
                 },
                 {
                   "posicion": 8,
-                  "user_id": 8331183,
-                  "equipo": "JUAN VELASCO",
-                  "pj": 7,
-                  "pg": 2,
+                  "user_id": 12941229,
+                  "equipo": "Dalai-Lama",
+                  "pj": 8,
+                  "pg": 3,
                   "pe": 0,
                   "pp": 5,
-                  "gf": 223,
-                  "gc": 237,
-                  "dg": -14,
-                  "pts": 6
+                  "gf": 241,
+                  "gc": 295,
+                  "dg": -54,
+                  "pts": 9
                 },
                 {
                   "posicion": 9,
                   "user_id": 8331181,
                   "equipo": "Carlos Gaggotas",
-                  "pj": 7,
+                  "pj": 8,
                   "pg": 2,
                   "pe": 0,
-                  "pp": 5,
-                  "gf": 196,
-                  "gc": 238,
-                  "dg": -42,
+                  "pp": 6,
+                  "gf": 233,
+                  "gc": 285,
+                  "dg": -52,
                   "pts": 6
                 },
                 {
                   "posicion": 10,
                   "user_id": 8331186,
                   "equipo": "Quitate el toz",
-                  "pj": 7,
+                  "pj": 8,
                   "pg": 2,
                   "pe": 0,
-                  "pp": 5,
-                  "gf": 214,
-                  "gc": 260,
-                  "dg": -46,
+                  "pp": 6,
+                  "gf": 235,
+                  "gc": 290,
+                  "dg": -55,
                   "pts": 6
                 }
               ]
@@ -1466,33 +1786,33 @@
               "partidos": [
                 {
                   "l": "Extintores FC",
-                  "gl": "vs",
+                  "gl": 58,
                   "v": "Auo FC",
-                  "gv": ""
+                  "gv": 34
                 },
                 {
                   "l": "Diomande",
-                  "gl": "vs",
+                  "gl": 47,
                   "v": "Carlos Gaggotas",
-                  "gv": ""
+                  "gv": 37
                 },
                 {
                   "l": "Dalai-Lama",
-                  "gl": "vs",
+                  "gl": 34,
                   "v": "Una girafa Camello",
-                  "gv": ""
+                  "gv": 49
                 },
                 {
                   "l": "Quitate el toz",
-                  "gl": "vs",
+                  "gl": 21,
                   "v": "JUAN VELASCO",
-                  "gv": ""
+                  "gv": 30
                 },
                 {
                   "l": "caillou",
-                  "gl": "vs",
+                  "gl": 44,
                   "v": "MarkLenders",
-                  "gv": ""
+                  "gv": 40
                 }
               ]
             },
@@ -2064,8 +2384,8 @@
               "id": 11,
               "name": "David Soria"
             },
-            "points": 14,
-            "used": 3
+            "points": 20,
+            "used": 4
           },
           {
             "position": 2,
@@ -2073,8 +2393,8 @@
               "id": 25384,
               "name": "Tenaglia"
             },
-            "points": 47,
-            "used": 7
+            "points": 49,
+            "used": 8
           },
           {
             "position": 3,
@@ -2091,8 +2411,8 @@
               "id": 12494,
               "name": "Boyé"
             },
-            "points": 53,
-            "used": 7
+            "points": 59,
+            "used": 8
           }
         ],
         "worst": {
@@ -2105,14 +2425,14 @@
         },
         "favorite": {
           "player": {
-            "id": 1083,
-            "name": "Koke"
+            "id": 1733,
+            "name": "Camavinga"
           },
-          "points": 40,
-          "used": 8
+          "points": 12,
+          "used": 9
         },
         "lineup": {
-          "type": "4-4-2",
+          "type": "3-5-2",
           "players": [
             {
               "id": 33886,
@@ -2126,7 +2446,7 @@
               "id": 28103,
               "reports": [
                 {
-                  "points": 16
+                  "points": 18
                 }
               ]
             },
@@ -2134,7 +2454,7 @@
               "id": 25384,
               "reports": [
                 {
-                  "points": 47
+                  "points": 49
                 }
               ]
             },
@@ -2142,15 +2462,7 @@
               "id": 41684,
               "reports": [
                 {
-                  "points": 37
-                }
-              ]
-            },
-            {
-              "id": 38059,
-              "reports": [
-                {
-                  "points": 0
+                  "points": 39
                 }
               ]
             },
@@ -2187,10 +2499,18 @@
               ]
             },
             {
+              "id": 37488,
+              "reports": [
+                {
+                  "points": 24
+                }
+              ]
+            },
+            {
               "id": 12494,
               "reports": [
                 {
-                  "points": 53
+                  "points": 59
                 }
               ]
             },
@@ -2198,19 +2518,19 @@
               "id": 8555,
               "reports": [
                 {
-                  "points": 35
+                  "points": 48
                 }
               ]
             }
           ]
         },
         "events": {
-          "players": 21,
-          "goals": 11,
+          "players": 22,
+          "goals": 13,
           "cards": 8,
           "redCards": 0,
-          "assists": 3,
-          "ideal": 5
+          "assists": 4,
+          "ideal": 6
         }
       },
       "jornadas": [
@@ -2260,6 +2580,12 @@
           "jornada": "Jornada 8",
           "puntos": 64,
           "posicion_jornada": 1,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 47,
+          "posicion_jornada": 3,
           "ideal": 1
         }
       ],
@@ -2440,7 +2766,7 @@
       "valor_equipo": 47330000,
       "incremento_diario": -50000,
       "num_jugadores": 16,
-      "victorias_jornada": 2,
+      "victorias_jornada": 3,
       "max_rnd": 78,
       "medallas_temporadas": [
         {
@@ -2457,8 +2783,8 @@
               "id": 37600,
               "name": "Radu"
             },
-            "points": 36,
-            "used": 8
+            "points": 46,
+            "used": 9
           },
           {
             "position": 2,
@@ -2466,8 +2792,8 @@
               "id": 16889,
               "name": "Pedrosa"
             },
-            "points": 25,
-            "used": 5
+            "points": 27,
+            "used": 6
           },
           {
             "position": 3,
@@ -2475,8 +2801,8 @@
               "id": 19547,
               "name": "Baena"
             },
-            "points": 48,
-            "used": 6
+            "points": 62,
+            "used": 7
           },
           {
             "position": 4,
@@ -2501,8 +2827,8 @@
             "id": 37600,
             "name": "Radu"
           },
-          "points": 36,
-          "used": 8
+          "points": 46,
+          "used": 9
         },
         "lineup": {
           "type": "3-5-2",
@@ -2511,7 +2837,7 @@
               "id": 37600,
               "reports": [
                 {
-                  "points": 36
+                  "points": 46
                 }
               ]
             },
@@ -2519,7 +2845,7 @@
               "id": 9065,
               "reports": [
                 {
-                  "points": 22
+                  "points": 24
                 }
               ]
             },
@@ -2527,7 +2853,7 @@
               "id": 41270,
               "reports": [
                 {
-                  "points": 16
+                  "points": 22
                 }
               ]
             },
@@ -2535,7 +2861,7 @@
               "id": 16889,
               "reports": [
                 {
-                  "points": 25
+                  "points": 27
                 }
               ]
             },
@@ -2543,7 +2869,7 @@
               "id": 8670,
               "reports": [
                 {
-                  "points": 30
+                  "points": 32
                 }
               ]
             },
@@ -2551,7 +2877,7 @@
               "id": 2055,
               "reports": [
                 {
-                  "points": 18
+                  "points": 20
                 }
               ]
             },
@@ -2559,7 +2885,7 @@
               "id": 19547,
               "reports": [
                 {
-                  "points": 48
+                  "points": 62
                 }
               ]
             },
@@ -2567,7 +2893,7 @@
               "id": 21084,
               "reports": [
                 {
-                  "points": 26
+                  "points": 28
                 }
               ]
             },
@@ -2575,7 +2901,7 @@
               "id": 30210,
               "reports": [
                 {
-                  "points": 6
+                  "points": 8
                 }
               ]
             },
@@ -2583,7 +2909,7 @@
               "id": 26360,
               "reports": [
                 {
-                  "points": 20
+                  "points": 26
                 }
               ]
             },
@@ -2598,12 +2924,12 @@
           ]
         },
         "events": {
-          "players": 17,
-          "goals": 5,
-          "cards": 12,
+          "players": 18,
+          "goals": 6,
+          "cards": 16,
           "redCards": 2,
           "assists": 4,
-          "ideal": 8
+          "ideal": 9
         }
       },
       "jornadas": [
@@ -2653,6 +2979,12 @@
           "jornada": "Jornada 8",
           "puntos": 40,
           "posicion_jornada": 4,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 58,
+          "posicion_jornada": 1,
           "ideal": 1
         }
       ],
@@ -2874,8 +3206,8 @@
               "id": 2184,
               "name": "Ryan"
             },
-            "points": 30,
-            "used": 8
+            "points": 36,
+            "used": 9
           },
           {
             "position": 2,
@@ -2889,11 +3221,11 @@
           {
             "position": 3,
             "player": {
-              "id": 1969,
-              "name": "Unai López"
+              "id": 32338,
+              "name": "Agoumé"
             },
-            "points": 22,
-            "used": 8
+            "points": 26,
+            "used": 7
           },
           {
             "position": 4,
@@ -2901,8 +3233,8 @@
               "id": 3159,
               "name": "Jutglà"
             },
-            "points": 31,
-            "used": 8
+            "points": 40,
+            "used": 9
           }
         ],
         "worst": {
@@ -2911,15 +3243,15 @@
             "name": "Zaid Romero"
           },
           "points": -2,
-          "used": 1
+          "used": 2
         },
         "favorite": {
           "player": {
             "id": 3159,
             "name": "Jutglà"
           },
-          "points": 31,
-          "used": 8
+          "points": 40,
+          "used": 9
         },
         "lineup": {
           "type": "4-3-3",
@@ -2928,7 +3260,7 @@
               "id": 2184,
               "reports": [
                 {
-                  "points": 30
+                  "points": 36
                 }
               ]
             },
@@ -2936,7 +3268,7 @@
               "id": 25815,
               "reports": [
                 {
-                  "points": 14
+                  "points": 16
                 }
               ]
             },
@@ -2944,7 +3276,7 @@
               "id": 8695,
               "reports": [
                 {
-                  "points": 18
+                  "points": 20
                 }
               ]
             },
@@ -2968,7 +3300,7 @@
               "id": 1969,
               "reports": [
                 {
-                  "points": 22
+                  "points": 24
                 }
               ]
             },
@@ -2984,7 +3316,7 @@
               "id": 32338,
               "reports": [
                 {
-                  "points": 20
+                  "points": 26
                 }
               ]
             },
@@ -2992,7 +3324,15 @@
               "id": 3159,
               "reports": [
                 {
-                  "points": 31
+                  "points": 40
+                }
+              ]
+            },
+            {
+              "id": 25159,
+              "reports": [
+                {
+                  "points": 24
                 }
               ]
             },
@@ -3003,21 +3343,13 @@
                   "points": 6
                 }
               ]
-            },
-            {
-              "id": 25159,
-              "reports": [
-                {
-                  "points": 22
-                }
-              ]
             }
           ]
         },
         "events": {
           "players": 21,
-          "goals": 4,
-          "cards": 9,
+          "goals": 6,
+          "cards": 10,
           "redCards": 1,
           "assists": 6,
           "ideal": 0
@@ -3070,6 +3402,12 @@
           "jornada": "Jornada 8",
           "puntos": 13,
           "posicion_jornada": 10,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 44,
+          "posicion_jornada": 4,
           "ideal": 1
         }
       ],
@@ -3257,6 +3595,437 @@
       ]
     },
     {
+      "id": 8331187,
+      "equipo": "MarkLenders",
+      "valor_equipo": 54190000,
+      "incremento_diario": 150000,
+      "num_jugadores": 15,
+      "victorias_jornada": 1,
+      "max_rnd": 60,
+      "medallas_temporadas": [
+        {
+          "id": "2027",
+          "name": "2026/2027 season",
+          "slug": "2026-2027"
+        },
+        {
+          "id": "2026",
+          "name": "2025/2026 season",
+          "slug": "2025-2026"
+        },
+        {
+          "id": "2025",
+          "name": "2024/2025 season",
+          "slug": "2024-2025"
+        },
+        {
+          "id": "2024",
+          "name": "2023/2024 season",
+          "slug": "2023-2024"
+        },
+        {
+          "id": "2023",
+          "name": "2022/2023 season",
+          "slug": "2022-2023"
+        }
+      ],
+      "stats_perfil": {
+        "positions": [
+          {
+            "position": 1,
+            "player": {
+              "id": 15430,
+              "name": "Joan García"
+            },
+            "points": 26,
+            "used": 6
+          },
+          {
+            "position": 2,
+            "player": {
+              "id": 2476,
+              "name": "Lejeune"
+            },
+            "points": 8,
+            "used": 3
+          },
+          {
+            "position": 3,
+            "player": {
+              "id": 18128,
+              "name": "Iker Muñoz"
+            },
+            "points": 28,
+            "used": 9
+          },
+          {
+            "position": 4,
+            "player": {
+              "id": 40911,
+              "name": "Nsongo"
+            },
+            "points": 45,
+            "used": 7
+          }
+        ],
+        "worst": {
+          "player": {
+            "id": 19860,
+            "name": "Febas"
+          },
+          "points": -2,
+          "used": 1
+        },
+        "favorite": {
+          "player": {
+            "id": 18128,
+            "name": "Iker Muñoz"
+          },
+          "points": 28,
+          "used": 9
+        },
+        "lineup": {
+          "type": "3-4-3",
+          "players": [
+            {
+              "id": 15430,
+              "reports": [
+                {
+                  "points": 26
+                }
+              ]
+            },
+            {
+              "id": 9983,
+              "reports": [
+                {
+                  "points": 4
+                }
+              ]
+            },
+            {
+              "id": 42394,
+              "reports": [
+                {
+                  "points": 2
+                }
+              ]
+            },
+            {
+              "id": 27996,
+              "reports": [
+                {
+                  "points": 8
+                }
+              ]
+            },
+            {
+              "id": 18128,
+              "reports": [
+                {
+                  "points": 28
+                }
+              ]
+            },
+            {
+              "id": 20102,
+              "reports": [
+                {
+                  "points": 14
+                }
+              ]
+            },
+            {
+              "id": 17057,
+              "reports": [
+                {
+                  "points": 20
+                }
+              ]
+            },
+            {
+              "id": 31069,
+              "reports": [
+                {
+                  "points": 14
+                }
+              ]
+            },
+            {
+              "id": 40911,
+              "reports": [
+                {
+                  "points": 45
+                }
+              ]
+            },
+            {
+              "id": 39885,
+              "reports": [
+                {
+                  "points": 22
+                }
+              ]
+            },
+            {
+              "id": 18398,
+              "reports": [
+                {
+                  "points": 43
+                }
+              ]
+            }
+          ]
+        },
+        "events": {
+          "players": 30,
+          "goals": 10,
+          "cards": 10,
+          "redCards": 2,
+          "assists": 3,
+          "ideal": 3
+        }
+      },
+      "jornadas": [
+        {
+          "jornada": "Jornada 1",
+          "puntos": 31,
+          "posicion_jornada": 3,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 2",
+          "puntos": 20,
+          "posicion_jornada": 8,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 3",
+          "puntos": 35,
+          "posicion_jornada": 3,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 4",
+          "puntos": 25,
+          "posicion_jornada": 5,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 5",
+          "puntos": 60,
+          "posicion_jornada": 1,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 6",
+          "puntos": 27,
+          "posicion_jornada": 6,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 7",
+          "puntos": 26,
+          "posicion_jornada": 10,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 8",
+          "puntos": 38,
+          "posicion_jornada": 7,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 40,
+          "posicion_jornada": 5,
+          "ideal": 1
+        }
+      ],
+      "plantilla": [
+        {
+          "id": 18398,
+          "nombre": "Budimir",
+          "club": "Osasuna",
+          "posicion": 4,
+          "puntos_totales": 63,
+          "precio_actual": 12330000,
+          "incremento_diario": 40000,
+          "precio_compra": 10572000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 30495,
+          "nombre": "Moleiro",
+          "club": "Villarreal",
+          "posicion": 3,
+          "puntos_totales": 54,
+          "precio_actual": 9740000,
+          "incremento_diario": 70000,
+          "precio_compra": 9261000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 40911,
+          "nombre": "Nsongo",
+          "club": "Deportivo",
+          "posicion": 4,
+          "puntos_totales": 53,
+          "precio_actual": 3610000,
+          "incremento_diario": 30000,
+          "precio_compra": 2866000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 1249,
+          "nombre": "Isco",
+          "club": "Betis",
+          "posicion": 3,
+          "puntos_totales": 43,
+          "precio_actual": 8830000,
+          "incremento_diario": 90000,
+          "precio_compra": 8056000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 15430,
+          "nombre": "Joan García",
+          "club": "Barcelona",
+          "posicion": 1,
+          "puntos_totales": 40,
+          "precio_actual": 6940000,
+          "incremento_diario": -40000,
+          "precio_compra": 10672000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 22690,
+          "nombre": "Tete Morente",
+          "club": "Elche",
+          "posicion": 4,
+          "puntos_totales": 30,
+          "precio_actual": 1390000,
+          "incremento_diario": -20000,
+          "precio_compra": 362000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 18128,
+          "nombre": "Iker Muñoz",
+          "club": "Osasuna",
+          "posicion": 3,
+          "puntos_totales": 28,
+          "precio_actual": 1390000,
+          "incremento_diario": -10000,
+          "precio_compra": 566490,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 41608,
+          "nombre": "Buonanotte",
+          "club": "Elche",
+          "posicion": 3,
+          "puntos_totales": 23,
+          "precio_actual": 870000,
+          "incremento_diario": -30000,
+          "precio_compra": 1096000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 2476,
+          "nombre": "Lejeune",
+          "club": "Rayo Vallecano",
+          "posicion": 2,
+          "puntos_totales": 16,
+          "precio_actual": 2900000,
+          "incremento_diario": 20000,
+          "precio_compra": 4102005,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 41264,
+          "nombre": "Mantilla",
+          "club": "Racing",
+          "posicion": 2,
+          "puntos_totales": 12,
+          "precio_actual": 860000,
+          "incremento_diario": -10000,
+          "precio_compra": 1252000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 26879,
+          "nombre": "Swedberg",
+          "club": "Celta",
+          "posicion": 3,
+          "puntos_totales": 8,
+          "precio_actual": 1330000,
+          "incremento_diario": -30000,
+          "precio_compra": 1506080,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 42570,
+          "nombre": "José Alberto López",
+          "club": "Racing",
+          "posicion": 5,
+          "puntos_totales": 8,
+          "precio_actual": 400000,
+          "incremento_diario": 0,
+          "precio_compra": 576000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 11686,
+          "nombre": "Lo Celso",
+          "club": "Betis",
+          "posicion": 3,
+          "puntos_totales": 6,
+          "precio_actual": 1900000,
+          "incremento_diario": 90000,
+          "precio_compra": 1730030,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 41932,
+          "nombre": "Yeboah",
+          "club": "Osasuna",
+          "posicion": 2,
+          "puntos_totales": 6,
+          "precio_actual": 260000,
+          "incremento_diario": -10000,
+          "precio_compra": 345000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 9983,
+          "nombre": "Djené",
+          "club": "Getafe",
+          "posicion": 2,
+          "puntos_totales": 4,
+          "precio_actual": 1440000,
+          "incremento_diario": -40000,
+          "precio_compra": 0,
+          "clausula": 1480000,
+          "propietario": "MarkLenders"
+        }
+      ]
+    },
+    {
       "id": 8331184,
       "equipo": "Auo FC",
       "valor_equipo": 53910000,
@@ -3299,8 +4068,8 @@
               "id": 38405,
               "name": "Odysseas"
             },
-            "points": 28,
-            "used": 8
+            "points": 30,
+            "used": 9
           },
           {
             "position": 2,
@@ -3308,8 +4077,8 @@
               "id": 10292,
               "name": "Arguibide"
             },
-            "points": 28,
-            "used": 8
+            "points": 30,
+            "used": 9
           },
           {
             "position": 3,
@@ -3317,8 +4086,8 @@
               "id": 429,
               "name": "Rodri"
             },
-            "points": 40,
-            "used": 6
+            "points": 50,
+            "used": 7
           },
           {
             "position": 4,
@@ -3326,8 +4095,8 @@
               "id": 18397,
               "name": "De Frutos"
             },
-            "points": 8,
-            "used": 7
+            "points": 14,
+            "used": 8
           }
         ],
         "worst": {
@@ -3344,7 +4113,7 @@
             "name": "Luka Sucic"
           },
           "points": 36,
-          "used": 8
+          "used": 9
         },
         "lineup": {
           "type": "3-5-2",
@@ -3353,7 +4122,7 @@
               "id": 38405,
               "reports": [
                 {
-                  "points": 28
+                  "points": 30
                 }
               ]
             },
@@ -3361,7 +4130,7 @@
               "id": 10292,
               "reports": [
                 {
-                  "points": 28
+                  "points": 30
                 }
               ]
             },
@@ -3369,7 +4138,7 @@
               "id": 1721,
               "reports": [
                 {
-                  "points": 22
+                  "points": 24
                 }
               ]
             },
@@ -3393,7 +4162,7 @@
               "id": 429,
               "reports": [
                 {
-                  "points": 40
+                  "points": 50
                 }
               ]
             },
@@ -3406,6 +4175,14 @@
               ]
             },
             {
+              "id": 11196,
+              "reports": [
+                {
+                  "points": 30
+                }
+              ]
+            },
+            {
               "id": 41604,
               "reports": [
                 {
@@ -3414,18 +4191,10 @@
               ]
             },
             {
-              "id": 11196,
-              "reports": [
-                {
-                  "points": 24
-                }
-              ]
-            },
-            {
               "id": 18397,
               "reports": [
                 {
-                  "points": 8
+                  "points": 14
                 }
               ]
             },
@@ -3433,7 +4202,7 @@
               "id": 18570,
               "reports": [
                 {
-                  "points": 6
+                  "points": 8
                 }
               ]
             }
@@ -3441,10 +4210,10 @@
         },
         "events": {
           "players": 21,
-          "goals": 3,
+          "goals": 4,
           "cards": 10,
           "redCards": 1,
-          "assists": 2,
+          "assists": 3,
           "ideal": 1
         }
       },
@@ -3495,6 +4264,12 @@
           "jornada": "Jornada 8",
           "puntos": 39,
           "posicion_jornada": 5,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 34,
+          "posicion_jornada": 8,
           "ideal": 1
         }
       ],
@@ -3682,935 +4457,13 @@
       ]
     },
     {
-      "id": 8331187,
-      "equipo": "MarkLenders",
-      "valor_equipo": 54190000,
-      "incremento_diario": 150000,
-      "num_jugadores": 15,
-      "victorias_jornada": 1,
-      "max_rnd": 60,
-      "medallas_temporadas": [
-        {
-          "id": "2027",
-          "name": "2026/2027 season",
-          "slug": "2026-2027"
-        },
-        {
-          "id": "2026",
-          "name": "2025/2026 season",
-          "slug": "2025-2026"
-        },
-        {
-          "id": "2025",
-          "name": "2024/2025 season",
-          "slug": "2024-2025"
-        },
-        {
-          "id": "2024",
-          "name": "2023/2024 season",
-          "slug": "2023-2024"
-        },
-        {
-          "id": "2023",
-          "name": "2022/2023 season",
-          "slug": "2022-2023"
-        }
-      ],
-      "stats_perfil": {
-        "positions": [
-          {
-            "position": 1,
-            "player": {
-              "id": 15430,
-              "name": "Joan García"
-            },
-            "points": 20,
-            "used": 5
-          },
-          {
-            "position": 2,
-            "player": {
-              "id": 9983,
-              "name": "Djené"
-            },
-            "points": 12,
-            "used": 8
-          },
-          {
-            "position": 3,
-            "player": {
-              "id": 18128,
-              "name": "Iker Muñoz"
-            },
-            "points": 26,
-            "used": 8
-          },
-          {
-            "position": 4,
-            "player": {
-              "id": 40911,
-              "name": "Nsongo"
-            },
-            "points": 36,
-            "used": 6
-          }
-        ],
-        "worst": {
-          "player": {
-            "id": 19860,
-            "name": "Febas"
-          },
-          "points": -2,
-          "used": 1
-        },
-        "favorite": {
-          "player": {
-            "id": 18128,
-            "name": "Iker Muñoz"
-          },
-          "points": 26,
-          "used": 8
-        },
-        "lineup": {
-          "type": "3-4-3",
-          "players": [
-            {
-              "id": 15430,
-              "reports": [
-                {
-                  "points": 20
-                }
-              ]
-            },
-            {
-              "id": 9983,
-              "reports": [
-                {
-                  "points": 12
-                }
-              ]
-            },
-            {
-              "id": 42394,
-              "reports": [
-                {
-                  "points": 2
-                }
-              ]
-            },
-            {
-              "id": 27996,
-              "reports": [
-                {
-                  "points": 8
-                }
-              ]
-            },
-            {
-              "id": 18128,
-              "reports": [
-                {
-                  "points": 26
-                }
-              ]
-            },
-            {
-              "id": 20102,
-              "reports": [
-                {
-                  "points": 14
-                }
-              ]
-            },
-            {
-              "id": 17057,
-              "reports": [
-                {
-                  "points": 20
-                }
-              ]
-            },
-            {
-              "id": 31069,
-              "reports": [
-                {
-                  "points": 14
-                }
-              ]
-            },
-            {
-              "id": 40911,
-              "reports": [
-                {
-                  "points": 36
-                }
-              ]
-            },
-            {
-              "id": 39885,
-              "reports": [
-                {
-                  "points": 22
-                }
-              ]
-            },
-            {
-              "id": 18398,
-              "reports": [
-                {
-                  "points": 34
-                }
-              ]
-            }
-          ]
-        },
-        "events": {
-          "players": 27,
-          "goals": 8,
-          "cards": 6,
-          "redCards": 1,
-          "assists": 3,
-          "ideal": 3
-        }
-      },
-      "jornadas": [
-        {
-          "jornada": "Jornada 1",
-          "puntos": 31,
-          "posicion_jornada": 3,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 2",
-          "puntos": 20,
-          "posicion_jornada": 8,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 3",
-          "puntos": 35,
-          "posicion_jornada": 3,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 4",
-          "puntos": 25,
-          "posicion_jornada": 5,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 5",
-          "puntos": 60,
-          "posicion_jornada": 1,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 6",
-          "puntos": 27,
-          "posicion_jornada": 6,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 7",
-          "puntos": 26,
-          "posicion_jornada": 10,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 8",
-          "puntos": 38,
-          "posicion_jornada": 7,
-          "ideal": 1
-        }
-      ],
-      "plantilla": [
-        {
-          "id": 18398,
-          "nombre": "Budimir",
-          "club": "Osasuna",
-          "posicion": 4,
-          "puntos_totales": 63,
-          "precio_actual": 12330000,
-          "incremento_diario": 40000,
-          "precio_compra": 10572000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 30495,
-          "nombre": "Moleiro",
-          "club": "Villarreal",
-          "posicion": 3,
-          "puntos_totales": 54,
-          "precio_actual": 9740000,
-          "incremento_diario": 70000,
-          "precio_compra": 9261000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 40911,
-          "nombre": "Nsongo",
-          "club": "Deportivo",
-          "posicion": 4,
-          "puntos_totales": 53,
-          "precio_actual": 3610000,
-          "incremento_diario": 30000,
-          "precio_compra": 2866000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 1249,
-          "nombre": "Isco",
-          "club": "Betis",
-          "posicion": 3,
-          "puntos_totales": 43,
-          "precio_actual": 8830000,
-          "incremento_diario": 90000,
-          "precio_compra": 8056000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 15430,
-          "nombre": "Joan García",
-          "club": "Barcelona",
-          "posicion": 1,
-          "puntos_totales": 40,
-          "precio_actual": 6940000,
-          "incremento_diario": -40000,
-          "precio_compra": 10672000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 22690,
-          "nombre": "Tete Morente",
-          "club": "Elche",
-          "posicion": 4,
-          "puntos_totales": 30,
-          "precio_actual": 1390000,
-          "incremento_diario": -20000,
-          "precio_compra": 362000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 18128,
-          "nombre": "Iker Muñoz",
-          "club": "Osasuna",
-          "posicion": 3,
-          "puntos_totales": 28,
-          "precio_actual": 1390000,
-          "incremento_diario": -10000,
-          "precio_compra": 566490,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 41608,
-          "nombre": "Buonanotte",
-          "club": "Elche",
-          "posicion": 3,
-          "puntos_totales": 23,
-          "precio_actual": 870000,
-          "incremento_diario": -30000,
-          "precio_compra": 1096000,
-          "clausula": 990000,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 2476,
-          "nombre": "Lejeune",
-          "club": "Rayo Vallecano",
-          "posicion": 2,
-          "puntos_totales": 16,
-          "precio_actual": 2900000,
-          "incremento_diario": 20000,
-          "precio_compra": 4102005,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 41264,
-          "nombre": "Mantilla",
-          "club": "Racing",
-          "posicion": 2,
-          "puntos_totales": 12,
-          "precio_actual": 860000,
-          "incremento_diario": -10000,
-          "precio_compra": 1252000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 26879,
-          "nombre": "Swedberg",
-          "club": "Celta",
-          "posicion": 3,
-          "puntos_totales": 8,
-          "precio_actual": 1330000,
-          "incremento_diario": -30000,
-          "precio_compra": 1506080,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 42570,
-          "nombre": "José Alberto López",
-          "club": "Racing",
-          "posicion": 5,
-          "puntos_totales": 8,
-          "precio_actual": 400000,
-          "incremento_diario": 0,
-          "precio_compra": 576000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 11686,
-          "nombre": "Lo Celso",
-          "club": "Betis",
-          "posicion": 3,
-          "puntos_totales": 6,
-          "precio_actual": 1900000,
-          "incremento_diario": 90000,
-          "precio_compra": 1730030,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 41932,
-          "nombre": "Yeboah",
-          "club": "Osasuna",
-          "posicion": 2,
-          "puntos_totales": 6,
-          "precio_actual": 260000,
-          "incremento_diario": -10000,
-          "precio_compra": 345000,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 9983,
-          "nombre": "Djené",
-          "club": "Getafe",
-          "posicion": 2,
-          "puntos_totales": 4,
-          "precio_actual": 1440000,
-          "incremento_diario": -40000,
-          "precio_compra": 0,
-          "clausula": 1480000,
-          "propietario": "MarkLenders"
-        }
-      ]
-    },
-    {
-      "id": 8331186,
-      "equipo": "Quitate el toz",
-      "valor_equipo": 46210000,
-      "incremento_diario": -450000,
-      "num_jugadores": 21,
-      "victorias_jornada": 1,
-      "max_rnd": 41,
-      "medallas_temporadas": [
-        {
-          "id": "2027",
-          "name": "2026/2027 season",
-          "slug": "2026-2027"
-        },
-        {
-          "id": "2026",
-          "name": "2025/2026 season",
-          "slug": "2025-2026"
-        },
-        {
-          "id": "2025",
-          "name": "2024/2025 season",
-          "slug": "2024-2025"
-        },
-        {
-          "id": "2024",
-          "name": "2023/2024 season",
-          "slug": "2023-2024"
-        },
-        {
-          "id": "2023",
-          "name": "2022/2023 season",
-          "slug": "2022-2023"
-        }
-      ],
-      "stats_perfil": {
-        "positions": [
-          {
-            "position": 1,
-            "player": {
-              "id": 19192,
-              "name": "Agirrezabala"
-            },
-            "points": 22,
-            "used": 5
-          },
-          {
-            "position": 2,
-            "player": {
-              "id": 41093,
-              "name": "Rafita"
-            },
-            "points": 26,
-            "used": 5
-          },
-          {
-            "position": 3,
-            "player": {
-              "id": 29661,
-              "name": "Olasagasti"
-            },
-            "points": 38,
-            "used": 8
-          },
-          {
-            "position": 4,
-            "player": {
-              "id": 34127,
-              "name": "Peque"
-            },
-            "points": 21,
-            "used": 6
-          }
-        ],
-        "worst": {
-          "player": {
-            "id": 2368,
-            "name": "Mario Martín"
-          },
-          "points": -1,
-          "used": 4
-        },
-        "favorite": {
-          "player": {
-            "id": 29661,
-            "name": "Olasagasti"
-          },
-          "points": 38,
-          "used": 8
-        },
-        "lineup": {
-          "type": "4-4-2",
-          "players": [
-            {
-              "id": 19192,
-              "reports": [
-                {
-                  "points": 22
-                }
-              ]
-            },
-            {
-              "id": 40010,
-              "reports": [
-                {
-                  "points": 16
-                }
-              ]
-            },
-            {
-              "id": 33971,
-              "reports": [
-                {
-                  "points": 6
-                }
-              ]
-            },
-            {
-              "id": 41093,
-              "reports": [
-                {
-                  "points": 26
-                }
-              ]
-            },
-            {
-              "id": 42271,
-              "reports": [
-                {
-                  "points": 10
-                }
-              ]
-            },
-            {
-              "id": 29661,
-              "reports": [
-                {
-                  "points": 38
-                }
-              ]
-            },
-            {
-              "id": 41418,
-              "reports": [
-                {
-                  "points": 22
-                }
-              ]
-            },
-            {
-              "id": 19485,
-              "reports": [
-                {
-                  "points": 12
-                }
-              ]
-            },
-            {
-              "id": 2368,
-              "reports": [
-                {
-                  "points": -1
-                }
-              ]
-            },
-            {
-              "id": 34127,
-              "reports": [
-                {
-                  "points": 21
-                }
-              ]
-            },
-            {
-              "id": 17056,
-              "reports": [
-                {
-                  "points": 8
-                }
-              ]
-            }
-          ]
-        },
-        "events": {
-          "players": 24,
-          "goals": 2,
-          "cards": 9,
-          "redCards": 0,
-          "assists": 4,
-          "ideal": 1
-        }
-      },
-      "jornadas": [
-        {
-          "jornada": "Jornada 1",
-          "puntos": 41,
-          "posicion_jornada": 1,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 2",
-          "puntos": 29,
-          "posicion_jornada": 5,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 3",
-          "puntos": 26,
-          "posicion_jornada": 5,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 4",
-          "puntos": 28,
-          "posicion_jornada": 4,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 5",
-          "puntos": 26,
-          "posicion_jornada": 9,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 6",
-          "puntos": 25,
-          "posicion_jornada": 9,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 7",
-          "puntos": 41,
-          "posicion_jornada": 5,
-          "ideal": 1
-        },
-        {
-          "jornada": "Jornada 8",
-          "puntos": 39,
-          "posicion_jornada": 6,
-          "ideal": 1
-        }
-      ],
-      "plantilla": [
-        {
-          "id": 40075,
-          "nombre": "Espart",
-          "club": "Barcelona",
-          "posicion": 2,
-          "puntos_totales": 43,
-          "precio_actual": 4460000,
-          "incremento_diario": 30000,
-          "precio_compra": 4190920,
-          "clausula": 7400000,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 25322,
-          "nombre": "Javi Hernández",
-          "club": "Espanyol",
-          "posicion": 3,
-          "puntos_totales": 42,
-          "precio_actual": 2650000,
-          "incremento_diario": 0,
-          "precio_compra": 3034040,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 41093,
-          "nombre": "Rafita",
-          "club": "Málaga",
-          "posicion": 2,
-          "puntos_totales": 42,
-          "precio_actual": 3010000,
-          "incremento_diario": -10000,
-          "precio_compra": 2411540,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 29661,
-          "nombre": "Olasagasti",
-          "club": "Levante",
-          "posicion": 3,
-          "puntos_totales": 40,
-          "precio_actual": 3040000,
-          "incremento_diario": 0,
-          "precio_compra": 0,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 25403,
-          "nombre": "Gonzalo Villar",
-          "club": "Elche",
-          "posicion": 3,
-          "puntos_totales": 34,
-          "precio_actual": 2660000,
-          "incremento_diario": -50000,
-          "precio_compra": 2956420,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 33474,
-          "nombre": "Lago",
-          "club": "Celta",
-          "posicion": 2,
-          "puntos_totales": 34,
-          "precio_actual": 2640000,
-          "incremento_diario": -30000,
-          "precio_compra": 2629860,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 35763,
-          "nombre": "Pablo García",
-          "club": "Racing",
-          "posicion": 4,
-          "puntos_totales": 34,
-          "precio_actual": 2830000,
-          "incremento_diario": -80000,
-          "precio_compra": 1500000,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 14630,
-          "nombre": "Leo Román",
-          "club": "Deportivo",
-          "posicion": 1,
-          "puntos_totales": 30,
-          "precio_actual": 3470000,
-          "incremento_diario": -70000,
-          "precio_compra": 5935670,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 19299,
-          "nombre": "Sergio Gómez",
-          "club": "Real Sociedad",
-          "posicion": 2,
-          "puntos_totales": 30,
-          "precio_actual": 2620000,
-          "incremento_diario": -20000,
-          "precio_compra": 3621740,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 1523,
-          "nombre": "Iago Aspas",
-          "club": "Celta",
-          "posicion": 4,
-          "puntos_totales": 29,
-          "precio_actual": 1780000,
-          "incremento_diario": -20000,
-          "precio_compra": 3135980,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 1612,
-          "nombre": "Antonio Blanco",
-          "club": "Alavés",
-          "posicion": 3,
-          "puntos_totales": 26,
-          "precio_actual": 2570000,
-          "incremento_diario": -10000,
-          "precio_compra": 3205680,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 40010,
-          "nombre": "Sangaré",
-          "club": "Elche",
-          "posicion": 2,
-          "puntos_totales": 25,
-          "precio_actual": 1120000,
-          "incremento_diario": 10000,
-          "precio_compra": 1932420,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 41565,
-          "nombre": "Osorio",
-          "club": "Elche",
-          "posicion": 4,
-          "puntos_totales": 23,
-          "precio_actual": 860000,
-          "incremento_diario": -20000,
-          "precio_compra": 1442380,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 19501,
-          "nombre": "Simeone",
-          "club": "Atlético",
-          "posicion": 5,
-          "puntos_totales": 22,
-          "precio_actual": 2820000,
-          "incremento_diario": 20000,
-          "precio_compra": 3514370,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 41418,
-          "nombre": "Dani Lorenzo",
-          "club": "Málaga",
-          "posicion": 3,
-          "puntos_totales": 20,
-          "precio_actual": 2160000,
-          "incremento_diario": -60000,
-          "precio_compra": 0,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 33971,
-          "nombre": "Bretones",
-          "club": "Osasuna",
-          "posicion": 2,
-          "puntos_totales": 18,
-          "precio_actual": 1110000,
-          "incremento_diario": 10000,
-          "precio_compra": 1878000,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 16606,
-          "nombre": "Aitor Fernández",
-          "club": "Osasuna",
-          "posicion": 1,
-          "puntos_totales": 16,
-          "precio_actual": 1250000,
-          "incremento_diario": 10000,
-          "precio_compra": 211620,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 37733,
-          "nombre": "Kochorashvili",
-          "club": "Sevilla",
-          "posicion": 3,
-          "puntos_totales": 16,
-          "precio_actual": 1300000,
-          "incremento_diario": -70000,
-          "precio_compra": 1980010,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 42271,
-          "nombre": "De Haas",
-          "club": "Valencia",
-          "posicion": 2,
-          "puntos_totales": 14,
-          "precio_actual": 1650000,
-          "incremento_diario": -120000,
-          "precio_compra": 0,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 26077,
-          "nombre": "Sadiq",
-          "club": "Valencia",
-          "posicion": 4,
-          "puntos_totales": 9,
-          "precio_actual": 930000,
-          "incremento_diario": 0,
-          "precio_compra": 2375670,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        },
-        {
-          "id": 33694,
-          "nombre": "Boyomo",
-          "club": "Osasuna",
-          "posicion": 2,
-          "puntos_totales": 0,
-          "precio_actual": 1280000,
-          "incremento_diario": 30000,
-          "precio_compra": 2221760,
-          "clausula": 0,
-          "propietario": "Quitate el toz"
-        }
-      ]
-    },
-    {
       "id": 8331180,
       "equipo": "Una girafa Camello",
       "valor_equipo": 39190000,
       "incremento_diario": -210000,
       "num_jugadores": 15,
       "victorias_jornada": 0,
-      "max_rnd": 41,
+      "max_rnd": 49,
       "medallas_temporadas": [
         {
           "id": "2027",
@@ -4646,8 +4499,8 @@
               "id": 11677,
               "name": "Dimitrievski"
             },
-            "points": 40,
-            "used": 8
+            "points": 42,
+            "used": 9
           },
           {
             "position": 2,
@@ -4664,8 +4517,8 @@
               "id": 5352,
               "name": "Óscar Valentín"
             },
-            "points": 18,
-            "used": 8
+            "points": 20,
+            "used": 9
           },
           {
             "position": 4,
@@ -4673,8 +4526,8 @@
               "id": 42557,
               "name": "Adeyemi"
             },
-            "points": 41,
-            "used": 5
+            "points": 47,
+            "used": 6
           }
         ],
         "worst": {
@@ -4690,8 +4543,8 @@
             "id": 11677,
             "name": "Dimitrievski"
           },
-          "points": 40,
-          "used": 8
+          "points": 42,
+          "used": 9
         },
         "lineup": {
           "type": "4-3-3",
@@ -4700,7 +4553,7 @@
               "id": 11677,
               "reports": [
                 {
-                  "points": 40
+                  "points": 42
                 }
               ]
             },
@@ -4732,7 +4585,7 @@
               "id": 20,
               "reports": [
                 {
-                  "points": 6
+                  "points": 17
                 }
               ]
             },
@@ -4740,7 +4593,7 @@
               "id": 5352,
               "reports": [
                 {
-                  "points": 18
+                  "points": 20
                 }
               ]
             },
@@ -4756,7 +4609,15 @@
               "id": 41385,
               "reports": [
                 {
-                  "points": 10
+                  "points": 12
+                }
+              ]
+            },
+            {
+              "id": 42557,
+              "reports": [
+                {
+                  "points": 47
                 }
               ]
             },
@@ -4765,14 +4626,6 @@
               "reports": [
                 {
                   "points": 5
-                }
-              ]
-            },
-            {
-              "id": 42557,
-              "reports": [
-                {
-                  "points": 41
                 }
               ]
             },
@@ -4787,12 +4640,12 @@
           ]
         },
         "events": {
-          "players": 24,
-          "goals": 5,
+          "players": 25,
+          "goals": 6,
           "cards": 8,
           "redCards": 0,
-          "assists": 3,
-          "ideal": 0
+          "assists": 4,
+          "ideal": 1
         }
       },
       "jornadas": [
@@ -4842,6 +4695,12 @@
           "jornada": "Jornada 8",
           "puntos": 41,
           "posicion_jornada": 3,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 49,
+          "posicion_jornada": 2,
           "ideal": 1
         }
       ],
@@ -5029,6 +4888,509 @@
       ]
     },
     {
+      "id": 8331186,
+      "equipo": "Quitate el toz",
+      "valor_equipo": 46210000,
+      "incremento_diario": -450000,
+      "num_jugadores": 21,
+      "victorias_jornada": 1,
+      "max_rnd": 41,
+      "medallas_temporadas": [
+        {
+          "id": "2027",
+          "name": "2026/2027 season",
+          "slug": "2026-2027"
+        },
+        {
+          "id": "2026",
+          "name": "2025/2026 season",
+          "slug": "2025-2026"
+        },
+        {
+          "id": "2025",
+          "name": "2024/2025 season",
+          "slug": "2024-2025"
+        },
+        {
+          "id": "2024",
+          "name": "2023/2024 season",
+          "slug": "2023-2024"
+        },
+        {
+          "id": "2023",
+          "name": "2022/2023 season",
+          "slug": "2022-2023"
+        }
+      ],
+      "stats_perfil": {
+        "positions": [
+          {
+            "position": 1,
+            "player": {
+              "id": 19192,
+              "name": "Agirrezabala"
+            },
+            "points": 22,
+            "used": 5
+          },
+          {
+            "position": 2,
+            "player": {
+              "id": 41093,
+              "name": "Rafita"
+            },
+            "points": 28,
+            "used": 6
+          },
+          {
+            "position": 3,
+            "player": {
+              "id": 29661,
+              "name": "Olasagasti"
+            },
+            "points": 40,
+            "used": 9
+          },
+          {
+            "position": 4,
+            "player": {
+              "id": 34127,
+              "name": "Peque"
+            },
+            "points": 21,
+            "used": 6
+          }
+        ],
+        "worst": {
+          "player": {
+            "id": 2368,
+            "name": "Mario Martín"
+          },
+          "points": -1,
+          "used": 4
+        },
+        "favorite": {
+          "player": {
+            "id": 29661,
+            "name": "Olasagasti"
+          },
+          "points": 40,
+          "used": 9
+        },
+        "lineup": {
+          "type": "3-4-3",
+          "players": [
+            {
+              "id": 19192,
+              "reports": [
+                {
+                  "points": 22
+                }
+              ]
+            },
+            {
+              "id": 40010,
+              "reports": [
+                {
+                  "points": 16
+                }
+              ]
+            },
+            {
+              "id": 33971,
+              "reports": [
+                {
+                  "points": 8
+                }
+              ]
+            },
+            {
+              "id": 41093,
+              "reports": [
+                {
+                  "points": 28
+                }
+              ]
+            },
+            {
+              "id": 29661,
+              "reports": [
+                {
+                  "points": 40
+                }
+              ]
+            },
+            {
+              "id": 41418,
+              "reports": [
+                {
+                  "points": 20
+                }
+              ]
+            },
+            {
+              "id": 19485,
+              "reports": [
+                {
+                  "points": 12
+                }
+              ]
+            },
+            {
+              "id": 2368,
+              "reports": [
+                {
+                  "points": -1
+                }
+              ]
+            },
+            {
+              "id": 34127,
+              "reports": [
+                {
+                  "points": 21
+                }
+              ]
+            },
+            {
+              "id": 17056,
+              "reports": [
+                {
+                  "points": 8
+                }
+              ]
+            },
+            {
+              "id": 1523,
+              "reports": [
+                {
+                  "points": 12
+                }
+              ]
+            }
+          ]
+        },
+        "events": {
+          "players": 26,
+          "goals": 2,
+          "cards": 10,
+          "redCards": 0,
+          "assists": 5,
+          "ideal": 1
+        }
+      },
+      "jornadas": [
+        {
+          "jornada": "Jornada 1",
+          "puntos": 41,
+          "posicion_jornada": 1,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 2",
+          "puntos": 29,
+          "posicion_jornada": 5,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 3",
+          "puntos": 26,
+          "posicion_jornada": 5,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 4",
+          "puntos": 28,
+          "posicion_jornada": 4,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 5",
+          "puntos": 26,
+          "posicion_jornada": 9,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 6",
+          "puntos": 25,
+          "posicion_jornada": 9,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 7",
+          "puntos": 41,
+          "posicion_jornada": 5,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 8",
+          "puntos": 39,
+          "posicion_jornada": 6,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 21,
+          "posicion_jornada": 10,
+          "ideal": 1
+        }
+      ],
+      "plantilla": [
+        {
+          "id": 40075,
+          "nombre": "Espart",
+          "club": "Barcelona",
+          "posicion": 2,
+          "puntos_totales": 43,
+          "precio_actual": 4460000,
+          "incremento_diario": 30000,
+          "precio_compra": 4190920,
+          "clausula": 7400000,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 25322,
+          "nombre": "Javi Hernández",
+          "club": "Espanyol",
+          "posicion": 3,
+          "puntos_totales": 42,
+          "precio_actual": 2650000,
+          "incremento_diario": 0,
+          "precio_compra": 3034040,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 41093,
+          "nombre": "Rafita",
+          "club": "Málaga",
+          "posicion": 2,
+          "puntos_totales": 42,
+          "precio_actual": 3010000,
+          "incremento_diario": -10000,
+          "precio_compra": 2411540,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 29661,
+          "nombre": "Olasagasti",
+          "club": "Levante",
+          "posicion": 3,
+          "puntos_totales": 40,
+          "precio_actual": 3040000,
+          "incremento_diario": 0,
+          "precio_compra": 0,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 25403,
+          "nombre": "Gonzalo Villar",
+          "club": "Elche",
+          "posicion": 3,
+          "puntos_totales": 34,
+          "precio_actual": 2660000,
+          "incremento_diario": -50000,
+          "precio_compra": 2956420,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 33474,
+          "nombre": "Lago",
+          "club": "Celta",
+          "posicion": 2,
+          "puntos_totales": 34,
+          "precio_actual": 2640000,
+          "incremento_diario": -30000,
+          "precio_compra": 2629860,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 35763,
+          "nombre": "Pablo García",
+          "club": "Racing",
+          "posicion": 4,
+          "puntos_totales": 34,
+          "precio_actual": 2830000,
+          "incremento_diario": -80000,
+          "precio_compra": 1500000,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 14630,
+          "nombre": "Leo Román",
+          "club": "Deportivo",
+          "posicion": 1,
+          "puntos_totales": 30,
+          "precio_actual": 3470000,
+          "incremento_diario": -70000,
+          "precio_compra": 5935670,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 19299,
+          "nombre": "Sergio Gómez",
+          "club": "Real Sociedad",
+          "posicion": 2,
+          "puntos_totales": 30,
+          "precio_actual": 2620000,
+          "incremento_diario": -20000,
+          "precio_compra": 3621740,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 1523,
+          "nombre": "Iago Aspas",
+          "club": "Celta",
+          "posicion": 4,
+          "puntos_totales": 29,
+          "precio_actual": 1780000,
+          "incremento_diario": -20000,
+          "precio_compra": 3135980,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 1612,
+          "nombre": "Antonio Blanco",
+          "club": "Alavés",
+          "posicion": 3,
+          "puntos_totales": 26,
+          "precio_actual": 2570000,
+          "incremento_diario": -10000,
+          "precio_compra": 3205680,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 40010,
+          "nombre": "Sangaré",
+          "club": "Elche",
+          "posicion": 2,
+          "puntos_totales": 25,
+          "precio_actual": 1120000,
+          "incremento_diario": 10000,
+          "precio_compra": 1932420,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 41565,
+          "nombre": "Osorio",
+          "club": "Elche",
+          "posicion": 4,
+          "puntos_totales": 23,
+          "precio_actual": 860000,
+          "incremento_diario": -20000,
+          "precio_compra": 1442380,
+          "clausula": 1860000,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 19501,
+          "nombre": "Simeone",
+          "club": "Atlético",
+          "posicion": 5,
+          "puntos_totales": 22,
+          "precio_actual": 2820000,
+          "incremento_diario": 20000,
+          "precio_compra": 3514370,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 41418,
+          "nombre": "Dani Lorenzo",
+          "club": "Málaga",
+          "posicion": 3,
+          "puntos_totales": 20,
+          "precio_actual": 2160000,
+          "incremento_diario": -60000,
+          "precio_compra": 0,
+          "clausula": 4160000,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 33971,
+          "nombre": "Bretones",
+          "club": "Osasuna",
+          "posicion": 2,
+          "puntos_totales": 18,
+          "precio_actual": 1110000,
+          "incremento_diario": 10000,
+          "precio_compra": 1878000,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 16606,
+          "nombre": "Aitor Fernández",
+          "club": "Osasuna",
+          "posicion": 1,
+          "puntos_totales": 16,
+          "precio_actual": 1250000,
+          "incremento_diario": 10000,
+          "precio_compra": 211620,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 37733,
+          "nombre": "Kochorashvili",
+          "club": "Sevilla",
+          "posicion": 3,
+          "puntos_totales": 16,
+          "precio_actual": 1300000,
+          "incremento_diario": -70000,
+          "precio_compra": 1980010,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 42271,
+          "nombre": "De Haas",
+          "club": "Valencia",
+          "posicion": 2,
+          "puntos_totales": 14,
+          "precio_actual": 1650000,
+          "incremento_diario": -120000,
+          "precio_compra": 0,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 26077,
+          "nombre": "Sadiq",
+          "club": "Valencia",
+          "posicion": 4,
+          "puntos_totales": 9,
+          "precio_actual": 930000,
+          "incremento_diario": 0,
+          "precio_compra": 2375670,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 33694,
+          "nombre": "Boyomo",
+          "club": "Osasuna",
+          "posicion": 2,
+          "puntos_totales": 0,
+          "precio_actual": 1280000,
+          "incremento_diario": 30000,
+          "precio_compra": 2221760,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        }
+      ]
+    },
+    {
       "id": 8331183,
       "equipo": "JUAN VELASCO",
       "valor_equipo": 41290000,
@@ -5071,17 +5433,17 @@
               "id": 30487,
               "name": "Álvaro Valles"
             },
-            "points": 38,
-            "used": 5
+            "points": 40,
+            "used": 6
           },
           {
             "position": 2,
             "player": {
-              "id": 17645,
-              "name": "Galán"
+              "id": 5220,
+              "name": "Fran García"
             },
-            "points": 18,
-            "used": 8
+            "points": 22,
+            "used": 6
           },
           {
             "position": 3,
@@ -5089,8 +5451,8 @@
               "id": 6837,
               "name": "Soler"
             },
-            "points": 23,
-            "used": 6
+            "points": 29,
+            "used": 7
           },
           {
             "position": 4,
@@ -5099,7 +5461,7 @@
               "name": "Dolan"
             },
             "points": 21,
-            "used": 8
+            "used": 9
           }
         ],
         "worst": {
@@ -5116,7 +5478,7 @@
             "name": "Dolan"
           },
           "points": 21,
-          "used": 8
+          "used": 9
         },
         "lineup": {
           "type": "3-5-2",
@@ -5125,7 +5487,7 @@
               "id": 30487,
               "reports": [
                 {
-                  "points": 38
+                  "points": 40
                 }
               ]
             },
@@ -5141,7 +5503,7 @@
               "id": 5220,
               "reports": [
                 {
-                  "points": 16
+                  "points": 22
                 }
               ]
             },
@@ -5157,7 +5519,15 @@
               "id": 37726,
               "reports": [
                 {
-                  "points": 20
+                  "points": 22
+                }
+              ]
+            },
+            {
+              "id": 6837,
+              "reports": [
+                {
+                  "points": 29
                 }
               ]
             },
@@ -5166,14 +5536,6 @@
               "reports": [
                 {
                   "points": 8
-                }
-              ]
-            },
-            {
-              "id": 6837,
-              "reports": [
-                {
-                  "points": 23
                 }
               ]
             },
@@ -5216,7 +5578,7 @@
           "goals": 2,
           "cards": 4,
           "redCards": 0,
-          "assists": 5,
+          "assists": 6,
           "ideal": 1
         }
       },
@@ -5267,6 +5629,12 @@
           "jornada": "Jornada 8",
           "puntos": 53,
           "posicion_jornada": 2,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 30,
+          "posicion_jornada": 9,
           "ideal": 1
         }
       ],
@@ -5457,8 +5825,8 @@
               "id": 30334,
               "name": "Fortuño"
             },
-            "points": 6,
-            "used": 2
+            "points": 12,
+            "used": 3
           },
           {
             "position": 2,
@@ -5466,8 +5834,8 @@
               "id": 41419,
               "name": "Recio"
             },
-            "points": 18,
-            "used": 7
+            "points": 16,
+            "used": 8
           },
           {
             "position": 3,
@@ -5475,8 +5843,8 @@
               "id": 26092,
               "name": "Terrats"
             },
-            "points": 38,
-            "used": 8
+            "points": 40,
+            "used": 9
           },
           {
             "position": 4,
@@ -5484,8 +5852,8 @@
               "id": 21132,
               "name": "Fer Niño"
             },
-            "points": 38,
-            "used": 5
+            "points": 40,
+            "used": 6
           }
         ],
         "worst": {
@@ -5501,8 +5869,8 @@
             "id": 26092,
             "name": "Terrats"
           },
-          "points": 38,
-          "used": 8
+          "points": 40,
+          "used": 9
         },
         "lineup": {
           "type": "3-5-2",
@@ -5519,7 +5887,7 @@
               "id": 41419,
               "reports": [
                 {
-                  "points": 18
+                  "points": 16
                 }
               ]
             },
@@ -5543,7 +5911,7 @@
               "id": 1602,
               "reports": [
                 {
-                  "points": 24
+                  "points": 30
                 }
               ]
             },
@@ -5551,7 +5919,7 @@
               "id": 26092,
               "reports": [
                 {
-                  "points": 38
+                  "points": 40
                 }
               ]
             },
@@ -5559,7 +5927,7 @@
               "id": 8747,
               "reports": [
                 {
-                  "points": 14
+                  "points": 20
                 }
               ]
             },
@@ -5567,7 +5935,7 @@
               "id": 31243,
               "reports": [
                 {
-                  "points": 26
+                  "points": 32
                 }
               ]
             },
@@ -5591,7 +5959,7 @@
               "id": 21132,
               "reports": [
                 {
-                  "points": 38
+                  "points": 40
                 }
               ]
             }
@@ -5600,9 +5968,9 @@
         "events": {
           "players": 24,
           "goals": 7,
-          "cards": 15,
+          "cards": 16,
           "redCards": 1,
-          "assists": 4,
+          "assists": 5,
           "ideal": 3
         }
       },
@@ -5653,6 +6021,12 @@
           "jornada": "Jornada 8",
           "puntos": 29,
           "posicion_jornada": 9,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 34,
+          "posicion_jornada": 7,
           "ideal": 1
         }
       ],
@@ -5867,11 +6241,11 @@
           {
             "position": 1,
             "player": {
-              "id": 32134,
-              "name": "Batalla"
+              "id": 1897,
+              "name": "Oblak"
             },
-            "points": 8,
-            "used": 2
+            "points": 14,
+            "used": 3
           },
           {
             "position": 2,
@@ -5880,7 +6254,7 @@
               "name": "Bartra"
             },
             "points": 23,
-            "used": 8
+            "used": 9
           },
           {
             "position": 3,
@@ -5888,8 +6262,8 @@
               "id": 14800,
               "name": "Pablo Ibáñez"
             },
-            "points": 32,
-            "used": 8
+            "points": 34,
+            "used": 9
           },
           {
             "position": 4,
@@ -5914,8 +6288,8 @@
             "id": 14800,
             "name": "Pablo Ibáñez"
           },
-          "points": 32,
-          "used": 8
+          "points": 34,
+          "used": 9
         },
         "lineup": {
           "type": "3-4-3",
@@ -5956,7 +6330,7 @@
               "id": 37416,
               "reports": [
                 {
-                  "points": 24
+                  "points": 30
                 }
               ]
             },
@@ -5964,7 +6338,7 @@
               "id": 14800,
               "reports": [
                 {
-                  "points": 32
+                  "points": 34
                 }
               ]
             },
@@ -5972,7 +6346,7 @@
               "id": 12221,
               "reports": [
                 {
-                  "points": 16
+                  "points": 22
                 }
               ]
             },
@@ -6011,9 +6385,9 @@
           ]
         },
         "events": {
-          "players": 21,
+          "players": 23,
           "goals": 5,
-          "cards": 9,
+          "cards": 11,
           "redCards": 0,
           "assists": 2,
           "ideal": 0
@@ -6066,6 +6440,12 @@
           "jornada": "Jornada 8",
           "puntos": 30,
           "posicion_jornada": 8,
+          "ideal": 1
+        },
+        {
+          "jornada": "Jornada 9",
+          "puntos": 37,
+          "posicion_jornada": 6,
           "ideal": 1
         }
       ],
@@ -6231,6 +6611,7 @@
   ]
 }
 </script>
+
 <script>
   // Menú lateral móvil
   const drawer = document.getElementById('drawer');
@@ -6240,6 +6621,50 @@
   document.getElementById('drawerClose').addEventListener('click', closeDrawer);
   overlay.addEventListener('click', closeDrawer);
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeDrawer));
+
+  // Modo Oscuro / Modo Claro con memoria en localStorage
+  const themeToggleBtn = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('biwenger-theme');
+  const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initialTheme = savedTheme ? savedTheme : (systemDark ? 'dark' : 'light');
+
+  let chartInstances = [];
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      if (themeToggleBtn) themeToggleBtn.textContent = '☀️';
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+      if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
+    }
+    // Actualizar colores de ejes en gráficas si ya existen
+    const isDark = theme === 'dark';
+    const tickColor = isDark ? '#a39093' : '#736264';
+    const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+    chartInstances.forEach(ch => {
+      if (ch.options && ch.options.scales) {
+        Object.values(ch.options.scales).forEach(sc => {
+          if (sc.ticks) sc.ticks.color = tickColor;
+          if (sc.grid) sc.grid.color = gridColor;
+        });
+      }
+      if (ch.options && ch.options.plugins && ch.options.plugins.legend && ch.options.plugins.legend.labels) {
+        ch.options.plugins.legend.labels.color = tickColor;
+      }
+      ch.update();
+    });
+  }
+  applyTheme(initialTheme);
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const nextTheme = isDark ? 'light' : 'dark';
+      applyTheme(nextTheme);
+      localStorage.setItem('biwenger-theme', nextTheme);
+    });
+  }
 
   // Pestañas de clasificaciones
   document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -6290,6 +6715,11 @@
     return `<span class="pos-badge ${cls}">${pos}º</span>`;
   }
 
+  function ptsWithBar(val, maxVal, suffix = '') {
+    const pct = maxVal > 0 ? Math.max(6, Math.round((val / maxVal) * 100)) : 0;
+    return `<div class="pts-wrap"><span class="pts-big">${val}${suffix}</span><div class="data-bar"><span style="width:${pct}%"></span></div></div>`;
+  }
+
   window.addEventListener('DOMContentLoaded', () => {
     try {
       const data = JSON.parse(document.getElementById('biwenger-live-data').textContent);
@@ -6323,8 +6753,14 @@
 
       // 1. RANKING FIFA
       const tbodyFifa = document.getElementById('tbody-fifa');
+      const maxFifaPts = clasif.reduce((m, r) => Math.max(m, r.puntos || 0), 1);
+      const maxTeamVal = clasif.reduce((m, r) => Math.max(m, r.valor_equipo || 0), 1);
+
       if (clasif.length > 0) {
         document.getElementById('kpi-fifa').textContent = clasif[0].equipo;
+        const kpiFifaImg = document.getElementById('kpi-fifa-img');
+        if (kpiFifaImg) kpiFifaImg.src = avatarUrl(clasif[0].equipo, clasif[0].icono);
+
         tbodyFifa.innerHTML = clasif.map(r => {
           const valM = ((r.valor_equipo || 0) / 1000000).toFixed(2) + ' M€';
           const inc = r.incremento_diario || 0;
@@ -6338,7 +6774,7 @@
             <td class="mono">${r.num_jugadores || 15}</td>
             <td class="mono">${valM}</td>
             <td class="${incCls}">${incStr}</td>
-            <td class="pts-big">${r.puntos}</td>
+            <td>${ptsWithBar(r.puntos, maxFifaPts)}</td>
           </tr>`;
         }).join('');
       }
@@ -6354,6 +6790,11 @@
       const tbodyReg = document.getElementById('tbody-regular');
       if (apRows.length > 0) {
         document.getElementById('kpi-apertura').textContent = apRows[0].equipo;
+        const kpiApImg = document.getElementById('kpi-ap-img');
+        if (kpiApImg) kpiApImg.src = avatarUrl(apRows[0].equipo);
+
+        const maxApPts = apRows.reduce((m, r) => Math.max(m, r.pts || 0), 1);
+
         tbodyAp.innerHTML = apRows.map(row => {
           const pj = row.pj || ((row.pg || 0) + (row.pe || 0) + (row.pp || 0));
           const dgStr = row.dg > 0 ? '+' + row.dg : row.dg;
@@ -6368,7 +6809,7 @@
             <td class="mono">${row.gf}</td>
             <td class="mono">${row.gc}</td>
             <td class="mono">${dgStr}</td>
-            <td class="pts-big">${row.pts}</td>
+            <td>${ptsWithBar(row.pts, maxApPts)}</td>
           </tr>`;
         }).join('');
 
@@ -6385,7 +6826,7 @@
             <td class="mono">${row.pts}</td>
             <td class="mono">0</td>
             <td class="mono">${row.dg > 0 ? '+' + row.dg : row.dg}</td>
-            <td class="pts-big">${row.pts}</td>
+            <td>${ptsWithBar(row.pts, maxApPts)}</td>
             <td>${badgeZona}</td>
           </tr>`;
         }).join('');
@@ -6396,11 +6837,10 @@
         if (rnds.length > 0 && rndContainer) {
           rndContainer.innerHTML = rnds.map(r => `
             <div class="rnd-card">
-              <div class="rnd-head"><span>${r.jornada}</span></div>
-              ${(r.partidos || []).map(p => {
+              <div class="rnd-head"><span>${r.jornada}</span></div>${(r.partidos || []).map(p => {
                 const wL = typeof p.gl === 'number' && p.gl > p.gv ? 'w' : '';
                 const wV = typeof p.gv === 'number' && p.gv > p.gl ? 'w' : '';
-                const scoreStr = p.gv !== '' ? `${p.gl} -${p.gv}` : 'Pend.';
+                const scoreStr = p.gv !== '' ? `${p.gl} - ${p.gv}` : 'Pend.';
                 return `<div class="fix-row">
                   <span class="fix-team ${wL}">${p.l}</span>
                   <span class="fix-score">${scoreStr}</span>
@@ -6445,8 +6885,8 @@
         const sorted = [...statsArr].sort((a, b) => b[key] - a[key]).slice(0, 5);
         document.getElementById(elId).innerHTML = sorted.map((item, idx) => `
           <div class="stat-item">
-            <div class="st-left">${posBadge(idx + 1)} <span>${item.equipo}</span></div>
-            <div class="st-val">${item[key]} ${suffix}</div>
+            <div class="st-left">${posBadge(idx + 1)} ${avatarImgTag(item.equipo)} <span>${item.equipo}</span></div>
+            <div class="st-val">${item[key]}${suffix}</div>
           </div>
         `).join('');
         return sorted[0] ? sorted[0].equipo : '';
@@ -6464,14 +6904,16 @@
 
       const topFichajes = (data.premios_individuales && data.premios_individuales.top_10_mejores_fichajes) || [];
       const liderFichaje = topFichajes[0] ? topFichajes[0].propietario : '';
+      const maxPlayerPts = topFichajes.reduce((m, f) => Math.max(m, f.puntos_totales || 0), 1);
+
       document.getElementById('tbody-fichajes').innerHTML = topFichajes.slice(0, 10).map((f, i) => `
         <tr class="${i === 0 ? 'prize-row' : ''}">
           <td>${posBadge(i + 1)}</td>
           <td class="l"><strong>${f.nombre}</strong></td>
           <td>${f.club}</td>
-          <td class="l">${f.propietario}</td>
+          <td class="l"><div class="eq-cell">${avatarImgTag(f.propietario)}<span>${f.propietario}</span></div></td>
           <td class="mono">${((f.precio_actual || 0) / 1000000).toFixed(2)} M€</td>
-          <td class="pts-big">${f.puntos_totales}</td>
+          <td>${ptsWithBar(f.puntos_totales, maxPlayerPts)}</td>
         </tr>
       `).join('');
 
@@ -6497,6 +6939,7 @@
         return { equipo: eq, ...b, total };
       }).sort((a, b) => b.total - a.total);
 
+      const maxBote = boteRows.reduce((m, r) => Math.max(m, r.total || 0), 1);
       const fmtEur = v => v > 0 ? `<strong>${v.toFixed(2).replace('.00', '')} €</strong>` : '<span style="color:var(--muted)">—</span>';
       document.getElementById('tbody-bote-vivo').innerHTML = boteRows.map((r, i) => `
         <tr class="${r.total > 0 ? 'prize-row' : ''}">
@@ -6509,11 +6952,11 @@
           <td class="mono">${fmtEur(r.ideal)}</td>
           <td class="mono">${fmtEur(r.fichaje)}</td>
           <td class="mono">${fmtEur(r.record)}</td>
-          <td class="pts-big">${r.total.toFixed(2)} €</td>
+          <td>${ptsWithBar(r.total.toFixed(2), maxBote, ' €')}</td>
         </tr>
       `).join('');
 
-      // 6. HERO STRIP & TARJETAS DE PARTICIPANTES
+      // 6. HERO STRIP & TARJETAS DE PARTICIPANTES (CON ENLACES DIRECTOS Y BARRA DE VALOR)
       const strip = document.getElementById('hero-strip');
       const grid = document.getElementById('participants-grid');
       strip.innerHTML = '';
@@ -6522,12 +6965,24 @@
       clasif.forEach(r => {
         const imgTag = avatarImgTag(r.equipo, r.icono);
         const st = statsArr.find(s => s.equipo === r.equipo) || {};
-        strip.innerHTML += `<div class="hero-av">${imgTag}<span>${r.posicion}º ${r.equipo}</span></div>`;
+        const cardId = 'manager-' + (r.id || r.equipo.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+        const valM = ((r.valor_equipo || 0) / 1000000).toFixed(1) + ' M€';
+        const valPct = Math.round(((r.valor_equipo || 0) / maxTeamVal) * 100);
+
+        strip.innerHTML += `<a href="#${cardId}" class="hero-av">${imgTag}<span>${r.posicion}º ${r.equipo}</span></a>`;
         grid.innerHTML += `
-          <div class="p-card">
+          <div class="p-card" id="${cardId}">
+            <div class="p-card-banner">
+              <span class="p-rank-chip">#${r.posicion} FIFA</span>
+              <span class="p-val-chip">${valM}</span>
+            </div>
             <div class="p-avatar">${imgTag}</div>
             <div class="p-name">${r.equipo}</div>
-            <span class="p-badge">${r.posicion}º FIFA · ${r.puntos} pts</span>
+            <span class="p-badge">${r.puntos} Picas AS · ${r.victorias_jornada || 0} Vict.</span>
+            <div class="p-power-bar">
+              <div class="pb-top"><span>Poder de Mercado</span><span>${valPct}%</span></div>
+              <div class="pb-track"><div class="pb-fill" style="width:${valPct}%"></div></div>
+            </div>
             <div class="p-stats-mini">
               <div><span>Goles</span><strong>${st.goals || 0}</strong></div>
               <div><span>Asist.</span><strong>${st.assists || 0}</strong></div>
@@ -6536,6 +6991,184 @@
           </div>
         `;
       });
+
+      // 7. GRÁFICAS INTERACTIVAS CON CHART.JS
+      if (window.Chart && clasif.length > 0) {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const tickColor = isDark ? '#a39093' : '#736264';
+        const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
+
+        // Gráfica 1: Puntos FIFA vs Valor de Mercado
+        const ctx1 = document.getElementById('chartFifaValor');
+        if (ctx1) {
+          const ch1 = new Chart(ctx1, {
+            type: 'bar',
+            data: {
+              labels: clasif.map(r => r.equipo.length > 12 ? r.equipo.slice(0, 12) + '…' : r.equipo),
+              datasets: [
+                {
+                  type: 'bar',
+                  label: 'Puntos FIFA (Picas)',
+                  data: clasif.map(r => r.puntos),
+                  backgroundColor: 'rgba(209, 0, 31, 0.82)',
+                  borderRadius: 6,
+                  yAxisID: 'y'
+                },
+                {
+                  type: 'line',
+                  label: 'Valor Equipo (M€)',
+                  data: clasif.map(r => Number(((r.valor_equipo || 0) / 1000000).toFixed(2))),
+                  borderColor: '#eab308',
+                  backgroundColor: '#eab308',
+                  borderWidth: 2.5,
+                  tension: 0.3,
+                  pointRadius: 4,
+                  yAxisID: 'y1'
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: { mode: 'index', intersect: false },
+              plugins: { legend: { labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
+              scales: {
+                x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+                y: { position: 'left', ticks: { color: tickColor }, grid: { color: gridColor } },
+                y1: { position: 'right', ticks: { color: '#eab308' }, grid: { drawOnChartArea: false } }
+              }
+            }
+          });
+          chartInstances.push(ch1);
+        }
+
+        // Gráfica 2: Si hay historial de jornadas por equipo, mostrar evolución Top 5; si no, Goles/Asist/XI
+        const ctx2 = document.getElementById('chartRendimiento');
+        const hasJornadas = detalles.some(d => Array.isArray(d.jornadas) && d.jornadas.length > 1);
+        if (ctx2) {
+          if (hasJornadas) {
+            document.getElementById('chart2-title').innerHTML = '&#128200; Evolución Acumulada (Top 5 FIFA)';
+            document.getElementById('chart2-sub').textContent = 'Progresión jornada a jornada';
+            const top5Names = clasif.slice(0, 5).map(r => r.equipo);
+            const palette = ['#d1001f', '#eab308', '#3b82f6', '#10b981', '#a855f7'];
+            const maxLen = Math.max(...detalles.map(d => (d.jornadas || []).length));
+            const labelsJ = Array.from({ length: maxLen }, (_, i) => `J${i + 1}`);
+
+            const datasetsJ = top5Names.map((name, idx) => {
+              const d = detMap[name] || {};
+              let acc = 0;
+              const ptsCurve = (d.jornadas || []).map(j => { acc += (j.puntos || 0); return acc; });
+              return {
+                label: name,
+                data: ptsCurve,
+                borderColor: palette[idx % palette.length],
+                backgroundColor: palette[idx % palette.length],
+                borderWidth: 2,
+                tension: 0.25,
+                pointRadius: 3
+              };
+            });
+
+            const ch2 = new Chart(ctx2, {
+              type: 'line',
+              data: { labels: labelsJ, datasets: datasetsJ },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { legend: { labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
+                scales: {
+                  x: { ticks: { color: tickColor }, grid: { display: false } },
+                  y: { ticks: { color: tickColor }, grid: { color: gridColor } }
+                }
+              }
+            });
+            chartInstances.push(ch2);
+          } else {
+            const ch2 = new Chart(ctx2, {
+              type: 'bar',
+              data: {
+                labels: statsArr.map(s => s.equipo.length > 12 ? s.equipo.slice(0, 12) + '…' : s.equipo),
+                datasets: [
+                  { label: 'Goles', data: statsArr.map(s => s.goals), backgroundColor: '#d1001f', borderRadius: 4 },
+                  { label: 'Asistencias', data: statsArr.map(s => s.assists), backgroundColor: '#eab308', borderRadius: 4 },
+                  { label: '11 Ideal', data: statsArr.map(s => s.ideal), backgroundColor: '#3b82f6', borderRadius: 4 }
+                ]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
+                scales: {
+                  x: { stacked: true, ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+                  y: { stacked: true, ticks: { color: tickColor }, grid: { color: gridColor } }
+                }
+              }
+            });
+            chartInstances.push(ch2);
+          }
+        }
+
+        // Gráfica 3: Donut del Bote (200 €)
+        const ctxDonut = document.getElementById('chartPotDonut');
+        if (ctxDonut) {
+          const ch3 = new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+              labels: ['Regular (80€)', 'Fase Final (48,75€)', 'Copas (46,25€)', 'Indiv. (25€)'],
+              datasets: [{
+                data: [80, 48.75, 46.25, 25],
+                backgroundColor: ['#d1001f', '#eab308', '#3b82f6', '#10b981'],
+                borderWidth: 0
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: '68%',
+              plugins: {
+                legend: { display: false }
+              }
+            }
+          });
+          chartInstances.push(ch3);
+        }
+      }
+
+      // 8. BOTÓN DE COMPARTIR RESUMEN PARA WHATSAPP
+      const waBtn = document.getElementById('waShareBtn');
+      const waToast = document.getElementById('waToast');
+      if (waBtn) {
+        waBtn.addEventListener('click', () => {
+          const top3Fifa = clasif.slice(0, 3).map((r, i) => `${['🥇','🥈','🥉'][i]} ${r.equipo} (${r.puntos} pts)`).join('\n');
+          const top3Ap = apRows.slice(0, 3).map((r, i) => `${['🥇','🥈','🥉'][i]} ${r.equipo} (${r.pts} pts)`).join('\n');
+          const boteTop = boteRows.filter(b => b.total > 0).slice(0, 3).map(b => `💰 ${b.equipo}:${b.total.toFixed(2)} €`).join('\n');
+
+          const msg = [
+            `🏆 *PARTE OFICIAL BIWENGER SEG.AUX 26/27*`,
+            `📅 _Actualizado: ${data.ultima_actualizacion || 'En vivo'}_`,
+            ``,
+            `📊 *TOP 3 RANKING FIFA (Picas AS):*`,
+            top3Fifa,
+            ``,
+            `⚔️ *TOP 3 LIGA APERTURA:*`,
+            top3Ap,
+            ``,
+            `💶 *BOTE VIRTUAL (200 €):*`,
+            boteTop,
+            ``,
+            `🔗 *Web oficial en vivo:*`,
+            `https://marc-post.github.io/biwenger-seg-aux/`
+          ].join('\n');
+
+          navigator.clipboard.writeText(msg).then(() => {
+            if (waToast) {
+              waToast.classList.add('show');
+              setTimeout(() => waToast.classList.remove('show'), 3200);
+            }
+          });
+        });
+      }
 
     } catch (err) {
       console.error('Error renderizando datos:', err);

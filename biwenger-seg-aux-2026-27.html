@@ -6207,7 +6207,6 @@
   ]
 }
 </script>
-
 <script>
   // Menú lateral móvil
   const drawer = document.getElementById('drawer');
@@ -6237,8 +6236,29 @@
     if (el) el.classList.toggle('open');
   }
 
-  function avatarUrl(name) {
-    return 'https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=' + encodeURIComponent(name);
+  // Mapa de iconos reales de Biwenger + respaldo con iniciales
+  const iconMap = {};
+
+  function fallbackAvatar(name) {
+    return 'https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=' + encodeURIComponent(name || 'BW');
+  }
+
+  function resolveBiwengerIcon(rawIcon) {
+    if (!rawIcon || typeof rawIcon !== 'string' || rawIcon.trim() === '') return null;
+    const clean = rawIcon.trim().replace(/^\/+/, '');
+    if (clean.startsWith('http://') || clean.startsWith('https://')) return clean;
+    return 'https://cdn.biwenger.com/' + clean;
+  }
+
+  function avatarUrl(name, explicitIcon) {
+    const candidate = resolveBiwengerIcon(explicitIcon) || iconMap[name];
+    return candidate || fallbackAvatar(name);
+  }
+
+  function avatarImgTag(name, explicitIcon) {
+    const src = avatarUrl(name, explicitIcon);
+    const fb = fallbackAvatar(name);
+    return `<img src="${src}" alt="${name}" onerror="this.onerror=null;this.src='${fb}';">`;
   }
 
   function posBadge(pos) {
@@ -6252,7 +6272,26 @@
       const clasif = data.clasificacion || [];
       const detalles = data.equipos_detalle || [];
       const detMap = {};
-      detalles.forEach(d => { detMap[d.equipo] = d; });
+
+      // Registrar iconos desde clasificacion y equipos_detalle
+      clasif.forEach(r => {
+        const resolved = resolveBiwengerIcon(r.icono || r.icon);
+        if (resolved) iconMap[r.equipo] = resolved;
+      });
+      detalles.forEach(d => {
+        detMap[d.equipo] = d;
+        const resolved = resolveBiwengerIcon(d.icono || d.icon);
+        if (resolved && !iconMap[d.equipo]) iconMap[d.equipo] = resolved;
+      });
+
+      // Actualizar imágenes del Podio Histórico si tienen foto en Biwenger
+      document.querySelectorAll('.podium-av img').forEach(img => {
+        const teamName = img.getAttribute('alt');
+        if (teamName && iconMap[teamName]) {
+          img.src = iconMap[teamName];
+          img.onerror = function() { this.onerror = null; this.src = fallbackAvatar(teamName); };
+        }
+      });
 
       if (data.ultima_actualizacion) {
         document.getElementById('footer-update').textContent = 'Actualizado desde Biwenger API: ' + data.ultima_actualizacion;
@@ -6270,7 +6309,7 @@
           const prizeCls = r.posicion <= 3 ? 'prize-row' : '';
           return `<tr class="${prizeCls}">
             <td>${posBadge(r.posicion)}</td>
-            <td class="l"><div class="eq-cell"><img src="${avatarUrl(r.equipo)}" alt=""><span>${r.equipo}</span></div></td>
+            <td class="l"><div class="eq-cell">${avatarImgTag(r.equipo, r.icono)}<span>${r.equipo}</span></div></td>
             <td class="mono">${r.victorias_jornada || 0}</td>
             <td class="mono">${r.num_jugadores || 15}</td>
             <td class="mono">${valM}</td>
@@ -6297,7 +6336,7 @@
           const prizeCls = row.posicion <= 3 ? 'prize-row' : '';
           return `<tr class="${prizeCls}">
             <td>${posBadge(row.posicion)}</td>
-            <td class="l"><div class="eq-cell"><img src="${avatarUrl(row.equipo)}" alt=""><span>${row.equipo}</span></div></td>
+            <td class="l"><div class="eq-cell">${avatarImgTag(row.equipo)}<span>${row.equipo}</span></div></td>
             <td class="mono">${pj}</td>
             <td class="mono">${row.pg}</td>
             <td class="mono">${row.pe}</td>
@@ -6318,7 +6357,7 @@
             : '<span class="tag tag-copa">Superliga PLATA</span>';
           return `<tr class="${zoneCls}">
             <td>${posBadge(pos)}</td>
-            <td class="l"><div class="eq-cell"><img src="${avatarUrl(row.equipo)}" alt=""><span>${row.equipo}</span></div></td>
+            <td class="l"><div class="eq-cell">${avatarImgTag(row.equipo)}<span>${row.equipo}</span></div></td>
             <td class="mono">${row.pts}</td>
             <td class="mono">0</td>
             <td class="mono">${row.dg > 0 ? '+' + row.dg : row.dg}</td>
@@ -6337,7 +6376,7 @@
               ${(r.partidos || []).map(p => {
                 const wL = typeof p.gl === 'number' && p.gl > p.gv ? 'w' : '';
                 const wV = typeof p.gv === 'number' && p.gv > p.gl ? 'w' : '';
-                const scoreStr = p.gv !== '' ? `${p.gl} - ${p.gv}` : 'Pend.';
+                const scoreStr = p.gv !== '' ? `${p.gl} -${p.gv}` : 'Pend.';
                 return `<div class="fix-row">
                   <span class="fix-team ${wL}">${p.l}</span>
                   <span class="fix-score">${scoreStr}</span>
@@ -6354,7 +6393,7 @@
       tbodyCl.innerHTML = clasif.map(r => `
         <tr>
           <td><span class="pos-badge">—</span></td>
-          <td class="l"><div class="eq-cell"><img src="${avatarUrl(r.equipo)}" alt=""><span>${r.equipo}</span></div></td>
+          <td class="l"><div class="eq-cell">${avatarImgTag(r.equipo, r.icono)}<span>${r.equipo}</span></div></td>
           <td class="mono">0</td><td class="mono">0</td><td class="mono">0</td><td class="mono">0</td>
           <td class="mono">0</td><td class="mono">0</td><td class="mono">0</td>
           <td class="pts-big">0</td>
@@ -6412,7 +6451,7 @@
         </tr>
       `).join('');
 
-      // 5. BOTE EN VIVO POR PARTICIPANTE (200 €) CON POS Y MANAGER SEPARADOS E INMOVILIZADOS
+      // 5. BOTE EN VIVO POR PARTICIPANTE (200 €)
       const boteMap = {};
       clasif.forEach(r => {
         boteMap[r.equipo] = { fifa: 0, ap: 0, goles: 0, asist: 0, ideal: 0, fichaje: 0, record: 0 };
@@ -6438,7 +6477,7 @@
       document.getElementById('tbody-bote-vivo').innerHTML = boteRows.map((r, i) => `
         <tr class="${r.total > 0 ? 'prize-row' : ''}">
           <td>${posBadge(i + 1)}</td>
-          <td class="l"><div class="eq-cell"><img src="${avatarUrl(r.equipo)}" alt=""><span>${r.equipo}</span></div></td>
+          <td class="l"><div class="eq-cell">${avatarImgTag(r.equipo)}<span>${r.equipo}</span></div></td>
           <td class="mono">${fmtEur(r.fifa)}</td>
           <td class="mono">${fmtEur(r.ap)}</td>
           <td class="mono">${fmtEur(r.goles)}</td>
@@ -6457,12 +6496,12 @@
       grid.innerHTML = '';
 
       clasif.forEach(r => {
-        const av = avatarUrl(r.equipo);
+        const imgTag = avatarImgTag(r.equipo, r.icono);
         const st = statsArr.find(s => s.equipo === r.equipo) || {};
-        strip.innerHTML += `<div class="hero-av"><img src="${av}" alt=""><span>${r.posicion}º ${r.equipo}</span></div>`;
+        strip.innerHTML += `<div class="hero-av">${imgTag}<span>${r.posicion}º ${r.equipo}</span></div>`;
         grid.innerHTML += `
           <div class="p-card">
-            <div class="p-avatar"><img src="${av}" alt=""></div>
+            <div class="p-avatar">${imgTag}</div>
             <div class="p-name">${r.equipo}</div>
             <span class="p-badge">${r.posicion}º FIFA · ${r.puntos} pts</span>
             <div class="p-stats-mini">

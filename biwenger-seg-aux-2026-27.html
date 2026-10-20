@@ -51,7 +51,6 @@
     --shadow: 0 8px 28px rgba(20, 10, 12, 0.07);
   }
 
-  /* VARIABLES Y AJUSTES DEL MODO OSCURO */
   html[data-theme="dark"] {
     --bg: #0b090a;
     --card: #151113;
@@ -335,7 +334,7 @@
   .chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; gap: 8px; }
   .chart-head h3 { font-size: 16px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
   .chart-head span { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); text-transform: uppercase; }
-  .chart-canvas-wrap { position: relative; height: 250px; width: 100%; }
+  .chart-canvas-wrap { position: relative; height: 295px; width: 100%; }
 
   /* ACORDEÓN PLEGABLE */
   .accordion { margin-top: 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; box-shadow: var(--shadow); }
@@ -375,9 +374,9 @@
 
   /* PREMIOS Y BOTE EN VIVO CON MINI DONUT */
   .pot-overview {
-    display: grid; grid-template-columns: 1fr 260px; gap: 14px; margin-bottom: 16px; align-items: stretch;
+    display: grid; grid-template-columns: 1fr 310px; gap: 14px; margin-bottom: 16px; align-items: stretch;
   }
-  @media (max-width: 820px) { .pot-overview { grid-template-columns: 1fr; } }
+  @media (max-width: 860px) { .pot-overview { grid-template-columns: 1fr; } }
   .pot-banner {
     display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px;
   }
@@ -392,10 +391,26 @@
   .pot-pill .val { font-family: 'Anton', sans-serif; font-size: 24px; color: var(--red); }
   .pot-donut-box {
     background: var(--card); border: 1px solid var(--line); border-radius: 12px;
-    padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 14px 16px; display: flex; flex-direction: column; align-items: stretch; justify-content: space-between;
     box-shadow: var(--shadow);
   }
-  .pot-donut-wrap { width: 130px; height: 130px; position: relative; }
+  .pot-donut-title {
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; color: var(--muted); text-align: center;
+    margin-bottom: 10px; letter-spacing: 0.05em;
+  }
+  .pot-donut-content { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .pot-donut-wrap { width: 115px; height: 115px; position: relative; flex-shrink: 0; }
+  .donut-center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; pointer-events: none; line-height: 1;
+  }
+  .donut-center strong { font-family: 'Anton', sans-serif; font-size: 20px; color: var(--ink); }
+  .donut-center span { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+  .pot-donut-legend { display: flex; flex-direction: column; gap: 6px; font-size: 11.5px; }
+  .pot-donut-legend div { display: flex; align-items: center; gap: 7px; color: var(--muted); white-space: nowrap; }
+  .pot-donut-legend b { font-family: 'JetBrains Mono', monospace; color: var(--ink); margin-left: auto; padding-left: 6px; font-size: 11px; }
+  .dot-lg { width: 9px; height: 9px; border-radius: 3px; flex-shrink: 0; }
 
   /* ESTADÍSTICAS INDIVIDUALES */
   .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(235px, 1fr)); gap: 14px; margin-bottom: 18px; }
@@ -408,7 +423,8 @@
   .stat-item:last-child { border-bottom: none; }
   .stat-item .st-left { display: flex; align-items: center; gap: 8px; font-weight: 600; }
   .stat-item .st-left img { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; }
-  .stat-item .st-val { font-family: 'Anton', sans-serif; font-size: 16px; color: var(--red); }
+  .stat-item .st-val { display: inline-flex; align-items: baseline; gap: 5px; white-space: nowrap; font-family: 'Anton', sans-serif; font-size: 16px; color: var(--red); }
+  .stat-item .st-val small { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
 
   /* PARTICIPANTES TARJETAS ESTILO FIFA ULTIMATE TEAM / SCOUTING */
   .p-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
@@ -437,15 +453,37 @@
   .p-avatar img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 3px solid var(--card); box-shadow: 0 4px 12px rgba(0,0,0,0.25); background: #fff; }
   .p-name { font-family: 'Anton', sans-serif; font-size: 17px; margin-top: 8px; letter-spacing: 0.02em; }
   .p-badge { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #fff; background: var(--red); padding: 3px 10px; border-radius: 100px; margin-top: 4px; font-weight: 600; }
-  .p-power-bar { width: 100%; margin-top: 10px; text-align: left; }
-  .p-power-bar .pb-top { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted); margin-bottom: 3px; }
+  
+  .p-power-bar {
+    width: 100%; margin-top: 10px; text-align: left;
+    cursor: pointer; padding: 7px 9px; border-radius: 9px;
+    background: var(--card-hi); border: 1px dashed var(--line); transition: .15s;
+  }
+  .p-power-bar:hover { border-color: var(--red); }
+  .pb-help {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 14px; height: 14px; border-radius: 50%; background: var(--red); color: #fff;
+    font-size: 9px; font-weight: 700; margin-left: 4px;
+  }
+  .p-power-bar .pb-top { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--muted); margin-bottom: 3px; align-items: center; }
   .p-power-bar .pb-track { height: 5px; background: var(--line); border-radius: 4px; overflow: hidden; }
   .p-power-bar .pb-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--red)); border-radius: 4px; }
+  
+  .p-market-detail {
+    display: none; width: 100%; margin-top: 8px; padding: 8px 10px;
+    border-radius: 8px; background: var(--bg); border: 1px solid var(--line);
+    font-size: 11px; text-align: left; animation: fadeIn .2s ease;
+  }
+  .p-market-detail.open { display: block; }
+  .pmd-desc { font-size: 10px; color: var(--muted); margin-bottom: 6px; line-height: 1.35; border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+  .pmd-row { display: flex; justify-content: space-between; padding: 2px 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+  .pmd-row strong { color: var(--ink); }
+
   .p-stats-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: 100%; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 11px; }
   .p-stats-mini div span { display: block; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--muted); text-transform: uppercase; }
   .p-stats-mini div strong { font-family: 'Anton', sans-serif; font-size: 15px; color: var(--ink); font-weight: 400; }
 
-  /* CALENDARIO */
+  /* CALENDARIO COMPACTO MÓVIL */
   .cal-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   .cal-table th { text-align: left; font-family: 'JetBrains Mono', monospace; font-size: 10px; text-transform: uppercase; color: var(--muted); padding: 10px 12px; background: var(--card-hi); border-bottom: 2px solid var(--line); }
   .cal-table td { padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--card); }
@@ -490,7 +528,19 @@
   html[data-theme="dark"] .tag-champions { background: rgba(147, 51, 234, 0.25); color: #d8b4fe; }
   html[data-theme="dark"] .tag-superliga { background: rgba(22, 163, 74, 0.22); color: #86efac; }
 
-  /* PODIO TOP 3 HISTÓRICO */
+  @media (max-width: 640px) {
+    .cal-table { font-size: 11.5px; }
+    .cal-table th, .cal-table td { padding: 6px 5px; }
+    .month-cell { font-size: 11px; width: 42px; text-align: center; padding: 6px 3px !important; }
+    .jnum { width: 32px; font-size: 11px; }
+    .jdate { width: 82px; font-size: 11px; white-space: normal; line-height: 1.15; }
+    .dow { font-size: 9px; }
+    .now-pill { display: inline-block; margin-left: 0; margin-top: 2px; font-size: 8px; padding: 1px 4px; }
+    .jtags { gap: 3px; }
+    .tag { font-size: 9px; padding: 2px 5px; border-radius: 4px; }
+  }
+
+  /* PODIO TOP 3 HISTÓRICO Y VITRINA ESTILO DAZN */
   .podium-box {
     background:
       radial-gradient(circle at 50% 0%, rgba(212, 165, 40, 0.22) 0%, transparent 55%),
@@ -531,31 +581,96 @@
   }
   .podium-step .step-rank { font-family: 'Anton', sans-serif; font-size: 30px; line-height: 1; }
   .podium-step .step-lbl { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; opacity: 0.85; margin-top: 3px; }
-  .p-1 .podium-step {
-    height: 118px;
-    background: linear-gradient(180deg, #eab308 0%, #a16207 100%);
-    color: #140f0f; box-shadow: 0 -4px 18px rgba(234,179,8,0.3);
+  .p-1 .podium-step { height: 118px; background: linear-gradient(180deg, #eab308 0%, #a16207 100%); color: #140f0f; box-shadow: 0 -4px 18px rgba(234,179,8,0.3); }
+  .p-2 .podium-step { height: 90px; background: linear-gradient(180deg, #94a3b8 0%, #475569 100%); color: #fff; }
+  .p-3 .podium-step { height: 72px; background: linear-gradient(180deg, #c27849 0%, #7c3f1c 100%); color: #fff; }
+
+  /* VITRINA ESTILO DAZN */
+  .trophy-legend {
+    display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px;
+    background: #181113; border-bottom: 1px solid #2e2023; align-items: center;
   }
-  .p-2 .podium-step {
-    height: 90px;
-    background: linear-gradient(180deg, #94a3b8 0%, #475569 100%);
-    color: #fff;
+  .tl-item {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    padding: 4px 10px; border-radius: 8px; font-size: 11px; color: #e5d5d7;
   }
-  .p-3 .podium-step {
-    height: 72px;
-    background: linear-gradient(180deg, #c27849 0%, #7c3f1c 100%);
-    color: #fff;
+  .tl-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+  .tl-item b { font-family: 'JetBrains Mono', monospace; color: #fde047; font-size: 10px; }
+
+  .vitrina-list {
+    display: flex; flex-direction: column; gap: 8px; padding: 16px;
+    background: linear-gradient(180deg, #130d0e 0%, #0b0708 100%);
   }
-  @media (max-width: 540px) {
-    .podium-stage { gap: 6px; }
-    .podium-name { font-size: 13px; }
-    .podium-col.p-1 .podium-name { font-size: 15px; }
-    .podium-av img { width: 46px; height: 46px; }
-    .podium-col.p-1 .podium-av img { width: 58px; height: 58px; }
-    .podium-badges { font-size: 8.5px; }
+  .v-row {
+    display: grid; grid-template-columns: 225px 1fr 110px; align-items: stretch;
+    background: linear-gradient(90deg, #1c1417 0%, #241a1d 100%);
+    border: 1px solid rgba(255,255,255,0.09); border-radius: 10px;
+    overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    transition: transform .15s, border-color .15s;
+  }
+  .v-row:hover { transform: translateX(3px); border-color: var(--red-bright); }
+  .v-row.v-empty { opacity: 0.55; }
+
+  .v-manager {
+    display: flex; align-items: center; gap: 9px; padding: 10px 18px 10px 12px;
+    background: linear-gradient(135deg, #2b1d20 0%, #170f11 100%);
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+    border-right: 2px solid var(--red);
+  }
+  .v-row.rank-1 .v-manager { background: linear-gradient(135deg, #f59e0b 0%, #92400e 100%); color: #120d0d; }
+  .v-row.rank-2 .v-manager { background: linear-gradient(135deg, #94a3b8 0%, #334155 100%); color: #fff; }
+  .v-row.rank-3 .v-manager { background: linear-gradient(135deg, #c27849 0%, #5c2d12 100%); color: #fff; }
+
+  .v-pos { font-family: 'Anton', sans-serif; font-size: 18px; width: 22px; text-align: center; opacity: 0.9; flex-shrink: 0; }
+  .v-av { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.75); background: #fff; flex-shrink: 0; }
+  .v-info { overflow: hidden; }
+  .v-name { font-family: 'Anton', sans-serif; font-size: 14.5px; letter-spacing: 0.03em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.1; }
+  .v-row.rank-1 .v-name { color: #120d0d; }
+  .v-count-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; opacity: 0.8; display: block; margin-top: 2px; color: #fda4af; }
+  .v-row.rank-1 .v-count-badge { color: #291802; font-weight: 700; }
+
+  .v-shelf {
+    display: flex; align-items: center; flex-wrap: nowrap; gap: 4px;
+    padding: 8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 36px, transparent 36px, transparent 72px);
+  }
+  .t-unit {
+    display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    min-width: 32px; padding: 3px 2px; border-radius: 6px; position: relative;
+    transition: transform .15s, background .15s; cursor: pointer; flex-shrink: 0;
+  }
+  .t-unit:hover { transform: translateY(-3px) scale(1.12); background: rgba(255,255,255,0.08); z-index: 4; }
+  .t-unit svg { width: 25px; height: 27px; filter: drop-shadow(0 3px 4px rgba(0,0,0,0.65)); }
+  .t-weight {
+    font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700;
+    color: #cbd5e1; background: rgba(0,0,0,0.55); padding: 1px 4px; border-radius: 4px;
+    margin-top: 2px; line-height: 1; border: 1px solid rgba(255,255,255,0.1);
+  }
+  .t-unit.w-1 .t-weight { color: #fde047; border-color: rgba(253,224,71,0.4); }
+  .t-unit.w-05 .t-weight { color: #93c5fd; border-color: rgba(147,197,253,0.35); }
+  .t-no-cups { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+
+  .v-total {
+    display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
+    padding: 8px 16px; background: rgba(209, 0, 31, 0.16);
+    border-left: 1px solid rgba(255,255,255,0.08); text-align: right;
+  }
+  .v-row.rank-1 .v-total { background: linear-gradient(90deg, rgba(234,179,8,0.12), rgba(234,179,8,0.28)); }
+  .v-pts { font-family: 'Anton', sans-serif; font-size: 24px; color: #ff2a45; line-height: 1; letter-spacing: 0.02em; }
+  .v-row.rank-1 .v-pts { color: #fde047; }
+  .v-pts-lbl { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 3px; }
+
+  @media (max-width: 720px) {
+    .v-row { grid-template-columns: 155px 1fr 82px; }
+    .v-manager { padding: 8px 14px 8px 8px; gap: 6px; }
+    .v-av { width: 26px; height: 26px; }
+    .v-name { font-size: 12.5px; }
+    .v-pts { font-size: 19px; }
+    .v-total { padding: 6px 10px; }
   }
 
-  /* PALMARÉS TABLAS */
+  /* PALMARÉS TABLAS TRADICIONALES */
   .hist-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
   .hist-table th, .hist-table td { padding: 8px 9px; border-bottom: 1px solid var(--line); text-align: center; white-space: nowrap; }
   .hist-table th { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; text-transform: uppercase; color: var(--muted); background: var(--card-hi); }
@@ -563,7 +678,7 @@
   .hist-table th:first-child { background: var(--card-hi); z-index: 4; }
   .hist-table .rk { color: var(--red); font-family: 'Anton', sans-serif; font-size: 14px; }
 
-  /* TOAST DE NOTIFICACIÓN */
+  /* TOAST */
   .toast {
     position: fixed; bottom: 84px; right: 20px; z-index: 100;
     background: #16a34a; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 12px;
@@ -707,7 +822,7 @@
       </div>
     </div>
 
-    <!-- PANEL TEMPORADA REGULAR ACUMULADA (CORTE 5 ORO / 5 PLATA) -->
+    <!-- PANEL TEMPORADA REGULAR ACUMULADA -->
     <div class="tab-panel" id="panel-regular">
       <div class="card-box">
         <div class="box-header">
@@ -739,29 +854,7 @@
       </div>
     </div>
 
-    <!-- GRÁFICAS INTERACTIVAS EN VIVO -->
-    <div class="charts-grid">
-      <div class="chart-card">
-        <div class="chart-head">
-          <h3>&#128202; Puntos FIFA vs. Valor de Plantilla</h3>
-          <span>Barras: Picas · Línea: M€</span>
-        </div>
-        <div class="chart-canvas-wrap">
-          <canvas id="chartFifaValor"></canvas>
-        </div>
-      </div>
-      <div class="chart-card">
-        <div class="chart-head">
-          <h3 id="chart2-title">&#128200; Rendimiento y Potencial Ofensivo</h3>
-          <span id="chart2-sub">Comparativa de Managers</span>
-        </div>
-        <div class="chart-canvas-wrap">
-          <canvas id="chartRendimiento"></canvas>
-        </div>
-      </div>
-    </div>
-
-    <!-- ACORDEÓN FASE FINAL Y COPAS PLEGADO CON ICONOS -->
+    <!-- ACORDEÓN FASE FINAL Y COPAS -->
     <div class="accordion">
       <button class="acc-btn" onclick="toggleAcc('acc-fase-final')">
         <span>&#127942; Fase Final y Copas (Superliga Oro/Plata, Copa del Rey y Champions)</span>
@@ -797,6 +890,28 @@
         </div>
       </div>
     </div>
+
+    <!-- GRÁFICAS INTERACTIVAS (DEBAJO DE FASE FINAL Y COPAS) -->
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3>&#128202; Puntos FIFA vs. Valor de Plantilla</h3>
+          <span>Barras: Picas · Línea: M€</span>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="chartFifaValor"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-head">
+          <h3 id="chart2-title">&#128200; Evolución Acumulada (10 Equipos)</h3>
+          <span id="chart2-sub">Pulsa un nombre para filtrar</span>
+        </div>
+        <div class="chart-canvas-wrap">
+          <canvas id="chartRendimiento"></canvas>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -827,8 +942,18 @@
         </div>
       </div>
       <div class="pot-donut-box">
-        <div class="pot-donut-wrap">
-          <canvas id="chartPotDonut"></canvas>
+        <div class="pot-donut-title">Distribución del Bote</div>
+        <div class="pot-donut-content">
+          <div class="pot-donut-wrap">
+            <canvas id="chartPotDonut"></canvas>
+            <div class="donut-center"><strong>200€</strong><span>Total</span></div>
+          </div>
+          <div class="pot-donut-legend">
+            <div><span class="dot-lg" style="background:#d1001f"></span>Regular <b>80,00 €</b></div>
+            <div><span class="dot-lg" style="background:#eab308"></span>Fase Final <b>48,75 €</b></div>
+            <div><span class="dot-lg" style="background:#3b82f6"></span>Copas <b>46,25 €</b></div>
+            <div><span class="dot-lg" style="background:#10b981"></span>Indiv. <b>25,00 €</b></div>
+          </div>
         </div>
       </div>
     </div>
@@ -1015,10 +1140,7 @@
           <div class="podium-name">JUAN VELASCO</div>
           <div class="podium-pts"><strong>7,40</strong> pts hist.</div>
           <div class="podium-badges">2 FIFA · 1 Champ · 1 Copa · 1 S.Oro</div>
-          <div class="podium-step">
-            <span class="step-rank">2º</span>
-            <span class="step-lbl">Plata</span>
-          </div>
+          <div class="podium-step"><span class="step-rank">2º</span><span class="step-lbl">Plata</span></div>
         </div>
         <!-- 1º PUESTO -->
         <div class="podium-col p-1">
@@ -1029,10 +1151,7 @@
           <div class="podium-name">Quitate el toz</div>
           <div class="podium-pts"><strong>9,75</strong> pts hist.</div>
           <div class="podium-badges">3 Ligas · 2 FIFA · 2 Champ · 1 Copa</div>
-          <div class="podium-step">
-            <span class="step-rank">1º</span>
-            <span class="step-lbl">Rey Histórico</span>
-          </div>
+          <div class="podium-step"><span class="step-rank">1º</span><span class="step-lbl">Rey Histórico</span></div>
         </div>
         <!-- 3º PUESTO -->
         <div class="podium-col p-3">
@@ -1042,58 +1161,19 @@
           <div class="podium-name">MarkLenders</div>
           <div class="podium-pts"><strong>4,60</strong> pts hist.</div>
           <div class="podium-badges">1 Liga · 1 Champ · 1 S.Oro · 2 C.Sup</div>
-          <div class="podium-step">
-            <span class="step-rank">3º</span>
-            <span class="step-lbl">Bronce</span>
-          </div>
+          <div class="podium-step"><span class="step-rank">3º</span><span class="step-lbl">Bronce</span></div>
         </div>
       </div>
     </div>
 
-    <!-- RANKING DE TÍTULOS PONDERADOS -->
-    <div class="card-box" style="margin-bottom: 18px;">
+    <!-- VITRINA HISTÓRICA DE TÍTULOS PONDERADOS ESTILO DAZN -->
+    <div class="card-box" style="margin-bottom: 20px; border-color: #2e2023;">
       <div class="box-header">
-        <span>Ranking Histórico de Títulos Ponderados</span>
-        <span>Actualizado hasta Temporada 2025/26</span>
+        <span>&#127942; Vitrina Histórica de Trofeos Ponderados (2016 - 2026)</span>
+        <span class="badge-live">● Ordenado por Puntos Totales</span>
       </div>
-      <div class="table-scroll">
-        <table class="hist-table">
-          <thead>
-            <tr>
-              <th>Manager</th>
-              <th>Ligas Gen. (1p)</th>
-              <th>Apertura (0,5p)</th>
-              <th>Clausura (0,5p)</th>
-              <th>S. Ligas (0,2p)</th>
-              <th>Ranking FIFA (1p)</th>
-              <th>Copa Rey (0,5p)</th>
-              <th>Champions (1p)</th>
-              <th>S. Copas (0,2p)</th>
-              <th>S. Oro (0,5p)</th>
-              <th>S. Plata (0,15p)</th>
-              <th>C. Superliga (0,2p)</th>
-              <th>Super Final (0,25p)</th>
-              <th>Premios Indiv. (0,2p)</th>
-              <th>Puntos Hist.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Quitate el toz</td><td>3</td><td>1</td><td>1</td><td>—</td><td>2</td><td>1</td><td>2</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td>4 <small style="color:var(--muted)">(0,8p)</small></td><td class="rk">9,75</td></tr>
-            <tr><td>JUAN VELASCO</td><td>—</td><td>2</td><td>1</td><td>2</td><td>2</td><td>1</td><td>1</td><td>2</td><td>1</td><td>—</td><td>1</td><td>2</td><td>2 <small style="color:var(--muted)">(0,4p)</small></td><td class="rk">7,40</td></tr>
-            <tr><td>MarkLenders</td><td>1</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>1</td><td>2</td><td>2</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">4,60</td></tr>
-            <tr><td>Girafa Camello</td><td>—</td><td>2</td><td>—</td><td>—</td><td>—</td><td>2</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>5 <small style="color:var(--muted)">(1,0p)</small></td><td class="rk">3,70</td></tr>
-            <tr><td>Tripode G L</td><td>1</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>2</td><td>—</td><td>—</td><td>—</td><td class="rk">2,70</td></tr>
-            <tr><td>Carlos Gaggotas</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>1</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,95</td></tr>
-            <tr><td>Dalai-Lama</td><td>—</td><td>—</td><td>1</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,90</td></tr>
-            <tr><td>Didier <small style="color:var(--muted)">(Diomande)</small></td><td>—</td><td>—</td><td>1</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,50</td></tr>
-            <tr><td>Auo FC</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>1 <small style="color:var(--muted)">(0,2p)</small></td><td class="rk">0,20</td></tr>
-            <tr><td>Xadrian</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>G.Mate <small style="color:var(--muted)">(Extintores FC)</small></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>quinin eleskin</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-            <tr><td>El árbitro</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="rk">0,00</td></tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="trophy-legend" id="trophy-legend"></div>
+      <div class="vitrina-list" id="vitrina-hist"></div>
     </div>
 
     <!-- CUADRO DE HONOR POR TEMPORADA -->
@@ -1127,124 +1207,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>2016-17</td>
-              <td class="rk">Quitate el toz</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2017-18</td>
-              <td class="rk">Mark Lenders</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2018-19</td>
-              <td class="rk">Quitate el toz</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2019-20</td>
-              <td class="rk">Tripode G L</td>
-              <td>Mark Lenders</td>
-              <td>Didier</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2020-21</td>
-              <td>—</td>
-              <td>JUAN VELASCO</td>
-              <td>Mark Lenders</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2021-22</td>
-              <td class="rk">Quitate el toz</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-              <td>Mark Lenders</td>
-              <td>Tripode G L</td>
-              <td>—</td><td>—</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2022-23</td>
-              <td>—</td>
-              <td>Quitate el toz</td>
-              <td>Tripode G L</td>
-              <td>Tripode G L</td>
-              <td class="rk">JUAN VELASCO</td>
-              <td>Girafa Camello</td>
-              <td>JUAN VELASCO</td>
-              <td>JUAN VELASCO</td>
-              <td>Tripode G L</td>
-              <td>—</td><td>—</td>
-              <td>JUAN VELASCO</td>
-              <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
-            </tr>
-            <tr>
-              <td>2023-24</td>
-              <td>—</td>
-              <td>JUAN VELASCO</td>
-              <td>Quitate el toz</td>
-              <td>JUAN VELASCO</td>
-              <td class="rk">Quitate el toz</td>
-              <td>Quitate el toz</td>
-              <td>Quitate el toz</td>
-              <td>Quitate el toz</td>
-              <td>Carlos Gaggotas</td>
-              <td>Mark Lenders</td>
-              <td>Mark Lenders</td>
-              <td>Carlos Gaggotas</td>
-              <td>JUAN VELASCO <small style="color:var(--muted)">(49 G)</small></td>
-              <td>Girafa Camello <small style="color:var(--muted)">(37 A)</small></td>
-              <td>Quitate el toz <small style="color:var(--muted)">(28 XI)</small></td>
-              <td>Girafa Camello <small style="color:var(--muted)">(Mosquera)</small></td>
-              <td>Quitate el toz <small style="color:var(--muted)">(91 Pts)</small></td>
-            </tr>
-            <tr>
-              <td>2024-25</td>
-              <td>—</td>
-              <td>Girafa Camello</td>
-              <td>JUAN VELASCO</td>
-              <td>JUAN VELASCO</td>
-              <td class="rk">Quitate el toz</td>
-              <td>JUAN VELASCO</td>
-              <td>Quitate el toz</td>
-              <td>JUAN VELASCO</td>
-              <td>JUAN VELASCO</td>
-              <td>Tripode G L</td>
-              <td>JUAN VELASCO</td>
-              <td>Quitate el toz</td>
-              <td>Auo FC <small style="color:var(--muted)">(50 G)</small></td>
-              <td>Quitate el toz <small style="color:var(--muted)">(35 A)</small></td>
-              <td>Girafa Camello <small style="color:var(--muted)">(29 XI)</small></td>
-              <td>Carlos Gaggotas</td>
-              <td>Quitate el toz <small style="color:var(--muted)">(71 Pts)</small></td>
-            </tr>
-            <tr>
-              <td>2025-26</td>
-              <td>—</td>
-              <td>Girafa Camello</td>
-              <td>Dalai-Lama</td>
-              <td>Dalai-Lama</td>
-              <td class="rk">JUAN VELASCO</td>
-              <td>Girafa Camello</td>
-              <td>Mark Lenders</td>
-              <td>Girafa Camello</td>
-              <td>Girafa Camello</td>
-              <td>Mark Lenders</td>
-              <td>Mark Lenders</td>
-              <td>JUAN VELASCO</td>
-              <td>Dalai-LAMA <small style="color:var(--muted)">(73 G)</small></td>
-              <td>Girafa Camello <small style="color:var(--muted)">(30 A)</small></td>
-              <td>Girafa Camello <small style="color:var(--muted)">(38 XI)</small></td>
-              <td>Juan Velasco <small style="color:var(--muted)">(Muriqui)</small></td>
-              <td>MarkLenders <small style="color:var(--muted)">(87 Pts)</small></td>
-            </tr>
+            <tr><td>2016-17</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2017-18</td><td class="rk">Mark Lenders</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2018-19</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2019-20</td><td class="rk">Tripode G L</td><td>Mark Lenders</td><td>Didier</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2020-21</td><td>—</td><td>JUAN VELASCO</td><td>Mark Lenders</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2021-22</td><td class="rk">Quitate el toz</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>Mark Lenders</td><td>Tripode G L</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2022-23</td><td>—</td><td>Quitate el toz</td><td>Tripode G L</td><td>Tripode G L</td><td class="rk">JUAN VELASCO</td><td>Girafa Camello</td><td>JUAN VELASCO</td><td>JUAN VELASCO</td><td>Tripode G L</td><td>—</td><td>—</td><td>JUAN VELASCO</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+            <tr><td>2023-24</td><td>—</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>JUAN VELASCO</td><td class="rk">Quitate el toz</td><td>Quitate el toz</td><td>Quitate el toz</td><td>Quitate el toz</td><td>Carlos Gaggotas</td><td>Mark Lenders</td><td>Mark Lenders</td><td>Carlos Gaggotas</td><td>JUAN VELASCO <small style="color:var(--muted)">(49 G)</small></td><td>Girafa Camello <small style="color:var(--muted)">(37 A)</small></td><td>Quitate el toz <small style="color:var(--muted)">(28 XI)</small></td><td>Girafa Camello <small style="color:var(--muted)">(Mosquera)</small></td><td>Quitate el toz <small style="color:var(--muted)">(91 Pts)</small></td></tr>
+            <tr><td>2024-25</td><td>—</td><td>Girafa Camello</td><td>JUAN VELASCO</td><td>JUAN VELASCO</td><td class="rk">Quitate el toz</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>JUAN VELASCO</td><td>JUAN VELASCO</td><td>Tripode G L</td><td>JUAN VELASCO</td><td>Quitate el toz</td><td>Auo FC <small style="color:var(--muted)">(50 G)</small></td><td>Quitate el toz <small style="color:var(--muted)">(35 A)</small></td><td>Girafa Camello <small style="color:var(--muted)">(29 XI)</small></td><td>Carlos Gaggotas</td><td>Quitate el toz <small style="color:var(--muted)">(71 Pts)</small></td></tr>
+            <tr><td>2025-26</td><td>—</td><td>Girafa Camello</td><td>Dalai-Lama</td><td>Dalai-Lama</td><td class="rk">JUAN VELASCO</td><td>Girafa Camello</td><td>Mark Lenders</td><td>Girafa Camello</td><td>Girafa Camello</td><td>Mark Lenders</td><td>Mark Lenders</td><td>JUAN VELASCO</td><td>Dalai-LAMA <small style="color:var(--muted)">(73 G)</small></td><td>Girafa Camello <small style="color:var(--muted)">(30 A)</small></td><td>Girafa Camello <small style="color:var(--muted)">(38 XI)</small></td><td>Juan Velasco <small style="color:var(--muted)">(Muriqui)</small></td><td>MarkLenders <small style="color:var(--muted)">(87 Pts)</small></td></tr>
           </tbody>
         </table>
       </div>
@@ -1264,7 +1236,7 @@
 <!-- DATOS REALES INYECTADOS DE LA LIGA 1444772 -->
 <script id="biwenger-live-data" type="application/json">
 {
-  "ultima_actualizacion": "21/10/2026 01:06",
+  "ultima_actualizacion": "21/10/2026 01:36",
   "bote_total_euros": 200,
   "clasificacion": [
     {
@@ -6622,7 +6594,7 @@
   overlay.addEventListener('click', closeDrawer);
   document.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', closeDrawer));
 
-  // Modo Oscuro / Modo Claro con memoria en localStorage
+  // Modo Oscuro / Modo Claro
   const themeToggleBtn = document.getElementById('themeToggle');
   const savedTheme = localStorage.getItem('biwenger-theme');
   const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -6638,7 +6610,6 @@
       document.documentElement.removeAttribute('data-theme');
       if (themeToggleBtn) themeToggleBtn.textContent = '🌙';
     }
-    // Actualizar colores de ejes en gráficas si ya existen
     const isDark = theme === 'dark';
     const tickColor = isDark ? '#a39093' : '#736264';
     const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
@@ -6666,7 +6637,7 @@
     });
   }
 
-  // Pestañas de clasificaciones
+  // Pestañas
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       const targetBtn = e.currentTarget;
@@ -6679,42 +6650,34 @@
     });
   });
 
-  // Acordeones plegables
   function toggleAcc(id) {
     const el = document.getElementById(id);
     if (el) el.classList.toggle('open');
   }
 
-  // Mapa de iconos reales de Biwenger + respaldo con iniciales
   const iconMap = {};
-
   function fallbackAvatar(name) {
     return 'https://api.dicebear.com/7.x/initials/svg?backgroundColor=d1001f,161010,b8860b&fontFamily=Arial&fontWeight=700&seed=' + encodeURIComponent(name || 'BW');
   }
-
   function resolveBiwengerIcon(rawIcon) {
     if (!rawIcon || typeof rawIcon !== 'string' || rawIcon.trim() === '') return null;
     const clean = rawIcon.trim().replace(/^\/+/, '');
     if (clean.startsWith('http://') || clean.startsWith('https://')) return clean;
     return 'https://cdn.biwenger.com/' + clean;
   }
-
   function avatarUrl(name, explicitIcon) {
     const candidate = resolveBiwengerIcon(explicitIcon) || iconMap[name];
     return candidate || fallbackAvatar(name);
   }
-
   function avatarImgTag(name, explicitIcon) {
     const src = avatarUrl(name, explicitIcon);
     const fb = fallbackAvatar(name);
     return `<img src="${src}" alt="${name}" onerror="this.onerror=null;this.src='${fb}';">`;
   }
-
   function posBadge(pos) {
     const cls = pos === 1 ? 'pos-1' : pos === 2 ? 'pos-2' : pos === 3 ? 'pos-3' : '';
     return `<span class="pos-badge ${cls}">${pos}º</span>`;
   }
-
   function ptsWithBar(val, maxVal, suffix = '') {
     const pct = maxVal > 0 ? Math.max(6, Math.round((val / maxVal) * 100)) : 0;
     return `<div class="pts-wrap"><span class="pts-big">${val}${suffix}</span><div class="data-bar"><span style="width:${pct}%"></span></div></div>`;
@@ -6727,7 +6690,6 @@
       const detalles = data.equipos_detalle || [];
       const detMap = {};
 
-      // Registrar iconos desde clasificacion y equipos_detalle
       clasif.forEach(r => {
         const resolved = resolveBiwengerIcon(r.icono || r.icon);
         if (resolved) iconMap[r.equipo] = resolved;
@@ -6738,7 +6700,6 @@
         if (resolved && !iconMap[d.equipo]) iconMap[d.equipo] = resolved;
       });
 
-      // Actualizar imágenes del Podio Histórico si tienen foto en Biwenger
       document.querySelectorAll('.podium-av img').forEach(img => {
         const teamName = img.getAttribute('alt');
         if (teamName && iconMap[teamName]) {
@@ -6779,7 +6740,7 @@
         }).join('');
       }
 
-      // 2. LIGA APERTURA Y GENERAL REGULAR (CORTE 5 ORO / 5 PLATA)
+      // 2. LIGA APERTURA Y GENERAL REGULAR
       const apertura = (data.torneos || []).find(t => t.id === 137614 || (t.nombre || '').toLowerCase().includes('apertura'));
       let apRows = [];
       if (apertura && apertura.fases && apertura.fases[0] && apertura.fases[0].grupos[0]) {
@@ -6813,7 +6774,6 @@
           </tr>`;
         }).join('');
 
-        // Tabla General Regular (5 primeros ORO / 5 últimos PLATA)
         tbodyReg.innerHTML = apRows.map((row, i) => {
           const pos = i + 1;
           const zoneCls = pos <= 5 ? 'oro-zone' : 'plata-zone';
@@ -6831,7 +6791,6 @@
           </tr>`;
         }).join('');
 
-        // Partidos de Apertura
         const rnds = apertura.fases[0].rondas || [];
         const rndContainer = document.getElementById('rounds-apertura');
         if (rnds.length > 0 && rndContainer) {
@@ -6886,7 +6845,7 @@
         document.getElementById(elId).innerHTML = sorted.map((item, idx) => `
           <div class="stat-item">
             <div class="st-left">${posBadge(idx + 1)} ${avatarImgTag(item.equipo)} <span>${item.equipo}</span></div>
-            <div class="st-val">${item[key]}${suffix}</div>
+            <div class="st-val"><span>${item[key]}</span> <small>${suffix}</small></div>
           </div>
         `).join('');
         return sorted[0] ? sorted[0].equipo : '';
@@ -6917,7 +6876,7 @@
         </tr>
       `).join('');
 
-      // 5. BOTE EN VIVO POR PARTICIPANTE (200 €)
+      // 5. BOTE EN VIVO
       const boteMap = {};
       clasif.forEach(r => {
         boteMap[r.equipo] = { fifa: 0, ap: 0, goles: 0, asist: 0, ideal: 0, fichaje: 0, record: 0 };
@@ -6956,7 +6915,7 @@
         </tr>
       `).join('');
 
-      // 6. HERO STRIP & TARJETAS DE PARTICIPANTES (CON ENLACES DIRECTOS Y BARRA DE VALOR)
+      // 6. HERO STRIP & TARJETAS DE PARTICIPANTES (CON DESGLOSE FINANCIERO)
       const strip = document.getElementById('hero-strip');
       const grid = document.getElementById('participants-grid');
       strip.innerHTML = '';
@@ -6965,9 +6924,21 @@
       clasif.forEach(r => {
         const imgTag = avatarImgTag(r.equipo, r.icono);
         const st = statsArr.find(s => s.equipo === r.equipo) || {};
+        const d = detMap[r.equipo] || {};
+        const plantilla = d.plantilla || [];
+
         const cardId = 'manager-' + (r.id || r.equipo.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
-        const valM = ((r.valor_equipo || 0) / 1000000).toFixed(1) + ' M€';
+        const mktId = 'mkt-' + (r.id || r.equipo.toLowerCase().replace(/[^a-z0-9]+/g, '-'));
+        const valM = ((r.valor_equipo || 0) / 1000000).toFixed(2) + ' M€';
         const valPct = Math.round(((r.valor_equipo || 0) / maxTeamVal) * 100);
+
+        const invertido = plantilla.reduce((acc, p) => acc + (p.precio_compra || 0), 0);
+        const invertidoM = invertido > 0 ? (invertido / 1000000).toFixed(2) + ' M€' : '—';
+        const balance = invertido > 0 ? ((r.valor_equipo || 0) - invertido) / 1000000 : null;
+        const balanceStr = balance !== null ? (balance >= 0 ? '+' : '') + balance.toFixed(2) + ' M€' : '—';
+        const inc = r.incremento_diario || 0;
+        const incStr = (inc >= 0 ? '+' : '') + (inc / 1000).toLocaleString('es-ES') + ' k€';
+        const estrella = plantilla[0] ? `${plantilla[0].nombre} (${plantilla[0].puntos_totales}p)` : '—';
 
         strip.innerHTML += `<a href="#${cardId}" class="hero-av">${imgTag}<span>${r.posicion}º ${r.equipo}</span></a>`;
         grid.innerHTML += `
@@ -6979,9 +6950,20 @@
             <div class="p-avatar">${imgTag}</div>
             <div class="p-name">${r.equipo}</div>
             <span class="p-badge">${r.puntos} Picas AS · ${r.victorias_jornada || 0} Vict.</span>
-            <div class="p-power-bar">
-              <div class="pb-top"><span>Poder de Mercado</span><span>${valPct}%</span></div>
+            <div class="p-power-bar" onclick="document.getElementById('${mktId}').classList.toggle('open')" title="Pulsa para ver el desglose financiero">
+              <div class="pb-top">
+                <span>Poder de Mercado <i class="pb-help">?</i></span>
+                <strong>${valPct}%</strong>
+              </div>
               <div class="pb-track"><div class="pb-fill" style="width:${valPct}%"></div></div>
+            </div>
+            <div class="p-market-detail" id="${mktId}">
+              <div class="pmd-desc">Compara el valor de mercado de su plantilla (${valM}) frente al equipo más caro de la liga (100%).</div>
+              <div class="pmd-row"><span>Valor plantilla:</span><strong>${valM} (${r.num_jugadores || 15} jug.)</strong></div>
+              <div class="pmd-row"><span>Coste fichajes:</span><strong>${invertidoM}</strong></div>
+              <div class="pmd-row"><span>Plusvalía plantilla:</span><strong class="${balance !== null && balance < 0 ? 'inc-down' : 'inc-up'}">${balanceStr}</strong></div>
+              <div class="pmd-row"><span>Subida en 24h:</span><strong class="${inc >= 0 ? 'inc-up' : 'inc-down'}">${incStr}</strong></div>
+              <div class="pmd-row"><span>MVP plantilla:</span><strong>${estrella}</strong></div>
             </div>
             <div class="p-stats-mini">
               <div><span>Goles</span><strong>${st.goals || 0}</strong></div>
@@ -6992,13 +6974,13 @@
         `;
       });
 
-      // 7. GRÁFICAS INTERACTIVAS CON CHART.JS
+      // 7. GRÁFICAS INTERACTIVAS (CHART.JS)
       if (window.Chart && clasif.length > 0) {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const tickColor = isDark ? '#a39093' : '#736264';
         const gridColor = isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)';
 
-        // Gráfica 1: Puntos FIFA vs Valor de Mercado
+        // Gráfica 1: Puntos vs Valor
         const ctx1 = document.getElementById('chartFifaValor');
         if (ctx1) {
           const ch1 = new Chart(ctx1, {
@@ -7042,30 +7024,31 @@
           chartInstances.push(ch1);
         }
 
-        // Gráfica 2: Si hay historial de jornadas por equipo, mostrar evolución Top 5; si no, Goles/Asist/XI
+        // Gráfica 2: Evolución de los 10 Participantes
         const ctx2 = document.getElementById('chartRendimiento');
         const hasJornadas = detalles.some(d => Array.isArray(d.jornadas) && d.jornadas.length > 1);
         if (ctx2) {
           if (hasJornadas) {
-            document.getElementById('chart2-title').innerHTML = '&#128200; Evolución Acumulada (Top 5 FIFA)';
-            document.getElementById('chart2-sub').textContent = 'Progresión jornada a jornada';
-            const top5Names = clasif.slice(0, 5).map(r => r.equipo);
-            const palette = ['#d1001f', '#eab308', '#3b82f6', '#10b981', '#a855f7'];
+            const allNames = clasif.map(r => r.equipo);
+            const palette10 = [
+              '#d1001f', '#eab308', '#3b82f6', '#10b981', '#a855f7',
+              '#f97316', '#06b6d4', '#ec4899', '#84cc16', '#64748b'
+            ];
             const maxLen = Math.max(...detalles.map(d => (d.jornadas || []).length));
             const labelsJ = Array.from({ length: maxLen }, (_, i) => `J${i + 1}`);
 
-            const datasetsJ = top5Names.map((name, idx) => {
+            const datasetsJ = allNames.map((name, idx) => {
               const d = detMap[name] || {};
               let acc = 0;
               const ptsCurve = (d.jornadas || []).map(j => { acc += (j.puntos || 0); return acc; });
               return {
-                label: name,
+                label: `${idx + 1}º ${name}`,
                 data: ptsCurve,
-                borderColor: palette[idx % palette.length],
-                backgroundColor: palette[idx % palette.length],
-                borderWidth: 2,
+                borderColor: palette10[idx % palette10.length],
+                backgroundColor: palette10[idx % palette10.length],
+                borderWidth: idx < 3 ? 2.6 : 1.8,
                 tension: 0.25,
-                pointRadius: 3
+                pointRadius: 2.5
               };
             });
 
@@ -7076,10 +7059,15 @@
                 responsive: true,
                 maintainAspectRatio: false,
                 interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
+                plugins: {
+                  legend: {
+                    position: 'bottom',
+                    labels: { color: tickColor, boxWidth: 10, padding: 8, font: { family: 'JetBrains Mono', size: 9.5 } }
+                  }
+                },
                 scales: {
-                  x: { ticks: { color: tickColor }, grid: { display: false } },
-                  y: { ticks: { color: tickColor }, grid: { color: gridColor } }
+                  x: { ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+                  y: { ticks: { color: tickColor, font: { size: 10 } }, grid: { color: gridColor } }
                 }
               }
             });
@@ -7088,7 +7076,7 @@
             const ch2 = new Chart(ctx2, {
               type: 'bar',
               data: {
-                labels: statsArr.map(s => s.equipo.length > 12 ? s.equipo.slice(0, 12) + '…' : s.equipo),
+                labels: statsArr.map(s => s.equipo.length > 10 ? s.equipo.slice(0, 10) + '…' : s.equipo),
                 datasets: [
                   { label: 'Goles', data: statsArr.map(s => s.goals), backgroundColor: '#d1001f', borderRadius: 4 },
                   { label: 'Asistencias', data: statsArr.map(s => s.assists), backgroundColor: '#eab308', borderRadius: 4 },
@@ -7098,9 +7086,9 @@
               options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                plugins: { legend: { labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
+                plugins: { legend: { position: 'bottom', labels: { color: tickColor, font: { family: 'JetBrains Mono', size: 10 } } } },
                 scales: {
-                  x: { stacked: true, ticks: { color: tickColor, font: { size: 10 } }, grid: { display: false } },
+                  x: { stacked: true, ticks: { color: tickColor, font: { size: 9.5 } }, grid: { display: false } },
                   y: { stacked: true, ticks: { color: tickColor }, grid: { color: gridColor } }
                 }
               }
@@ -7109,7 +7097,7 @@
           }
         }
 
-        // Gráfica 3: Donut del Bote (200 €)
+        // Gráfica 3: Donut Bote
         const ctxDonut = document.getElementById('chartPotDonut');
         if (ctxDonut) {
           const ch3 = new Chart(ctxDonut, {
@@ -7126,16 +7114,105 @@
               responsive: true,
               maintainAspectRatio: false,
               cutout: '68%',
-              plugins: {
-                legend: { display: false }
-              }
+              plugins: { legend: { display: false } }
             }
           });
           chartInstances.push(ch3);
         }
       }
 
-      // 8. BOTÓN DE COMPARTIR RESUMEN PARA WHATSAPP
+      // 8. RENDERIZAR VITRINA DE TROFEOS ESTILO DAZN
+      const TROPHY_SVGS = {
+        liga: `<svg viewBox="0 0 36 40"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#eab308"/><stop offset="100%" stop-color="#a16207"/></linearGradient></defs><path d="M9 5h18v11c0 6-4 11-9 12-5-1-9-6-9-12V5z" fill="url(#gGold)" stroke="#fef08a" stroke-width="1.2"/><path d="M9 8H4v5c0 3 2 5 5 5M27 8h5v5c0 3-2 5-5 5" fill="none" stroke="#eab308" stroke-width="2.2"/><rect x="15" y="28" width="6" height="5" fill="#ca8a04"/><rect x="10" y="33" width="16" height="4" rx="1.5" fill="#713f12" stroke="#eab308" stroke-width="1"/><polygon points="18,9 19.6,12.5 23.5,13 20.5,15.6 21.3,19.4 18,17.5 14.7,19.4 15.5,15.6 12.5,13 16.4,12.5" fill="#fff"/></svg>`,
+        champions: `<svg viewBox="0 0 36 40"><defs><linearGradient id="gSilv" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#cbd5e1"/><stop offset="100%" stop-color="#475569"/></linearGradient></defs><path d="M11 7h14l-1.5 16c-.5 4-3 6-5.5 6s-5-2-5.5-6L11 7z" fill="url(#gSilv)" stroke="#f8fafc" stroke-width="1.2"/><path d="M11 11C4 6 3 19 11.5 21M25 11c7-5 8 8-0.5 10" fill="none" stroke="#e2e8f0" stroke-width="2.4"/><rect x="15" y="29" width="6" height="4" fill="#64748b"/><rect x="10" y="33" width="16" height="4" rx="1.5" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/><polygon points="18,12 19.3,15 22.5,15.4 20,17.5 20.7,20.6 18,19 15.3,20.6 16,17.5 13.5,15.4 16.7,15" fill="#38bdf8"/></svg>`,
+        apertura: `<svg viewBox="0 0 36 40"><circle cx="18" cy="18" r="13" fill="#ca8a04" stroke="#fef08a" stroke-width="1.8"/><circle cx="18" cy="18" r="9.5" fill="#eab308" stroke="#713f12" stroke-width="1"/><polygon points="18,11 19.8,15.2 24.3,15.6 20.9,18.6 21.9,23 18,20.6 14.1,23 15.1,18.6 11.7,15.6 16.2,15.2" fill="#fef08a"/><rect x="12" y="33" width="12" height="3.5" rx="1" fill="#78350f"/></svg>`,
+        copa: `<svg viewBox="0 0 36 40"><path d="M12 6l3 3 3-4 3 4 3-3v4H12V6z" fill="#eab308"/><path d="M10 10h16l-2 15c-.5 3-2.5 5-6 5s-5.5-2-6-5L10 10z" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.2"/><path d="M10 13l-4 6M26 13l4 6" stroke="#d1001f" stroke-width="2.5" stroke-linecap="round"/><rect x="15" y="30" width="6" height="3.5" fill="#64748b"/><rect x="11" y="33.5" width="14" height="3.5" rx="1" fill="#d1001f"/></svg>`,
+        oro: `<svg viewBox="0 0 36 40"><path d="M8 7h20l-3 15c-1 4-4 6-7 6s-6-2-7-6L8 7z" fill="#eab308" stroke="#fef08a" stroke-width="1.2"/><circle cx="18" cy="15" r="4.5" fill="#10b981" stroke="#fff" stroke-width="1"/><rect x="15" y="28" width="6" height="5" fill="#ca8a04"/><rect x="10" y="33" width="16" height="4" rx="1.5" fill="#064e3b" stroke="#eab308" stroke-width="1"/></svg>`,
+        superfinal: `<svg viewBox="0 0 36 40"><polygon points="18,4 29,12 25,26 11,26 7,12" fill="#d1001f" stroke="#fde047" stroke-width="1.6"/><polygon points="18,8 20,13.5 25.8,14 21.3,17.7 22.7,23.4 18,20.2 13.3,23.4 14.7,17.7 10.2,14 16,13.5" fill="#fde047"/><rect x="11" y="32" width="14" height="4" rx="1.5" fill="#eab308"/></svg>`,
+        supercopa: `<svg viewBox="0 0 36 40"><polygon points="18,5 28,10 28,22 18,29 8,22 8,10" fill="#334155" stroke="#eab308" stroke-width="1.6"/><circle cx="18" cy="17" r="5" fill="#eab308"/><rect x="12" y="32" width="12" height="4" rx="1" fill="#64748b"/></svg>`,
+        plata: `<svg viewBox="0 0 36 40"><path d="M11 9h14l-2 15c-.5 3-2.5 5-5 5s-4.5-2-5-5L11 9z" fill="#94a3b8" stroke="#e2e8f0" stroke-width="1.2"/><rect x="15" y="29" width="6" height="4" fill="#475569"/><rect x="11" y="33" width="14" height="3.5" rx="1" fill="#334155"/></svg>`,
+        indiv: `<svg viewBox="0 0 36 40"><path d="M13 8h9v11l8 5c1.5 1 2 3 1 5H9c-1 0-1.5-1-1.5-2.5V16c0-4 2.5-8 5.5-8z" fill="#eab308" stroke="#fef08a" stroke-width="1.2"/><line x1="11" y1="31" x2="29" y2="31" stroke="#d1001f" stroke-width="2.5"/><circle cx="13" cy="34" r="1.5" fill="#fef08a"/><circle cx="20" cy="34" r="1.5" fill="#fef08a"/><circle cx="27" cy="34" r="1.5" fill="#fef08a"/></svg>`
+      };
+
+      const TROPHY_TYPES = [
+        { key: 'liga',      name: 'Liga / R. FIFA',     w: '1',    cls: 'w-1' },
+        { key: 'champions', name: 'Champions League',   w: '1',    cls: 'w-1' },
+        { key: 'apertura',  name: 'Apertura / Clausura',w: '0,5',  cls: 'w-05' },
+        { key: 'copa',      name: 'Copa del Rey',       w: '0,5',  cls: 'w-05' },
+        { key: 'oro',       name: 'Superliga ORO',      w: '0,5',  cls: 'w-05' },
+        { key: 'superfinal',name: 'Super Final',        w: '0,25', cls: '' },
+        { key: 'supercopa', name: 'Supercopas',         w: '0,2',  cls: '' },
+        { key: 'indiv',     name: 'Premio Individual',  w: '0,2',  cls: '' },
+        { key: 'plata',     name: 'Superliga PLATA',    w: '0,15', cls: '' }
+      ];
+
+      const legendEl = document.getElementById('trophy-legend');
+      if (legendEl) {
+        legendEl.innerHTML = TROPHY_TYPES.map(t => `
+          <div class="tl-item">${TROPHY_SVGS[t.key]}<span>${t.name}</span><b>+${t.w}p</b></div>
+        `).join('');
+      }
+
+      const HIST_MANAGERS = [
+        { name: 'Quitate el toz', pts: '9,75', cups: { liga: 5, champions: 2, apertura: 2, copa: 1, oro: 0, superfinal: 1, supercopa: 1, indiv: 4, plata: 0 } },
+        { name: 'JUAN VELASCO',   pts: '7,40', cups: { liga: 2, champions: 1, apertura: 3, copa: 1, oro: 1, superfinal: 2, supercopa: 5, indiv: 2, plata: 0 } },
+        { name: 'MarkLenders',    pts: '4,60', cups: { liga: 1, champions: 1, apertura: 2, copa: 0, oro: 1, superfinal: 0, supercopa: 2, indiv: 1, plata: 2 } },
+        { name: 'Una girafa Camello', label: 'Girafa Camello', pts: '3,70', cups: { liga: 0, champions: 0, apertura: 2, copa: 2, oro: 1, superfinal: 0, supercopa: 1, indiv: 5, plata: 0 } },
+        { name: 'Tripode G L',    pts: '2,70', cups: { liga: 1, champions: 0, apertura: 1, copa: 0, oro: 1, superfinal: 0, supercopa: 1, indiv: 0, plata: 2 } },
+        { name: 'Carlos Gaggotas',pts: '0,95', cups: { liga: 0, champions: 0, apertura: 0, copa: 0, oro: 1, superfinal: 1, supercopa: 0, indiv: 1, plata: 0 } },
+        { name: 'Dalai-Lama',     pts: '0,90', cups: { liga: 0, champions: 0, apertura: 1, copa: 0, oro: 0, superfinal: 0, supercopa: 1, indiv: 1, plata: 0 } },
+        { name: 'Diomande',       label: 'Didier (Diomande)', pts: '0,50', cups: { liga: 0, champions: 0, apertura: 1, copa: 0, oro: 0, superfinal: 0, supercopa: 0, indiv: 0, plata: 0 } },
+        { name: 'Auo FC',         pts: '0,20', cups: { liga: 0, champions: 0, apertura: 0, copa: 0, oro: 0, superfinal: 0, supercopa: 0, indiv: 1, plata: 0 } },
+        { name: 'Extintores FC',  label: 'G.Mate (Extintores)', pts: '0,00', cups: {} },
+        { name: 'caillou',        label: 'caillou / Otros', pts: '0,00', cups: {} }
+      ];
+
+      const vitrinaEl = document.getElementById('vitrina-hist');
+      if (vitrinaEl) {
+        vitrinaEl.innerHTML = HIST_MANAGERS.map((m, idx) => {
+          const rank = idx + 1;
+          const rankCls = rank <= 3 ? `rank-${rank}` : '';
+          let shelfHtml = '';
+          let totalTrofeos = 0;
+
+          TROPHY_TYPES.forEach(t => {
+            const count = m.cups[t.key] || 0;
+            totalTrofeos += count;
+            for (let c = 0; c < count; c++) {
+              shelfHtml += `
+                <div class="t-unit ${t.cls}" title="${t.name} (+${t.w} pts)">
+                  ${TROPHY_SVGS[t.key]}
+                  <span class="t-weight">+${t.w}</span>
+                </div>
+              `;
+            }
+          });
+
+          if (totalTrofeos === 0) {
+            shelfHtml = `<span class="t-no-cups">Vitrina en construcción · 0 títulos registrados</span>`;
+          }
+
+          return `
+            <div class="v-row ${rankCls}${totalTrofeos === 0 ? 'v-empty' : ''}">
+              <div class="v-manager">
+                <span class="v-pos">${rank}º</span>
+                <img class="v-av" src="${avatarUrl(m.name)}" alt="${m.name}" onerror="this.onerror=null;this.src='${fallbackAvatar(m.name)}';">
+                <div class="v-info">
+                  <div class="v-name">${m.label || m.name}</div>
+                  <span class="v-count-badge">🏆 ${totalTrofeos} trofeo${totalTrofeos === 1 ? '' : 's'}</span>
+                </div>
+              </div>
+              <div class="v-shelf">${shelfHtml}</div>
+              <div class="v-total">
+                <span class="v-pts">${m.pts}</span>
+                <span class="v-pts-lbl">Pts Hist.</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // 9. BOTÓN DE WHATSAPP
       const waBtn = document.getElementById('waShareBtn');
       const waToast = document.getElementById('waToast');
       if (waBtn) {

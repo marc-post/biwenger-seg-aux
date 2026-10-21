@@ -585,7 +585,7 @@
   .p-2 .podium-step { height: 90px; background: linear-gradient(180deg, #94a3b8 0%, #475569 100%); color: #fff; }
   .p-3 .podium-step { height: 72px; background: linear-gradient(180deg, #c27849 0%, #7c3f1c 100%); color: #fff; }
 
-  /* VITRINA ESTILO DAZN */
+/* VITRINA ESTILO DAZN + TOOLTIP INTERACTIVO */
   .trophy-legend {
     display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 16px;
     background: #181113; border-bottom: 1px solid #2e2023; align-items: center;
@@ -599,76 +599,114 @@
   .tl-item b { font-family: 'JetBrains Mono', monospace; color: #fde047; font-size: 10px; }
 
   .vitrina-list {
-    display: flex; flex-direction: column; gap: 8px; padding: 16px;
+    display: flex; flex-direction: column; gap: 8px; padding: 14px;
     background: linear-gradient(180deg, #130d0e 0%, #0b0708 100%);
   }
   .v-row {
-    display: grid; grid-template-columns: 225px 1fr 110px; align-items: stretch;
+    display: grid; grid-template-columns: 215px 1fr 100px; align-items: stretch;
     background: linear-gradient(90deg, #1c1417 0%, #241a1d 100%);
     border: 1px solid rgba(255,255,255,0.09); border-radius: 10px;
     overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.4);
     transition: transform .15s, border-color .15s;
   }
-  .v-row:hover { transform: translateX(3px); border-color: var(--red-bright); }
+  .v-row:hover { border-color: var(--red-bright); }
   .v-row.v-empty { opacity: 0.55; }
 
   .v-manager {
-    display: flex; align-items: center; gap: 9px; padding: 10px 18px 10px 12px;
+    display: flex; align-items: center; gap: 8px; padding: 10px 16px 10px 10px;
     background: linear-gradient(135deg, #2b1d20 0%, #170f11 100%);
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 50%, calc(100% - 12px) 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
     border-right: 2px solid var(--red);
   }
   .v-row.rank-1 .v-manager { background: linear-gradient(135deg, #f59e0b 0%, #92400e 100%); color: #120d0d; }
   .v-row.rank-2 .v-manager { background: linear-gradient(135deg, #94a3b8 0%, #334155 100%); color: #fff; }
   .v-row.rank-3 .v-manager { background: linear-gradient(135deg, #c27849 0%, #5c2d12 100%); color: #fff; }
 
-  .v-pos { font-family: 'Anton', sans-serif; font-size: 18px; width: 22px; text-align: center; opacity: 0.9; flex-shrink: 0; }
-  .v-av { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.75); background: #fff; flex-shrink: 0; }
-  .v-info { overflow: hidden; }
-  .v-name { font-family: 'Anton', sans-serif; font-size: 14.5px; letter-spacing: 0.03em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.1; }
+  .v-pos { font-family: 'Anton', sans-serif; font-size: 17px; width: 20px; text-align: center; opacity: 0.9; flex-shrink: 0; }
+  .v-av { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.75); background: #fff; flex-shrink: 0; }
+  .v-info { overflow: hidden; min-width: 0; }
+  .v-name { font-family: 'Anton', sans-serif; font-size: 14px; letter-spacing: 0.02em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.1; }
   .v-row.rank-1 .v-name { color: #120d0d; }
-  .v-count-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; opacity: 0.8; display: block; margin-top: 2px; color: #fda4af; }
+  .v-count-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; opacity: 0.85; display: block; margin-top: 2px; color: #fda4af; white-space: nowrap; }
   .v-row.rank-1 .v-count-badge { color: #291802; font-weight: 700; }
 
   .v-shelf {
-    display: flex; align-items: center; flex-wrap: nowrap; gap: 4px;
-    padding: 8px 12px; overflow-x: auto; -webkit-overflow-scrolling: touch;
-    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 36px, transparent 36px, transparent 72px);
+    display: flex; align-items: center; flex-wrap: nowrap; gap: 3px;
+    padding: 8px 10px; overflow-x: auto; -webkit-overflow-scrolling: touch;
+    background: repeating-linear-gradient(90deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 34px, transparent 34px, transparent 68px);
   }
   .t-unit {
     display: inline-flex; flex-direction: column; align-items: center; justify-content: flex-end;
-    min-width: 32px; padding: 3px 2px; border-radius: 6px; position: relative;
-    transition: transform .15s, background .15s; cursor: pointer; flex-shrink: 0;
+    min-width: 30px; padding: 3px 2px; border-radius: 6px; position: relative;
+    transition: transform .15s, background .15s, box-shadow .15s; cursor: pointer; flex-shrink: 0;
+    user-select: none; -webkit-tap-highlight-color: transparent;
   }
-  .t-unit:hover { transform: translateY(-3px) scale(1.12); background: rgba(255,255,255,0.08); z-index: 4; }
-  .t-unit svg { width: 25px; height: 27px; filter: drop-shadow(0 3px 4px rgba(0,0,0,0.65)); }
+  .t-unit:hover, .t-unit.active-cup {
+    transform: translateY(-3px) scale(1.12);
+    background: rgba(255, 42, 69, 0.22);
+    box-shadow: 0 0 0 1px var(--red-bright);
+    z-index: 4;
+  }
+  .t-unit svg { width: 24px; height: 26px; filter: drop-shadow(0 3px 4px rgba(0,0,0,0.65)); pointer-events: none; }
   .t-weight {
-    font-family: 'JetBrains Mono', monospace; font-size: 8.5px; font-weight: 700;
-    color: #cbd5e1; background: rgba(0,0,0,0.55); padding: 1px 4px; border-radius: 4px;
-    margin-top: 2px; line-height: 1; border: 1px solid rgba(255,255,255,0.1);
+    font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 700;
+    color: #cbd5e1; background: rgba(0,0,0,0.6); padding: 1px 3.5px; border-radius: 4px;
+    margin-top: 2px; line-height: 1; border: 1px solid rgba(255,255,255,0.1); pointer-events: none;
   }
   .t-unit.w-1 .t-weight { color: #fde047; border-color: rgba(253,224,71,0.4); }
   .t-unit.w-05 .t-weight { color: #93c5fd; border-color: rgba(147,197,253,0.35); }
-  .t-no-cups { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.3); font-style: italic; }
+  .t-no-cups { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: rgba(255,255,255,0.3); font-style: italic; }
 
   .v-total {
     display: flex; flex-direction: column; align-items: flex-end; justify-content: center;
-    padding: 8px 16px; background: rgba(209, 0, 31, 0.16);
+    padding: 8px 12px; background: rgba(209, 0, 31, 0.16);
     border-left: 1px solid rgba(255,255,255,0.08); text-align: right;
   }
   .v-row.rank-1 .v-total { background: linear-gradient(90deg, rgba(234,179,8,0.12), rgba(234,179,8,0.28)); }
-  .v-pts { font-family: 'Anton', sans-serif; font-size: 24px; color: #ff2a45; line-height: 1; letter-spacing: 0.02em; }
+  .v-pts { font-family: 'Anton', sans-serif; font-size: 22px; color: #ff2a45; line-height: 1; letter-spacing: 0.02em; }
   .v-row.rank-1 .v-pts { color: #fde047; }
-  .v-pts-lbl { font-family: 'JetBrains Mono', monospace; font-size: 8.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 3px; }
+  .v-pts-lbl { font-family: 'JetBrains Mono', monospace; font-size: 8px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 2px; }
 
-  @media (max-width: 720px) {
-    .v-row { grid-template-columns: 155px 1fr 82px; }
-    .v-manager { padding: 8px 14px 8px 8px; gap: 6px; }
-    .v-av { width: 26px; height: 26px; }
-    .v-name { font-size: 12.5px; }
-    .v-pts { font-size: 19px; }
-    .v-total { padding: 6px 10px; }
+  /* VISTA MÓVIL ULTRA-COMPACTA PARA VER MÁS TROFEOS */
+  @media (max-width: 680px) {
+    .vitrina-list { padding: 10px 8px; gap: 6px; }
+    .v-row { grid-template-columns: 108px 1fr 54px; }
+    .v-manager {
+      padding: 6px 10px 6px 6px; gap: 4px;
+      clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 50%, calc(100% - 7px) 100%, 0 100%);
+    }
+    .v-pos { font-size: 13px; width: 14px; }
+    .v-av { width: 20px; height: 20px; border-width: 1.5px; }
+    .v-name { font-size: 11px; }
+    .v-count-badge { font-size: 8px; margin-top: 1px; }
+    .v-shelf { padding: 6px 6px; gap: 2px; }
+    .t-unit { min-width: 26px; padding: 2px 1px; }
+    .t-unit svg { width: 21px; height: 23px; }
+    .t-weight { font-size: 7.5px; padding: 1px 2.5px; }
+    .v-total { padding: 4px 6px; align-items: center; text-align: center; }
+    .v-pts { font-size: 15.5px; }
+    .v-pts-lbl { font-size: 7px; }
   }
+
+  /* TOOLTIP FLOTANTE AL CLICAR UN TROFEO */
+  .cup-tooltip {
+    position: fixed; z-index: 120; pointer-events: none;
+    background: #140d0f; color: #fff;
+    border: 1.5px solid var(--gold); border-radius: 10px;
+    padding: 8px 12px; box-shadow: 0 10px 28px rgba(0,0,0,0.75);
+    transform: translate(-50%, -100%); margin-top: -10px;
+    opacity: 0; transition: opacity .15s, transform .15s;
+    min-width: 165px; max-width: 240px; text-align: center;
+  }
+  .cup-tooltip.show { opacity: 1; transform: translate(-50%, calc(-100% - 4px)); }
+  .cup-tooltip::after {
+    content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+    border-width: 6px; border-style: solid;
+    border-color: var(--gold) transparent transparent transparent;
+  }
+  .cup-tooltip .ct-comp { font-family: 'Anton', sans-serif; font-size: 14px; color: #fde047; letter-spacing: 0.03em; line-height: 1.15; }
+  .cup-tooltip .ct-season { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: #fff; margin-top: 3px; font-weight: 700; }
+  .cup-tooltip .ct-pts { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: #fda4af; margin-top: 2px; }
 
   /* PALMARÉS TABLAS TRADICIONALES */
   .hist-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
@@ -1236,7 +1274,7 @@
 <!-- DATOS REALES INYECTADOS DE LA LIGA 1444772 -->
 <script id="biwenger-live-data" type="application/json">
 {
-  "ultima_actualizacion": "21/10/2026 01:36",
+  "ultima_actualizacion": "21/10/2026 09:46",
   "bote_total_euros": 200,
   "clasificacion": [
     {
@@ -1244,9 +1282,9 @@
       "cambio_posicion": 0,
       "equipo": "Diomande",
       "puntos": 397,
-      "valor_equipo": 64670000,
-      "incremento_diario": 300000,
-      "num_jugadores": 14,
+      "valor_equipo": 63250000,
+      "incremento_diario": 210000,
+      "num_jugadores": 13,
       "id": 14282362,
       "icono": "i/t/15.png",
       "victorias_jornada": 3
@@ -1256,8 +1294,8 @@
       "cambio_posicion": 0,
       "equipo": "Extintores FC",
       "puntos": 379,
-      "valor_equipo": 47330000,
-      "incremento_diario": -50000,
+      "valor_equipo": 47260000,
+      "incremento_diario": -70000,
       "num_jugadores": 16,
       "id": 14282520,
       "icono": "https://lh3.googleusercontent.com/a/ACg8ocKjRjPT2-2pvY1gp4o3u_XcoJNC0ZAEy762YOFaKWS_00UNUw=s300-c",
@@ -1268,8 +1306,8 @@
       "cambio_posicion": 0,
       "equipo": "caillou",
       "puntos": 315,
-      "valor_equipo": 48760000,
-      "incremento_diario": 10000,
+      "valor_equipo": 48830000,
+      "incremento_diario": 70000,
       "num_jugadores": 15,
       "id": 14282307,
       "icono": "https://graph.facebook.com/10210664285308468/picture?height=300&width=300",
@@ -1280,8 +1318,8 @@
       "cambio_posicion": 1,
       "equipo": "MarkLenders",
       "puntos": 302,
-      "valor_equipo": 54190000,
-      "incremento_diario": 150000,
+      "valor_equipo": 58810000,
+      "incremento_diario": 220000,
       "num_jugadores": 15,
       "id": 8331187,
       "icono": "i/u/8331187.png?v=27",
@@ -1292,8 +1330,8 @@
       "cambio_posicion": -1,
       "equipo": "Auo FC",
       "puntos": 300,
-      "valor_equipo": 53910000,
-      "incremento_diario": -20000,
+      "valor_equipo": 53850000,
+      "incremento_diario": -60000,
       "num_jugadores": 15,
       "id": 8331184,
       "icono": null,
@@ -1304,9 +1342,9 @@
       "cambio_posicion": 1,
       "equipo": "Una girafa Camello",
       "puntos": 289,
-      "valor_equipo": 39190000,
-      "incremento_diario": -210000,
-      "num_jugadores": 15,
+      "valor_equipo": 45600000,
+      "incremento_diario": -190000,
+      "num_jugadores": 17,
       "id": 8331180,
       "icono": "i/u/8331180.png",
       "victorias_jornada": 0
@@ -1316,9 +1354,9 @@
       "cambio_posicion": -1,
       "equipo": "Quitate el toz",
       "puntos": 276,
-      "valor_equipo": 46210000,
-      "incremento_diario": -450000,
-      "num_jugadores": 21,
+      "valor_equipo": 48400000,
+      "incremento_diario": -220000,
+      "num_jugadores": 22,
       "id": 8331186,
       "icono": null,
       "victorias_jornada": 1
@@ -1328,8 +1366,8 @@
       "cambio_posicion": 0,
       "equipo": "JUAN VELASCO",
       "puntos": 269,
-      "valor_equipo": 41290000,
-      "incremento_diario": 210000,
+      "valor_equipo": 41490000,
+      "incremento_diario": 200000,
       "num_jugadores": 13,
       "id": 8331183,
       "icono": "icons/7.png",
@@ -1341,7 +1379,7 @@
       "equipo": "Dalai-Lama",
       "puntos": 255,
       "valor_equipo": 51460000,
-      "incremento_diario": -180000,
+      "incremento_diario": 0,
       "num_jugadores": 14,
       "id": 12941229,
       "icono": "https://lh3.googleusercontent.com/a/AATXAJzoxLR5s3g86sWZvulNZyuICrSQst0muvOTbo96=s300-c",
@@ -1352,8 +1390,8 @@
       "cambio_posicion": 0,
       "equipo": "Carlos Gaggotas",
       "puntos": 245,
-      "valor_equipo": 47050000,
-      "incremento_diario": -140000,
+      "valor_equipo": 47040000,
+      "incremento_diario": -10000,
       "num_jugadores": 13,
       "id": 8331181,
       "icono": "icons/41.png",
@@ -2156,10 +2194,10 @@
         "club": "Atlético",
         "posicion": 3,
         "puntos_totales": 74,
-        "precio_actual": 11930000,
+        "precio_actual": 12050000,
         "incremento_diario": 120000,
         "precio_compra": 10578000,
-        "clausula": 17810000,
+        "clausula": 0,
         "propietario": "Extintores FC"
       },
       {
@@ -2168,8 +2206,8 @@
         "club": "Barcelona",
         "posicion": 4,
         "puntos_totales": 68,
-        "precio_actual": 10490000,
-        "incremento_diario": -110000,
+        "precio_actual": 10400000,
+        "incremento_diario": -90000,
         "precio_compra": 9101000,
         "clausula": 0,
         "propietario": "Una girafa Camello"
@@ -2180,7 +2218,7 @@
         "club": "Barcelona",
         "posicion": 3,
         "puntos_totales": 64,
-        "precio_actual": 13040000,
+        "precio_actual": 13010000,
         "incremento_diario": -30000,
         "precio_compra": 15000030,
         "clausula": 0,
@@ -2192,7 +2230,7 @@
         "club": "Osasuna",
         "posicion": 4,
         "puntos_totales": 63,
-        "precio_actual": 12330000,
+        "precio_actual": 12370000,
         "incremento_diario": 40000,
         "precio_compra": 10572000,
         "clausula": 0,
@@ -2204,7 +2242,7 @@
         "club": "Barcelona",
         "posicion": 3,
         "puntos_totales": 62,
-        "precio_actual": 14250000,
+        "precio_actual": 14180000,
         "incremento_diario": -70000,
         "precio_compra": 15300000,
         "clausula": 0,
@@ -2216,8 +2254,8 @@
         "club": "Espanyol",
         "posicion": 4,
         "puntos_totales": 60,
-        "precio_actual": 8500000,
-        "incremento_diario": -140000,
+        "precio_actual": 8390000,
+        "incremento_diario": -110000,
         "precio_compra": 9200110,
         "clausula": 0,
         "propietario": "Dalai-Lama"
@@ -2228,8 +2266,8 @@
         "club": "Alavés",
         "posicion": 4,
         "puntos_totales": 59,
-        "precio_actual": 5260000,
-        "incremento_diario": 40000,
+        "precio_actual": 5290000,
+        "incremento_diario": 30000,
         "precio_compra": 0,
         "clausula": 0,
         "propietario": "Diomande"
@@ -2240,8 +2278,8 @@
         "club": "Barcelona",
         "posicion": 3,
         "puntos_totales": 58,
-        "precio_actual": 10520000,
-        "incremento_diario": 90000,
+        "precio_actual": 10510000,
+        "incremento_diario": -10000,
         "precio_compra": 11736960,
         "clausula": 0,
         "propietario": "Diomande"
@@ -2252,8 +2290,8 @@
         "club": "Levante",
         "posicion": 2,
         "puntos_totales": 58,
-        "precio_actual": 5260000,
-        "incremento_diario": 60000,
+        "precio_actual": 5310000,
+        "incremento_diario": 50000,
         "precio_compra": 6130000,
         "clausula": 0,
         "propietario": "Auo FC"
@@ -2264,8 +2302,8 @@
         "club": "Barcelona",
         "posicion": 3,
         "puntos_totales": 56,
-        "precio_actual": 16560000,
-        "incremento_diario": 120000,
+        "precio_actual": 16630000,
+        "incremento_diario": 70000,
         "precio_compra": 14340000,
         "clausula": 0,
         "propietario": "Auo FC"
@@ -2276,8 +2314,8 @@
         "club": "Alavés",
         "posicion": 2,
         "puntos_totales": 55,
-        "precio_actual": 4660000,
-        "incremento_diario": 0,
+        "precio_actual": 4650000,
+        "incremento_diario": -10000,
         "precio_compra": 0,
         "clausula": 0,
         "propietario": "Diomande"
@@ -2288,8 +2326,8 @@
         "club": "Getafe",
         "posicion": 1,
         "puntos_totales": 54,
-        "precio_actual": 5500000,
-        "incremento_diario": -40000,
+        "precio_actual": 5490000,
+        "incremento_diario": -10000,
         "precio_compra": 5813230,
         "clausula": 0,
         "propietario": "Diomande"
@@ -2300,7 +2338,7 @@
         "club": "Villarreal",
         "posicion": 3,
         "puntos_totales": 54,
-        "precio_actual": 9740000,
+        "precio_actual": 9810000,
         "incremento_diario": 70000,
         "precio_compra": 9261000,
         "clausula": 0,
@@ -2312,7 +2350,7 @@
         "club": "Deportivo",
         "posicion": 4,
         "puntos_totales": 53,
-        "precio_actual": 3610000,
+        "precio_actual": 3640000,
         "incremento_diario": 30000,
         "precio_compra": 2866000,
         "clausula": 0,
@@ -2324,8 +2362,8 @@
         "club": "Elche",
         "posicion": 4,
         "puntos_totales": 53,
-        "precio_actual": 6510000,
-        "incremento_diario": -170000,
+        "precio_actual": 6360000,
+        "incremento_diario": -150000,
         "precio_compra": 2890000,
         "clausula": 0,
         "propietario": "Dalai-Lama"
@@ -2336,9 +2374,9 @@
     {
       "id": 14282362,
       "equipo": "Diomande",
-      "valor_equipo": 64670000,
-      "incremento_diario": 300000,
-      "num_jugadores": 14,
+      "valor_equipo": 63250000,
+      "incremento_diario": 210000,
+      "num_jugadores": 13,
       "victorias_jornada": 3,
       "max_rnd": 70,
       "medallas_temporadas": [
@@ -2568,8 +2606,8 @@
           "club": "Alavés",
           "posicion": 4,
           "puntos_totales": 59,
-          "precio_actual": 5260000,
-          "incremento_diario": 40000,
+          "precio_actual": 5290000,
+          "incremento_diario": 30000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2580,8 +2618,8 @@
           "club": "Barcelona",
           "posicion": 3,
           "puntos_totales": 58,
-          "precio_actual": 10520000,
-          "incremento_diario": 90000,
+          "precio_actual": 10510000,
+          "incremento_diario": -10000,
           "precio_compra": 11736960,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2592,8 +2630,8 @@
           "club": "Alavés",
           "posicion": 2,
           "puntos_totales": 55,
-          "precio_actual": 4660000,
-          "incremento_diario": 0,
+          "precio_actual": 4650000,
+          "incremento_diario": -10000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2604,8 +2642,8 @@
           "club": "Getafe",
           "posicion": 1,
           "puntos_totales": 54,
-          "precio_actual": 5500000,
-          "incremento_diario": -40000,
+          "precio_actual": 5490000,
+          "incremento_diario": -10000,
           "precio_compra": 5813230,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2616,8 +2654,8 @@
           "club": "Real Madrid",
           "posicion": 4,
           "puntos_totales": 50,
-          "precio_actual": 12640000,
-          "incremento_diario": 210000,
+          "precio_actual": 12810000,
+          "incremento_diario": 170000,
           "precio_compra": 14616650,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2628,8 +2666,8 @@
           "club": "Atlético",
           "posicion": 2,
           "puntos_totales": 39,
-          "precio_actual": 7230000,
-          "incremento_diario": 100000,
+          "precio_actual": 7320000,
+          "incremento_diario": 90000,
           "precio_compra": 7131780,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2640,8 +2678,8 @@
           "club": "Málaga",
           "posicion": 4,
           "puntos_totales": 34,
-          "precio_actual": 3800000,
-          "incremento_diario": -40000,
+          "precio_actual": 3750000,
+          "incremento_diario": -50000,
           "precio_compra": 4428890,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2652,7 +2690,7 @@
           "club": "Levante",
           "posicion": 3,
           "puntos_totales": 26,
-          "precio_actual": 610000,
+          "precio_actual": 680000,
           "incremento_diario": 70000,
           "precio_compra": 317160,
           "clausula": 0,
@@ -2664,7 +2702,7 @@
           "club": "Valencia",
           "posicion": 3,
           "puntos_totales": 20,
-          "precio_actual": 3380000,
+          "precio_actual": 3390000,
           "incremento_diario": 10000,
           "precio_compra": 3409890,
           "clausula": 0,
@@ -2677,7 +2715,7 @@
           "posicion": 5,
           "puntos_totales": 19,
           "precio_actual": 2280000,
-          "incremento_diario": 30000,
+          "incremento_diario": 0,
           "precio_compra": 2508750,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2688,8 +2726,8 @@
           "club": "Espanyol",
           "posicion": 2,
           "puntos_totales": 18,
-          "precio_actual": 2670000,
-          "incremento_diario": -30000,
+          "precio_actual": 2650000,
+          "incremento_diario": -20000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2700,8 +2738,8 @@
           "club": "Real Madrid",
           "posicion": 3,
           "puntos_totales": 12,
-          "precio_actual": 1800000,
-          "incremento_diario": -30000,
+          "precio_actual": 1780000,
+          "incremento_diario": -20000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Diomande"
@@ -2712,22 +2750,10 @@
           "club": "Athletic",
           "posicion": 2,
           "puntos_totales": 8,
-          "precio_actual": 2690000,
-          "incremento_diario": -90000,
+          "precio_actual": 2650000,
+          "incremento_diario": -40000,
           "precio_compra": 2500210,
           "clausula": 0,
-          "propietario": "Diomande"
-        },
-        {
-          "id": 24732,
-          "nombre": "Gavi",
-          "club": "Barcelona",
-          "posicion": 3,
-          "puntos_totales": 8,
-          "precio_actual": 1630000,
-          "incremento_diario": -20000,
-          "precio_compra": 1785090,
-          "clausula": 2109710,
           "propietario": "Diomande"
         }
       ]
@@ -2735,8 +2761,8 @@
     {
       "id": 14282520,
       "equipo": "Extintores FC",
-      "valor_equipo": 47330000,
-      "incremento_diario": -50000,
+      "valor_equipo": 47260000,
+      "incremento_diario": -70000,
       "num_jugadores": 16,
       "victorias_jornada": 3,
       "max_rnd": 78,
@@ -2967,10 +2993,10 @@
           "club": "Atlético",
           "posicion": 3,
           "puntos_totales": 74,
-          "precio_actual": 11930000,
+          "precio_actual": 12050000,
           "incremento_diario": 120000,
           "precio_compra": 10578000,
-          "clausula": 17810000,
+          "clausula": 0,
           "propietario": "Extintores FC"
         },
         {
@@ -2979,10 +3005,10 @@
           "club": "Alavés",
           "posicion": 4,
           "puntos_totales": 47,
-          "precio_actual": 3700000,
-          "incremento_diario": -50000,
+          "precio_actual": 3660000,
+          "incremento_diario": -40000,
           "precio_compra": 4756830,
-          "clausula": 6750000,
+          "clausula": 0,
           "propietario": "Extintores FC"
         },
         {
@@ -2991,7 +3017,7 @@
           "club": "Celta",
           "posicion": 1,
           "puntos_totales": 46,
-          "precio_actual": 3530000,
+          "precio_actual": 3570000,
           "incremento_diario": 40000,
           "precio_compra": 0,
           "clausula": 0,
@@ -3003,10 +3029,10 @@
           "club": "Atlético",
           "posicion": 2,
           "puntos_totales": 45,
-          "precio_actual": 7230000,
-          "incremento_diario": -50000,
+          "precio_actual": 7130000,
+          "incremento_diario": -100000,
           "precio_compra": 7760584,
-          "clausula": 12280000,
+          "clausula": 0,
           "propietario": "Extintores FC"
         },
         {
@@ -3015,8 +3041,8 @@
           "club": "Getafe",
           "posicion": 4,
           "puntos_totales": 40,
-          "precio_actual": 2560000,
-          "incremento_diario": 40000,
+          "precio_actual": 2630000,
+          "incremento_diario": 70000,
           "precio_compra": 4248000,
           "clausula": 0,
           "propietario": "Extintores FC"
@@ -3027,8 +3053,8 @@
           "club": "Betis",
           "posicion": 3,
           "puntos_totales": 32,
-          "precio_actual": 2740000,
-          "incremento_diario": -30000,
+          "precio_actual": 2720000,
+          "incremento_diario": -20000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Extintores FC"
@@ -3039,7 +3065,7 @@
           "club": "Celta",
           "posicion": 3,
           "puntos_totales": 30,
-          "precio_actual": 3430000,
+          "precio_actual": 3390000,
           "incremento_diario": -40000,
           "precio_compra": 0,
           "clausula": 0,
@@ -3051,8 +3077,8 @@
           "club": "Rayo Vallecano",
           "posicion": 2,
           "puntos_totales": 29,
-          "precio_actual": 3170000,
-          "incremento_diario": -10000,
+          "precio_actual": 3140000,
+          "incremento_diario": -30000,
           "precio_compra": 1358000,
           "clausula": 0,
           "propietario": "Extintores FC"
@@ -3075,10 +3101,10 @@
           "club": "Deportivo",
           "posicion": 2,
           "puntos_totales": 24,
-          "precio_actual": 1230000,
+          "precio_actual": 1220000,
           "incremento_diario": -10000,
           "precio_compra": 0,
-          "clausula": 3240000,
+          "clausula": 0,
           "propietario": "Extintores FC"
         },
         {
@@ -3087,7 +3113,7 @@
           "club": "Racing",
           "posicion": 2,
           "puntos_totales": 22,
-          "precio_actual": 1860000,
+          "precio_actual": 1840000,
           "incremento_diario": -20000,
           "precio_compra": 0,
           "clausula": 0,
@@ -3099,10 +3125,10 @@
           "club": "Athletic",
           "posicion": 3,
           "puntos_totales": 20,
-          "precio_actual": 2580000,
+          "precio_actual": 2560000,
           "incremento_diario": -20000,
           "precio_compra": 0,
-          "clausula": 5600000,
+          "clausula": 0,
           "propietario": "Extintores FC"
         },
         {
@@ -3111,7 +3137,7 @@
           "club": "Athletic",
           "posicion": 5,
           "puntos_totales": 9,
-          "precio_actual": 970000,
+          "precio_actual": 960000,
           "incremento_diario": -10000,
           "precio_compra": 2450000,
           "clausula": 0,
@@ -3147,7 +3173,7 @@
           "club": "Málaga",
           "posicion": 2,
           "puntos_totales": 0,
-          "precio_actual": 760000,
+          "precio_actual": 750000,
           "incremento_diario": -10000,
           "precio_compra": 0,
           "clausula": 0,
@@ -3158,8 +3184,8 @@
     {
       "id": 14282307,
       "equipo": "caillou",
-      "valor_equipo": 48760000,
-      "incremento_diario": 10000,
+      "valor_equipo": 48830000,
+      "incremento_diario": 70000,
       "num_jugadores": 15,
       "victorias_jornada": 0,
       "max_rnd": 53,
@@ -3390,8 +3416,8 @@
           "club": "Atlético",
           "posicion": 3,
           "puntos_totales": 50,
-          "precio_actual": 9150000,
-          "incremento_diario": -80000,
+          "precio_actual": 9100000,
+          "incremento_diario": -50000,
           "precio_compra": 12970030,
           "clausula": 0,
           "propietario": "caillou"
@@ -3402,8 +3428,8 @@
           "club": "Betis",
           "posicion": 4,
           "puntos_totales": 49,
-          "precio_actual": 11550000,
-          "incremento_diario": 160000,
+          "precio_actual": 11680000,
+          "incremento_diario": 130000,
           "precio_compra": 9252010,
           "clausula": 0,
           "propietario": "caillou"
@@ -3426,7 +3452,7 @@
           "club": "Celta",
           "posicion": 4,
           "puntos_totales": 40,
-          "precio_actual": 2690000,
+          "precio_actual": 2750000,
           "incremento_diario": 60000,
           "precio_compra": 0,
           "clausula": 0,
@@ -3438,8 +3464,8 @@
           "club": "Levante",
           "posicion": 1,
           "puntos_totales": 36,
-          "precio_actual": 3540000,
-          "incremento_diario": -40000,
+          "precio_actual": 3510000,
+          "incremento_diario": -30000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "caillou"
@@ -3450,8 +3476,8 @@
           "club": "Real Sociedad",
           "posicion": 2,
           "puntos_totales": 34,
-          "precio_actual": 2060000,
-          "incremento_diario": -30000,
+          "precio_actual": 2040000,
+          "incremento_diario": -20000,
           "precio_compra": 3650001,
           "clausula": 0,
           "propietario": "caillou"
@@ -3462,7 +3488,7 @@
           "club": "Villarreal",
           "posicion": 4,
           "puntos_totales": 30,
-          "precio_actual": 3890000,
+          "precio_actual": 3910000,
           "incremento_diario": 20000,
           "precio_compra": 1100001,
           "clausula": 0,
@@ -3474,8 +3500,8 @@
           "club": "Rayo Vallecano",
           "posicion": 3,
           "puntos_totales": 24,
-          "precio_actual": 2350000,
-          "incremento_diario": 0,
+          "precio_actual": 2360000,
+          "incremento_diario": 10000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "caillou"
@@ -3486,7 +3512,7 @@
           "club": "Deportivo",
           "posicion": 3,
           "puntos_totales": 24,
-          "precio_actual": 3070000,
+          "precio_actual": 3050000,
           "incremento_diario": -20000,
           "precio_compra": 3500001,
           "clausula": 0,
@@ -3498,8 +3524,8 @@
           "club": "Athletic",
           "posicion": 2,
           "puntos_totales": 20,
-          "precio_actual": 2420000,
-          "incremento_diario": -60000,
+          "precio_actual": 2390000,
+          "incremento_diario": -30000,
           "precio_compra": 1400000,
           "clausula": 0,
           "propietario": "caillou"
@@ -3522,8 +3548,8 @@
           "club": "Getafe",
           "posicion": 2,
           "puntos_totales": 11,
-          "precio_actual": 1790000,
-          "incremento_diario": -40000,
+          "precio_actual": 1760000,
+          "incremento_diario": -30000,
           "precio_compra": 2850010,
           "clausula": 2530000,
           "propietario": "caillou"
@@ -3534,8 +3560,8 @@
           "club": "Valencia",
           "posicion": 2,
           "puntos_totales": 8,
-          "precio_actual": 1350000,
-          "incremento_diario": 40000,
+          "precio_actual": 1380000,
+          "incremento_diario": 30000,
           "precio_compra": 1400000,
           "clausula": 0,
           "propietario": "caillou"
@@ -3569,8 +3595,8 @@
     {
       "id": 8331187,
       "equipo": "MarkLenders",
-      "valor_equipo": 54190000,
-      "incremento_diario": 150000,
+      "valor_equipo": 58810000,
+      "incremento_diario": 220000,
       "num_jugadores": 15,
       "victorias_jornada": 1,
       "max_rnd": 60,
@@ -3821,7 +3847,7 @@
           "club": "Osasuna",
           "posicion": 4,
           "puntos_totales": 63,
-          "precio_actual": 12330000,
+          "precio_actual": 12370000,
           "incremento_diario": 40000,
           "precio_compra": 10572000,
           "clausula": 0,
@@ -3833,7 +3859,7 @@
           "club": "Villarreal",
           "posicion": 3,
           "puntos_totales": 54,
-          "precio_actual": 9740000,
+          "precio_actual": 9810000,
           "incremento_diario": 70000,
           "precio_compra": 9261000,
           "clausula": 0,
@@ -3845,9 +3871,21 @@
           "club": "Deportivo",
           "posicion": 4,
           "puntos_totales": 53,
-          "precio_actual": 3610000,
+          "precio_actual": 3640000,
           "incremento_diario": 30000,
           "precio_compra": 2866000,
+          "clausula": 0,
+          "propietario": "MarkLenders"
+        },
+        {
+          "id": 20969,
+          "nombre": "Germán Valera",
+          "club": "Elche",
+          "posicion": 3,
+          "puntos_totales": 46,
+          "precio_actual": 5290000,
+          "incremento_diario": 20000,
+          "precio_compra": 5822000,
           "clausula": 0,
           "propietario": "MarkLenders"
         },
@@ -3857,8 +3895,8 @@
           "club": "Betis",
           "posicion": 3,
           "puntos_totales": 43,
-          "precio_actual": 8830000,
-          "incremento_diario": 90000,
+          "precio_actual": 8900000,
+          "incremento_diario": 70000,
           "precio_compra": 8056000,
           "clausula": 0,
           "propietario": "MarkLenders"
@@ -3869,8 +3907,8 @@
           "club": "Barcelona",
           "posicion": 1,
           "puntos_totales": 40,
-          "precio_actual": 6940000,
-          "incremento_diario": -40000,
+          "precio_actual": 6930000,
+          "incremento_diario": -10000,
           "precio_compra": 10672000,
           "clausula": 0,
           "propietario": "MarkLenders"
@@ -3881,8 +3919,8 @@
           "club": "Elche",
           "posicion": 4,
           "puntos_totales": 30,
-          "precio_actual": 1390000,
-          "incremento_diario": -20000,
+          "precio_actual": 1380000,
+          "incremento_diario": -10000,
           "precio_compra": 362000,
           "clausula": 0,
           "propietario": "MarkLenders"
@@ -3893,21 +3931,9 @@
           "club": "Osasuna",
           "posicion": 3,
           "puntos_totales": 28,
-          "precio_actual": 1390000,
+          "precio_actual": 1380000,
           "incremento_diario": -10000,
           "precio_compra": 566490,
-          "clausula": 0,
-          "propietario": "MarkLenders"
-        },
-        {
-          "id": 41608,
-          "nombre": "Buonanotte",
-          "club": "Elche",
-          "posicion": 3,
-          "puntos_totales": 23,
-          "precio_actual": 870000,
-          "incremento_diario": -30000,
-          "precio_compra": 1096000,
           "clausula": 0,
           "propietario": "MarkLenders"
         },
@@ -3917,8 +3943,8 @@
           "club": "Rayo Vallecano",
           "posicion": 2,
           "puntos_totales": 16,
-          "precio_actual": 2900000,
-          "incremento_diario": 20000,
+          "precio_actual": 2950000,
+          "incremento_diario": 50000,
           "precio_compra": 4102005,
           "clausula": 0,
           "propietario": "MarkLenders"
@@ -3929,7 +3955,7 @@
           "club": "Racing",
           "posicion": 2,
           "puntos_totales": 12,
-          "precio_actual": 860000,
+          "precio_actual": 850000,
           "incremento_diario": -10000,
           "precio_compra": 1252000,
           "clausula": 0,
@@ -3941,8 +3967,8 @@
           "club": "Celta",
           "posicion": 3,
           "puntos_totales": 8,
-          "precio_actual": 1330000,
-          "incremento_diario": -30000,
+          "precio_actual": 1320000,
+          "incremento_diario": -10000,
           "precio_compra": 1506080,
           "clausula": 0,
           "propietario": "MarkLenders"
@@ -3965,7 +3991,7 @@
           "club": "Betis",
           "posicion": 3,
           "puntos_totales": 6,
-          "precio_actual": 1900000,
+          "precio_actual": 1990000,
           "incremento_diario": 90000,
           "precio_compra": 1730030,
           "clausula": 0,
@@ -3977,7 +4003,7 @@
           "club": "Osasuna",
           "posicion": 2,
           "puntos_totales": 6,
-          "precio_actual": 260000,
+          "precio_actual": 250000,
           "incremento_diario": -10000,
           "precio_compra": 345000,
           "clausula": 0,
@@ -3989,8 +4015,8 @@
           "club": "Getafe",
           "posicion": 2,
           "puntos_totales": 4,
-          "precio_actual": 1440000,
-          "incremento_diario": -40000,
+          "precio_actual": 1350000,
+          "incremento_diario": -90000,
           "precio_compra": 0,
           "clausula": 1480000,
           "propietario": "MarkLenders"
@@ -4000,8 +4026,8 @@
     {
       "id": 8331184,
       "equipo": "Auo FC",
-      "valor_equipo": 53910000,
-      "incremento_diario": -20000,
+      "valor_equipo": 53850000,
+      "incremento_diario": -60000,
       "num_jugadores": 15,
       "victorias_jornada": 0,
       "max_rnd": 53,
@@ -4252,8 +4278,8 @@
           "club": "Levante",
           "posicion": 2,
           "puntos_totales": 58,
-          "precio_actual": 5260000,
-          "incremento_diario": 60000,
+          "precio_actual": 5310000,
+          "incremento_diario": 50000,
           "precio_compra": 6130000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4264,8 +4290,8 @@
           "club": "Barcelona",
           "posicion": 3,
           "puntos_totales": 56,
-          "precio_actual": 16560000,
-          "incremento_diario": 120000,
+          "precio_actual": 16630000,
+          "incremento_diario": 70000,
           "precio_compra": 14340000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4276,8 +4302,8 @@
           "club": "Levante",
           "posicion": 4,
           "puntos_totales": 51,
-          "precio_actual": 4390000,
-          "incremento_diario": -50000,
+          "precio_actual": 4350000,
+          "incremento_diario": -40000,
           "precio_compra": 4498000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4288,8 +4314,8 @@
           "club": "Elche",
           "posicion": 3,
           "puntos_totales": 36,
-          "precio_actual": 3990000,
-          "incremento_diario": 60000,
+          "precio_actual": 4040000,
+          "incremento_diario": 50000,
           "precio_compra": 1150000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4300,8 +4326,8 @@
           "club": "Real Sociedad",
           "posicion": 3,
           "puntos_totales": 36,
-          "precio_actual": 5090000,
-          "incremento_diario": -170000,
+          "precio_actual": 4940000,
+          "incremento_diario": -150000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4312,8 +4338,8 @@
           "club": "Real Madrid",
           "posicion": 2,
           "puntos_totales": 32,
-          "precio_actual": 4100000,
-          "incremento_diario": 30000,
+          "precio_actual": 4120000,
+          "incremento_diario": 20000,
           "precio_compra": 6090000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4324,8 +4350,8 @@
           "club": "Osasuna",
           "posicion": 2,
           "puntos_totales": 30,
-          "precio_actual": 1380000,
-          "incremento_diario": -20000,
+          "precio_actual": 1370000,
+          "incremento_diario": -10000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4336,7 +4362,7 @@
           "club": "Sevilla",
           "posicion": 1,
           "puntos_totales": 30,
-          "precio_actual": 2880000,
+          "precio_actual": 2850000,
           "incremento_diario": -30000,
           "precio_compra": 0,
           "clausula": 0,
@@ -4348,7 +4374,7 @@
           "club": "Levante",
           "posicion": 2,
           "puntos_totales": 24,
-          "precio_actual": 1680000,
+          "precio_actual": 1690000,
           "incremento_diario": 10000,
           "precio_compra": 0,
           "clausula": 0,
@@ -4361,7 +4387,7 @@
           "posicion": 3,
           "puntos_totales": 22,
           "precio_actual": 1890000,
-          "incremento_diario": -10000,
+          "incremento_diario": 0,
           "precio_compra": 3540000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4372,8 +4398,8 @@
           "club": "Getafe",
           "posicion": 3,
           "puntos_totales": 22,
-          "precio_actual": 1450000,
-          "incremento_diario": -20000,
+          "precio_actual": 1420000,
+          "incremento_diario": -30000,
           "precio_compra": 3790000,
           "clausula": 0,
           "propietario": "Auo FC"
@@ -4384,10 +4410,10 @@
           "club": "Málaga",
           "posicion": 4,
           "puntos_totales": 18,
-          "precio_actual": 1110000,
+          "precio_actual": 1100000,
           "incremento_diario": -10000,
           "precio_compra": 1980000,
-          "clausula": 0,
+          "clausula": 3100000,
           "propietario": "Auo FC"
         },
         {
@@ -4396,7 +4422,7 @@
           "club": "Rayo Vallecano",
           "posicion": 4,
           "puntos_totales": 14,
-          "precio_actual": 2940000,
+          "precio_actual": 2950000,
           "incremento_diario": 10000,
           "precio_compra": 0,
           "clausula": 0,
@@ -4423,7 +4449,7 @@
           "precio_actual": 180000,
           "incremento_diario": 0,
           "precio_compra": 180010,
-          "clausula": 0,
+          "clausula": 280000,
           "propietario": "Auo FC"
         }
       ]
@@ -4431,9 +4457,9 @@
     {
       "id": 8331180,
       "equipo": "Una girafa Camello",
-      "valor_equipo": 39190000,
-      "incremento_diario": -210000,
-      "num_jugadores": 15,
+      "valor_equipo": 45600000,
+      "incremento_diario": -190000,
+      "num_jugadores": 17,
       "victorias_jornada": 0,
       "max_rnd": 49,
       "medallas_temporadas": [
@@ -4683,8 +4709,8 @@
           "club": "Barcelona",
           "posicion": 4,
           "puntos_totales": 68,
-          "precio_actual": 10490000,
-          "incremento_diario": -110000,
+          "precio_actual": 10400000,
+          "incremento_diario": -90000,
           "precio_compra": 9101000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4695,8 +4721,8 @@
           "club": "Villarreal",
           "posicion": 4,
           "puntos_totales": 48,
-          "precio_actual": 6840000,
-          "incremento_diario": -130000,
+          "precio_actual": 6770000,
+          "incremento_diario": -70000,
           "precio_compra": 9310000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4707,8 +4733,8 @@
           "club": "Deportivo",
           "posicion": 4,
           "puntos_totales": 43,
-          "precio_actual": 5270000,
-          "incremento_diario": 100000,
+          "precio_actual": 5360000,
+          "incremento_diario": 90000,
           "precio_compra": 6210000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4720,7 +4746,7 @@
           "posicion": 1,
           "puntos_totales": 42,
           "precio_actual": 2900000,
-          "incremento_diario": 10000,
+          "incremento_diario": 0,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4731,7 +4757,7 @@
           "club": "Levante",
           "posicion": 3,
           "puntos_totales": 30,
-          "precio_actual": 1560000,
+          "precio_actual": 1550000,
           "incremento_diario": -10000,
           "precio_compra": 920000,
           "clausula": 0,
@@ -4743,8 +4769,8 @@
           "club": "Espanyol",
           "posicion": 3,
           "puntos_totales": 26,
-          "precio_actual": 2370000,
-          "incremento_diario": -30000,
+          "precio_actual": 2350000,
+          "incremento_diario": -20000,
           "precio_compra": 3410000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4755,8 +4781,8 @@
           "club": "Barcelona",
           "posicion": 2,
           "puntos_totales": 25,
-          "precio_actual": 3190000,
-          "incremento_diario": 20000,
+          "precio_actual": 3200000,
+          "incremento_diario": 10000,
           "precio_compra": 2550000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4767,7 +4793,7 @@
           "club": "Levante",
           "posicion": 3,
           "puntos_totales": 22,
-          "precio_actual": 700000,
+          "precio_actual": 690000,
           "incremento_diario": -10000,
           "precio_compra": 751000,
           "clausula": 0,
@@ -4779,8 +4805,8 @@
           "club": "Celta",
           "posicion": 2,
           "puntos_totales": 22,
-          "precio_actual": 1570000,
-          "incremento_diario": -20000,
+          "precio_actual": 1560000,
+          "incremento_diario": -10000,
           "precio_compra": 1940000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
@@ -4791,7 +4817,7 @@
           "club": "Levante",
           "posicion": 2,
           "puntos_totales": 22,
-          "precio_actual": 1090000,
+          "precio_actual": 1080000,
           "incremento_diario": -10000,
           "precio_compra": 0,
           "clausula": 0,
@@ -4803,9 +4829,33 @@
           "club": "Rayo Vallecano",
           "posicion": 3,
           "puntos_totales": 20,
-          "precio_actual": 1260000,
+          "precio_actual": 1250000,
           "incremento_diario": -10000,
           "precio_compra": 0,
+          "clausula": 0,
+          "propietario": "Una girafa Camello"
+        },
+        {
+          "id": 15410,
+          "nombre": "Cucurella",
+          "club": "Real Madrid",
+          "posicion": 2,
+          "puntos_totales": 20,
+          "precio_actual": 5810000,
+          "incremento_diario": -60000,
+          "precio_compra": 5880000,
+          "clausula": 0,
+          "propietario": "Una girafa Camello"
+        },
+        {
+          "id": 42726,
+          "nombre": "Francho",
+          "club": "Getafe",
+          "posicion": 3,
+          "puntos_totales": 18,
+          "precio_actual": 740000,
+          "incremento_diario": 10000,
+          "precio_compra": 750000,
           "clausula": 0,
           "propietario": "Una girafa Camello"
         },
@@ -4815,7 +4865,7 @@
           "club": "Villarreal",
           "posicion": 5,
           "puntos_totales": 9,
-          "precio_actual": 1400000,
+          "precio_actual": 1390000,
           "incremento_diario": -10000,
           "precio_compra": 1900000,
           "clausula": 0,
@@ -4862,9 +4912,9 @@
     {
       "id": 8331186,
       "equipo": "Quitate el toz",
-      "valor_equipo": 46210000,
-      "incremento_diario": -450000,
-      "num_jugadores": 21,
+      "valor_equipo": 48400000,
+      "incremento_diario": -220000,
+      "num_jugadores": 22,
       "victorias_jornada": 1,
       "max_rnd": 41,
       "medallas_temporadas": [
@@ -5114,8 +5164,8 @@
           "club": "Barcelona",
           "posicion": 2,
           "puntos_totales": 43,
-          "precio_actual": 4460000,
-          "incremento_diario": 30000,
+          "precio_actual": 4520000,
+          "incremento_diario": 60000,
           "precio_compra": 4190920,
           "clausula": 7400000,
           "propietario": "Quitate el toz"
@@ -5138,8 +5188,8 @@
           "club": "Málaga",
           "posicion": 2,
           "puntos_totales": 42,
-          "precio_actual": 3010000,
-          "incremento_diario": -10000,
+          "precio_actual": 2980000,
+          "incremento_diario": -30000,
           "precio_compra": 2411540,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5162,8 +5212,8 @@
           "club": "Elche",
           "posicion": 3,
           "puntos_totales": 34,
-          "precio_actual": 2660000,
-          "incremento_diario": -50000,
+          "precio_actual": 2630000,
+          "incremento_diario": -30000,
           "precio_compra": 2956420,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5174,7 +5224,7 @@
           "club": "Celta",
           "posicion": 2,
           "puntos_totales": 34,
-          "precio_actual": 2640000,
+          "precio_actual": 2610000,
           "incremento_diario": -30000,
           "precio_compra": 2629860,
           "clausula": 0,
@@ -5186,8 +5236,8 @@
           "club": "Racing",
           "posicion": 4,
           "puntos_totales": 34,
-          "precio_actual": 2830000,
-          "incremento_diario": -80000,
+          "precio_actual": 2790000,
+          "incremento_diario": -40000,
           "precio_compra": 1500000,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5198,8 +5248,8 @@
           "club": "Deportivo",
           "posicion": 1,
           "puntos_totales": 30,
-          "precio_actual": 3470000,
-          "incremento_diario": -70000,
+          "precio_actual": 3420000,
+          "incremento_diario": -50000,
           "precio_compra": 5935670,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5210,8 +5260,8 @@
           "club": "Real Sociedad",
           "posicion": 2,
           "puntos_totales": 30,
-          "precio_actual": 2620000,
-          "incremento_diario": -20000,
+          "precio_actual": 2610000,
+          "incremento_diario": -10000,
           "precio_compra": 3621740,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5222,8 +5272,8 @@
           "club": "Celta",
           "posicion": 4,
           "puntos_totales": 29,
-          "precio_actual": 1780000,
-          "incremento_diario": -20000,
+          "precio_actual": 1770000,
+          "incremento_diario": -10000,
           "precio_compra": 3135980,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5234,7 +5284,7 @@
           "club": "Alavés",
           "posicion": 3,
           "puntos_totales": 26,
-          "precio_actual": 2570000,
+          "precio_actual": 2560000,
           "incremento_diario": -10000,
           "precio_compra": 3205680,
           "clausula": 0,
@@ -5246,8 +5296,8 @@
           "club": "Elche",
           "posicion": 2,
           "puntos_totales": 25,
-          "precio_actual": 1120000,
-          "incremento_diario": 10000,
+          "precio_actual": 1140000,
+          "incremento_diario": 20000,
           "precio_compra": 1932420,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5258,8 +5308,8 @@
           "club": "Elche",
           "posicion": 4,
           "puntos_totales": 23,
-          "precio_actual": 860000,
-          "incremento_diario": -20000,
+          "precio_actual": 850000,
+          "incremento_diario": -10000,
           "precio_compra": 1442380,
           "clausula": 1860000,
           "propietario": "Quitate el toz"
@@ -5271,7 +5321,7 @@
           "posicion": 5,
           "puntos_totales": 22,
           "precio_actual": 2820000,
-          "incremento_diario": 20000,
+          "incremento_diario": 0,
           "precio_compra": 3514370,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5282,8 +5332,8 @@
           "club": "Málaga",
           "posicion": 3,
           "puntos_totales": 20,
-          "precio_actual": 2160000,
-          "incremento_diario": -60000,
+          "precio_actual": 2120000,
+          "incremento_diario": -40000,
           "precio_compra": 0,
           "clausula": 4160000,
           "propietario": "Quitate el toz"
@@ -5294,7 +5344,7 @@
           "club": "Osasuna",
           "posicion": 2,
           "puntos_totales": 18,
-          "precio_actual": 1110000,
+          "precio_actual": 1120000,
           "incremento_diario": 10000,
           "precio_compra": 1878000,
           "clausula": 0,
@@ -5306,9 +5356,21 @@
           "club": "Osasuna",
           "posicion": 1,
           "puntos_totales": 16,
-          "precio_actual": 1250000,
+          "precio_actual": 1260000,
           "incremento_diario": 10000,
           "precio_compra": 211620,
+          "clausula": 0,
+          "propietario": "Quitate el toz"
+        },
+        {
+          "id": 34802,
+          "nombre": "Toni Martínez",
+          "club": "Alavés",
+          "posicion": 4,
+          "puntos_totales": 16,
+          "precio_actual": 2390000,
+          "incremento_diario": -20000,
+          "precio_compra": 2452310,
           "clausula": 0,
           "propietario": "Quitate el toz"
         },
@@ -5318,8 +5380,8 @@
           "club": "Sevilla",
           "posicion": 3,
           "puntos_totales": 16,
-          "precio_actual": 1300000,
-          "incremento_diario": -70000,
+          "precio_actual": 1280000,
+          "incremento_diario": -20000,
           "precio_compra": 1980010,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5330,8 +5392,8 @@
           "club": "Valencia",
           "posicion": 2,
           "puntos_totales": 14,
-          "precio_actual": 1650000,
-          "incremento_diario": -120000,
+          "precio_actual": 1610000,
+          "incremento_diario": -40000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5342,8 +5404,8 @@
           "club": "Valencia",
           "posicion": 4,
           "puntos_totales": 9,
-          "precio_actual": 930000,
-          "incremento_diario": 0,
+          "precio_actual": 920000,
+          "incremento_diario": -10000,
           "precio_compra": 2375670,
           "clausula": 0,
           "propietario": "Quitate el toz"
@@ -5354,7 +5416,7 @@
           "club": "Osasuna",
           "posicion": 2,
           "puntos_totales": 0,
-          "precio_actual": 1280000,
+          "precio_actual": 1310000,
           "incremento_diario": 30000,
           "precio_compra": 2221760,
           "clausula": 0,
@@ -5365,8 +5427,8 @@
     {
       "id": 8331183,
       "equipo": "JUAN VELASCO",
-      "valor_equipo": 41290000,
-      "incremento_diario": 210000,
+      "valor_equipo": 41490000,
+      "incremento_diario": 200000,
       "num_jugadores": 13,
       "victorias_jornada": 0,
       "max_rnd": 53,
@@ -5617,8 +5679,8 @@
           "club": "Betis",
           "posicion": 1,
           "puntos_totales": 46,
-          "precio_actual": 7060000,
-          "incremento_diario": -10000,
+          "precio_actual": 7040000,
+          "incremento_diario": -20000,
           "precio_compra": 4800000,
           "clausula": 0,
           "propietario": "JUAN VELASCO"
@@ -5629,7 +5691,7 @@
           "club": "Sevilla",
           "posicion": 3,
           "puntos_totales": 44,
-          "precio_actual": 6240000,
+          "precio_actual": 6310000,
           "incremento_diario": 70000,
           "precio_compra": 5190000,
           "clausula": 0,
@@ -5641,7 +5703,7 @@
           "club": "Elche",
           "posicion": 2,
           "puntos_totales": 34,
-          "precio_actual": 1750000,
+          "precio_actual": 1820000,
           "incremento_diario": 70000,
           "precio_compra": 1750000,
           "clausula": 0,
@@ -5653,7 +5715,7 @@
           "club": "Betis",
           "posicion": 2,
           "puntos_totales": 32,
-          "precio_actual": 3990000,
+          "precio_actual": 3970000,
           "incremento_diario": -20000,
           "precio_compra": 5900000,
           "clausula": 0,
@@ -5665,8 +5727,8 @@
           "club": "Racing",
           "posicion": 3,
           "puntos_totales": 30,
-          "precio_actual": 3860000,
-          "incremento_diario": -50000,
+          "precio_actual": 3820000,
+          "incremento_diario": -40000,
           "precio_compra": 7000000,
           "clausula": 0,
           "propietario": "JUAN VELASCO"
@@ -5677,8 +5739,8 @@
           "club": "Real Sociedad",
           "posicion": 3,
           "puntos_totales": 29,
-          "precio_actual": 4960000,
-          "incremento_diario": 60000,
+          "precio_actual": 5010000,
+          "incremento_diario": 50000,
           "precio_compra": 6221111,
           "clausula": 0,
           "propietario": "JUAN VELASCO"
@@ -5689,7 +5751,7 @@
           "club": "Valencia",
           "posicion": 4,
           "puntos_totales": 26,
-          "precio_actual": 2510000,
+          "precio_actual": 2530000,
           "incremento_diario": 20000,
           "precio_compra": 2110000,
           "clausula": 0,
@@ -5702,7 +5764,7 @@
           "posicion": 3,
           "puntos_totales": 24,
           "precio_actual": 990000,
-          "incremento_diario": -10000,
+          "incremento_diario": 0,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "JUAN VELASCO"
@@ -5713,7 +5775,7 @@
           "club": "Alavés",
           "posicion": 2,
           "puntos_totales": 20,
-          "precio_actual": 1800000,
+          "precio_actual": 1780000,
           "incremento_diario": -20000,
           "precio_compra": 2650000,
           "clausula": 0,
@@ -5725,8 +5787,8 @@
           "club": "Betis",
           "posicion": 3,
           "puntos_totales": 20,
-          "precio_actual": 5550000,
-          "incremento_diario": 30000,
+          "precio_actual": 5570000,
+          "incremento_diario": 20000,
           "precio_compra": 7050000,
           "clausula": 0,
           "propietario": "JUAN VELASCO"
@@ -5749,7 +5811,7 @@
           "club": "Villarreal",
           "posicion": 2,
           "puntos_totales": 10,
-          "precio_actual": 1120000,
+          "precio_actual": 1190000,
           "incremento_diario": 70000,
           "precio_compra": 910000,
           "clausula": 0,
@@ -5773,7 +5835,7 @@
       "id": 12941229,
       "equipo": "Dalai-Lama",
       "valor_equipo": 51460000,
-      "incremento_diario": -180000,
+      "incremento_diario": 0,
       "num_jugadores": 14,
       "victorias_jornada": 0,
       "max_rnd": 45,
@@ -6009,7 +6071,7 @@
           "club": "Barcelona",
           "posicion": 3,
           "puntos_totales": 64,
-          "precio_actual": 13040000,
+          "precio_actual": 13010000,
           "incremento_diario": -30000,
           "precio_compra": 15000030,
           "clausula": 0,
@@ -6021,8 +6083,8 @@
           "club": "Espanyol",
           "posicion": 4,
           "puntos_totales": 60,
-          "precio_actual": 8500000,
-          "incremento_diario": -140000,
+          "precio_actual": 8390000,
+          "incremento_diario": -110000,
           "precio_compra": 9200110,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6033,8 +6095,8 @@
           "club": "Elche",
           "posicion": 4,
           "puntos_totales": 53,
-          "precio_actual": 6510000,
-          "incremento_diario": -170000,
+          "precio_actual": 6360000,
+          "incremento_diario": -150000,
           "precio_compra": 2890000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6045,8 +6107,8 @@
           "club": "Getafe",
           "posicion": 3,
           "puntos_totales": 40,
-          "precio_actual": 4700000,
-          "incremento_diario": -40000,
+          "precio_actual": 4650000,
+          "incremento_diario": -50000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6057,8 +6119,8 @@
           "club": "Athletic",
           "posicion": 4,
           "puntos_totales": 33,
-          "precio_actual": 2820000,
-          "incremento_diario": 30000,
+          "precio_actual": 2870000,
+          "incremento_diario": 50000,
           "precio_compra": 3960000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6069,7 +6131,7 @@
           "club": "Osasuna",
           "posicion": 3,
           "puntos_totales": 30,
-          "precio_actual": 2320000,
+          "precio_actual": 2420000,
           "incremento_diario": 100000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6081,8 +6143,8 @@
           "club": "Barcelona",
           "posicion": 2,
           "puntos_totales": 25,
-          "precio_actual": 4320000,
-          "incremento_diario": -50000,
+          "precio_actual": 4310000,
+          "incremento_diario": -10000,
           "precio_compra": 5000001,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6093,7 +6155,7 @@
           "club": "Osasuna",
           "posicion": 3,
           "puntos_totales": 22,
-          "precio_actual": 1840000,
+          "precio_actual": 1830000,
           "incremento_diario": -10000,
           "precio_compra": 3890010,
           "clausula": 0,
@@ -6105,7 +6167,7 @@
           "club": "Osasuna",
           "posicion": 3,
           "puntos_totales": 22,
-          "precio_actual": 230000,
+          "precio_actual": 270000,
           "incremento_diario": 40000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6117,8 +6179,8 @@
           "club": "Rayo Vallecano",
           "posicion": 2,
           "puntos_totales": 21,
-          "precio_actual": 2830000,
-          "incremento_diario": -110000,
+          "precio_actual": 2790000,
+          "incremento_diario": -40000,
           "precio_compra": 4350000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6129,8 +6191,8 @@
           "club": "Real Sociedad",
           "posicion": 2,
           "puntos_totales": 20,
-          "precio_actual": 1700000,
-          "incremento_diario": 50000,
+          "precio_actual": 1760000,
+          "incremento_diario": 60000,
           "precio_compra": 1910000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6141,8 +6203,8 @@
           "club": "Málaga",
           "posicion": 2,
           "puntos_totales": 18,
-          "precio_actual": 1460000,
-          "incremento_diario": -10000,
+          "precio_actual": 1440000,
+          "incremento_diario": -20000,
           "precio_compra": 250000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6153,7 +6215,7 @@
           "club": "Espanyol",
           "posicion": 1,
           "puntos_totales": 12,
-          "precio_actual": 840000,
+          "precio_actual": 1010000,
           "incremento_diario": 170000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6166,7 +6228,7 @@
           "posicion": 5,
           "puntos_totales": 4,
           "precio_actual": 350000,
-          "incremento_diario": -10000,
+          "incremento_diario": 0,
           "precio_compra": 770000,
           "clausula": 0,
           "propietario": "Dalai-Lama"
@@ -6176,8 +6238,8 @@
     {
       "id": 8331181,
       "equipo": "Carlos Gaggotas",
-      "valor_equipo": 47050000,
-      "incremento_diario": -140000,
+      "valor_equipo": 47040000,
+      "incremento_diario": -10000,
       "num_jugadores": 13,
       "victorias_jornada": 1,
       "max_rnd": 42,
@@ -6428,7 +6490,7 @@
           "club": "Barcelona",
           "posicion": 3,
           "puntos_totales": 62,
-          "precio_actual": 14250000,
+          "precio_actual": 14180000,
           "incremento_diario": -70000,
           "precio_compra": 15300000,
           "clausula": 0,
@@ -6440,8 +6502,8 @@
           "club": "Athletic",
           "posicion": 4,
           "puntos_totales": 38,
-          "precio_actual": 5250000,
-          "incremento_diario": 60000,
+          "precio_actual": 5300000,
+          "incremento_diario": 50000,
           "precio_compra": 5115000,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6453,7 +6515,7 @@
           "posicion": 2,
           "puntos_totales": 36,
           "precio_actual": 4490000,
-          "incremento_diario": 20000,
+          "incremento_diario": 0,
           "precio_compra": 3815000,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6464,7 +6526,7 @@
           "club": "Atlético",
           "posicion": 1,
           "puntos_totales": 34,
-          "precio_actual": 3830000,
+          "precio_actual": 3840000,
           "incremento_diario": 10000,
           "precio_compra": 4821000,
           "clausula": 0,
@@ -6476,7 +6538,7 @@
           "club": "Alavés",
           "posicion": 3,
           "puntos_totales": 34,
-          "precio_actual": 2440000,
+          "precio_actual": 2470000,
           "incremento_diario": 30000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6488,7 +6550,7 @@
           "club": "Betis",
           "posicion": 3,
           "puntos_totales": 30,
-          "precio_actual": 2820000,
+          "precio_actual": 2850000,
           "incremento_diario": 30000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6500,8 +6562,8 @@
           "club": "Deportivo",
           "posicion": 2,
           "puntos_totales": 24,
-          "precio_actual": 3110000,
-          "incremento_diario": -30000,
+          "precio_actual": 3090000,
+          "incremento_diario": -20000,
           "precio_compra": 3511000,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6512,8 +6574,8 @@
           "club": "Real Sociedad",
           "posicion": 3,
           "puntos_totales": 24,
-          "precio_actual": 1970000,
-          "incremento_diario": -120000,
+          "precio_actual": 1930000,
+          "incremento_diario": -40000,
           "precio_compra": 2455000,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6524,8 +6586,8 @@
           "club": "Betis",
           "posicion": 2,
           "puntos_totales": 23,
-          "precio_actual": 2960000,
-          "incremento_diario": -100000,
+          "precio_actual": 2910000,
+          "incremento_diario": -50000,
           "precio_compra": 0,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6536,8 +6598,8 @@
           "club": "Celta",
           "posicion": 2,
           "puntos_totales": 22,
-          "precio_actual": 2510000,
-          "incremento_diario": -20000,
+          "precio_actual": 2500000,
+          "incremento_diario": -10000,
           "precio_compra": 2751000,
           "clausula": 0,
           "propietario": "Carlos Gaggotas"
@@ -6548,7 +6610,7 @@
           "club": "Valencia",
           "posicion": 3,
           "puntos_totales": 22,
-          "precio_actual": 2450000,
+          "precio_actual": 2520000,
           "incremento_diario": 70000,
           "precio_compra": 0,
           "clausula": 0,
@@ -6572,8 +6634,8 @@
           "club": "Racing",
           "posicion": 2,
           "puntos_totales": 8,
-          "precio_actual": 490000,
-          "incremento_diario": -20000,
+          "precio_actual": 480000,
+          "incremento_diario": -10000,
           "precio_compra": 1335000,
           "clausula": 2510000,
           "propietario": "Carlos Gaggotas"
@@ -7121,7 +7183,7 @@
         }
       }
 
-      // 8. RENDERIZAR VITRINA DE TROFEOS ESTILO DAZN
+// 8. RENDERIZAR VITRINA DE TROFEOS ESTILO DAZN CON TOOLTIP DEL CUADRO DE HONOR
       const TROPHY_SVGS = {
         liga: `<svg viewBox="0 0 36 40"><defs><linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#eab308"/><stop offset="100%" stop-color="#a16207"/></linearGradient></defs><path d="M9 5h18v11c0 6-4 11-9 12-5-1-9-6-9-12V5z" fill="url(#gGold)" stroke="#fef08a" stroke-width="1.2"/><path d="M9 8H4v5c0 3 2 5 5 5M27 8h5v5c0 3-2 5-5 5" fill="none" stroke="#eab308" stroke-width="2.2"/><rect x="15" y="28" width="6" height="5" fill="#ca8a04"/><rect x="10" y="33" width="16" height="4" rx="1.5" fill="#713f12" stroke="#eab308" stroke-width="1"/><polygon points="18,9 19.6,12.5 23.5,13 20.5,15.6 21.3,19.4 18,17.5 14.7,19.4 15.5,15.6 12.5,13 16.4,12.5" fill="#fff"/></svg>`,
         champions: `<svg viewBox="0 0 36 40"><defs><linearGradient id="gSilv" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="55%" stop-color="#cbd5e1"/><stop offset="100%" stop-color="#475569"/></linearGradient></defs><path d="M11 7h14l-1.5 16c-.5 4-3 6-5.5 6s-5-2-5.5-6L11 7z" fill="url(#gSilv)" stroke="#f8fafc" stroke-width="1.2"/><path d="M11 11C4 6 3 19 11.5 21M25 11c7-5 8 8-0.5 10" fill="none" stroke="#e2e8f0" stroke-width="2.4"/><rect x="15" y="29" width="6" height="4" fill="#64748b"/><rect x="10" y="33" width="16" height="4" rx="1.5" fill="#1e293b" stroke="#94a3b8" stroke-width="1"/><polygon points="18,12 19.3,15 22.5,15.4 20,17.5 20.7,20.6 18,19 15.3,20.6 16,17.5 13.5,15.4 16.7,15" fill="#38bdf8"/></svg>`,
@@ -7135,16 +7197,19 @@
       };
 
       const TROPHY_TYPES = [
-        { key: 'liga',      name: 'Liga / R. FIFA',     w: '1',    cls: 'w-1' },
-        { key: 'champions', name: 'Champions League',   w: '1',    cls: 'w-1' },
-        { key: 'apertura',  name: 'Apertura / Clausura',w: '0,5',  cls: 'w-05' },
-        { key: 'copa',      name: 'Copa del Rey',       w: '0,5',  cls: 'w-05' },
-        { key: 'oro',       name: 'Superliga ORO',      w: '0,5',  cls: 'w-05' },
-        { key: 'superfinal',name: 'Super Final',        w: '0,25', cls: '' },
-        { key: 'supercopa', name: 'Supercopas',         w: '0,2',  cls: '' },
-        { key: 'indiv',     name: 'Premio Individual',  w: '0,2',  cls: '' },
-        { key: 'plata',     name: 'Superliga PLATA',    w: '0,15', cls: '' }
+        { key: 'liga',      name: 'Liga / R. FIFA',      w: '1',    cls: 'w-1' },
+        { key: 'champions', name: 'Champions League',    w: '1',    cls: 'w-1' },
+        { key: 'apertura',  name: 'Apertura / Clausura', w: '0,5',  cls: 'w-05' },
+        { key: 'copa',      name: 'Copa del Rey',        w: '0,5',  cls: 'w-05' },
+        { key: 'oro',       name: 'Superliga ORO',       w: '0,5',  cls: 'w-05' },
+        { key: 'superfinal',name: 'Super Final',         w: '0,25', cls: '' },
+        { key: 'supercopa', name: 'Supercopas',          w: '0,2',  cls: '' },
+        { key: 'indiv',     name: 'Premio Individual',   w: '0,2',  cls: '' },
+        { key: 'plata',     name: 'Superliga PLATA',     w: '0,15', cls: '' }
       ];
+
+      const TYPE_META = {};
+      TROPHY_TYPES.forEach(t => { TYPE_META[t.key] = t; });
 
       const legendEl = document.getElementById('trophy-legend');
       if (legendEl) {
@@ -7153,18 +7218,123 @@
         `).join('');
       }
 
+      // Historial exacto trofeo por trofeo según el Cuadro de Honor por Temporada (2016-17 a 2025-26)
       const HIST_MANAGERS = [
-        { name: 'Quitate el toz', pts: '9,75', cups: { liga: 5, champions: 2, apertura: 2, copa: 1, oro: 0, superfinal: 1, supercopa: 1, indiv: 4, plata: 0 } },
-        { name: 'JUAN VELASCO',   pts: '7,40', cups: { liga: 2, champions: 1, apertura: 3, copa: 1, oro: 1, superfinal: 2, supercopa: 5, indiv: 2, plata: 0 } },
-        { name: 'MarkLenders',    pts: '4,60', cups: { liga: 1, champions: 1, apertura: 2, copa: 0, oro: 1, superfinal: 0, supercopa: 2, indiv: 1, plata: 2 } },
-        { name: 'Una girafa Camello', label: 'Girafa Camello', pts: '3,70', cups: { liga: 0, champions: 0, apertura: 2, copa: 2, oro: 1, superfinal: 0, supercopa: 1, indiv: 5, plata: 0 } },
-        { name: 'Tripode G L',    pts: '2,70', cups: { liga: 1, champions: 0, apertura: 1, copa: 0, oro: 1, superfinal: 0, supercopa: 1, indiv: 0, plata: 2 } },
-        { name: 'Carlos Gaggotas',pts: '0,95', cups: { liga: 0, champions: 0, apertura: 0, copa: 0, oro: 1, superfinal: 1, supercopa: 0, indiv: 1, plata: 0 } },
-        { name: 'Dalai-Lama',     pts: '0,90', cups: { liga: 0, champions: 0, apertura: 1, copa: 0, oro: 0, superfinal: 0, supercopa: 1, indiv: 1, plata: 0 } },
-        { name: 'Diomande',       label: 'Didier (Diomande)', pts: '0,50', cups: { liga: 0, champions: 0, apertura: 1, copa: 0, oro: 0, superfinal: 0, supercopa: 0, indiv: 0, plata: 0 } },
-        { name: 'Auo FC',         pts: '0,20', cups: { liga: 0, champions: 0, apertura: 0, copa: 0, oro: 0, superfinal: 0, supercopa: 0, indiv: 1, plata: 0 } },
-        { name: 'Extintores FC',  label: 'G.Mate (Extintores)', pts: '0,00', cups: {} },
-        { name: 'caillou',        label: 'caillou / Otros', pts: '0,00', cups: {} }
+        {
+          name: 'Quitate el toz', pts: '9,75',
+          items: [
+            { type: 'liga', title: 'Liga Generalísimo', season: '2016-17' },
+            { type: 'liga', title: 'Liga Generalísimo', season: '2018-19' },
+            { type: 'liga', title: 'Liga Generalísimo', season: '2021-22' },
+            { type: 'liga', title: 'Ranking FIFA', season: '2023-24' },
+            { type: 'liga', title: 'Ranking FIFA', season: '2024-25' },
+            { type: 'champions', title: 'Champions League', season: '2023-24' },
+            { type: 'champions', title: 'Champions League', season: '2024-25' },
+            { type: 'apertura', title: 'Liga Apertura', season: '2022-23' },
+            { type: 'apertura', title: 'Liga Clausura', season: '2023-24' },
+            { type: 'copa', title: 'Copa del Rey', season: '2023-24' },
+            { type: 'superfinal', title: 'Super Final', season: '2024-25' },
+            { type: 'supercopa', title: 'Supercopa Copas', season: '2023-24' },
+            { type: 'indiv', title: 'Máx. 11 Ideal (28 XI)', season: '2023-24' },
+            { type: 'indiv', title: 'Récord Puntos (91 Pts)', season: '2023-24' },
+            { type: 'indiv', title: 'Máx. Asistente (35 Asist.)', season: '2024-25' },
+            { type: 'indiv', title: 'Récord Puntos (71 Pts)', season: '2024-25' }
+          ]
+        },
+        {
+          name: 'JUAN VELASCO', pts: '7,40',
+          items: [
+            { type: 'liga', title: 'Ranking FIFA', season: '2022-23' },
+            { type: 'liga', title: 'Ranking FIFA', season: '2025-26' },
+            { type: 'champions', title: 'Champions League', season: '2022-23' },
+            { type: 'apertura', title: 'Liga Apertura', season: '2020-21' },
+            { type: 'apertura', title: 'Liga Apertura', season: '2023-24' },
+            { type: 'apertura', title: 'Liga Clausura', season: '2024-25' },
+            { type: 'copa', title: 'Copa del Rey', season: '2024-25' },
+            { type: 'oro', title: 'Superliga ORO', season: '2024-25' },
+            { type: 'superfinal', title: 'Super Final', season: '2022-23' },
+            { type: 'superfinal', title: 'Super Final', season: '2025-26' },
+            { type: 'supercopa', title: 'Supercopa Copas', season: '2022-23' },
+            { type: 'supercopa', title: 'Supercopa Ligas', season: '2023-24' },
+            { type: 'supercopa', title: 'Supercopa Ligas', season: '2024-25' },
+            { type: 'supercopa', title: 'Supercopa Copas', season: '2024-25' },
+            { type: 'supercopa', title: 'Copa Superliga', season: '2024-25' },
+            { type: 'indiv', title: 'Pichichi (49 Goles)', season: '2023-24' },
+            { type: 'indiv', title: 'Mejor Fichaje (Muriqui)', season: '2025-26' }
+          ]
+        },
+        {
+          name: 'MarkLenders', pts: '4,60',
+          items: [
+            { type: 'liga', title: 'Liga Generalísimo', season: '2017-18' },
+            { type: 'champions', title: 'Champions League', season: '2025-26' },
+            { type: 'apertura', title: 'Liga Apertura', season: '2019-20' },
+            { type: 'apertura', title: 'Liga Clausura', season: '2020-21' },
+            { type: 'oro', title: 'Superliga ORO', season: '2021-22' },
+            { type: 'supercopa', title: 'Copa Superliga', season: '2023-24' },
+            { type: 'supercopa', title: 'Copa Superliga', season: '2025-26' },
+            { type: 'indiv', title: 'Récord Puntos (87 Pts)', season: '2025-26' },
+            { type: 'plata', title: 'Superliga PLATA', season: '2023-24' },
+            { type: 'plata', title: 'Superliga PLATA', season: '2025-26' }
+          ]
+        },
+        {
+          name: 'Una girafa Camello', label: 'Girafa Camello', pts: '3,70',
+          items: [
+            { type: 'apertura', title: 'Liga Apertura', season: '2024-25' },
+            { type: 'apertura', title: 'Liga Apertura', season: '2025-26' },
+            { type: 'copa', title: 'Copa del Rey', season: '2022-23' },
+            { type: 'copa', title: 'Copa del Rey', season: '2025-26' },
+            { type: 'oro', title: 'Superliga ORO', season: '2025-26' },
+            { type: 'supercopa', title: 'Supercopa Copas', season: '2025-26' },
+            { type: 'indiv', title: 'Máx. Asistente (37 Asist.)', season: '2023-24' },
+            { type: 'indiv', title: 'Mejor Fichaje (Mosquera)', season: '2023-24' },
+            { type: 'indiv', title: 'Máx. 11 Ideal (29 XI)', season: '2024-25' },
+            { type: 'indiv', title: 'Máx. Asistente (30 Asist.)', season: '2025-26' },
+            { type: 'indiv', title: 'Máx. 11 Ideal (38 XI)', season: '2025-26' }
+          ]
+        },
+        {
+          name: 'Tripode G L', pts: '2,70',
+          items: [
+            { type: 'liga', title: 'Liga Generalísimo', season: '2019-20' },
+            { type: 'apertura', title: 'Liga Clausura', season: '2022-23' },
+            { type: 'oro', title: 'Superliga ORO', season: '2022-23' },
+            { type: 'supercopa', title: 'Supercopa Ligas', season: '2022-23' },
+            { type: 'plata', title: 'Superliga PLATA', season: '2021-22' },
+            { type: 'plata', title: 'Superliga PLATA', season: '2024-25' }
+          ]
+        },
+        {
+          name: 'Carlos Gaggotas', pts: '0,95',
+          items: [
+            { type: 'oro', title: 'Superliga ORO', season: '2023-24' },
+            { type: 'superfinal', title: 'Super Final', season: '2023-24' },
+            { type: 'indiv', title: 'Mejor Fichaje', season: '2024-25' }
+          ]
+        },
+        {
+          name: 'Dalai-Lama', pts: '0,90',
+          items: [
+            { type: 'apertura', title: 'Liga Clausura', season: '2025-26' },
+            { type: 'supercopa', title: 'Supercopa Ligas', season: '2025-26' },
+            { type: 'indiv', title: 'Pichichi (73 Goles)', season: '2025-26' }
+          ]
+        },
+        {
+          name: 'Diomande', label: 'Didier', pts: '0,50',
+          items: [
+            { type: 'apertura', title: 'Liga Clausura', season: '2019-20' }
+          ]
+        },
+        {
+          name: 'Auo FC', pts: '0,20',
+          items: [
+            { type: 'indiv', title: 'Pichichi (50 Goles)', season: '2024-25' }
+          ]
+        },
+        { name: 'Extintores FC', label: 'G.Mate (Extintores)', pts: '0,00', items: [] },
+        { name: 'caillou', label: 'caillou / Otros', pts: '0,00', items: [] }
       ];
 
       const vitrinaEl = document.getElementById('vitrina-hist');
@@ -7172,28 +7342,22 @@
         vitrinaEl.innerHTML = HIST_MANAGERS.map((m, idx) => {
           const rank = idx + 1;
           const rankCls = rank <= 3 ? `rank-${rank}` : '';
-          let shelfHtml = '';
-          let totalTrofeos = 0;
+          const totalTrofeos = m.items.length;
 
-          TROPHY_TYPES.forEach(t => {
-            const count = m.cups[t.key] || 0;
-            totalTrofeos += count;
-            for (let c = 0; c < count; c++) {
-              shelfHtml += `
-                <div class="t-unit ${t.cls}" title="${t.name} (+${t.w} pts)">
-                  ${TROPHY_SVGS[t.key]}
-                  <span class="t-weight">+${t.w}</span>
-                </div>
-              `;
-            }
-          });
-
-          if (totalTrofeos === 0) {
-            shelfHtml = `<span class="t-no-cups">Vitrina en construcción · 0 títulos registrados</span>`;
-          }
+          const shelfHtml = totalTrofeos > 0
+            ? m.items.map(it => {
+                const meta = TYPE_META[it.type] || { w: '0,2', cls: '' };
+                return `
+                  <div class="t-unit ${meta.cls}" data-comp="${it.title}" data-season="${it.season}" data-weight="+${meta.w} pts">
+                    ${TROPHY_SVGS[it.type]}
+                    <span class="t-weight">+${meta.w}</span>
+                  </div>
+                `;
+              }).join('')
+            : `<span class="t-no-cups">0 títulos registrados</span>`;
 
           return `
-            <div class="v-row ${rankCls}${totalTrofeos === 0 ? 'v-empty' : ''}">
+            <div class="v-row ${rankCls} ${totalTrofeos === 0 ? 'v-empty' : ''}">
               <div class="v-manager">
                 <span class="v-pos">${rank}º</span>
                 <img class="v-av" src="${avatarUrl(m.name)}" alt="${m.name}" onerror="this.onerror=null;this.src='${fallbackAvatar(m.name)}';">
@@ -7210,6 +7374,55 @@
             </div>
           `;
         }).join('');
+
+        // Crear e inicializar el Tooltip interactivo para PC y Móvil
+        const cupTip = document.createElement('div');
+        cupTip.className = 'cup-tooltip';
+        document.body.appendChild(cupTip);
+        let tipTimer = null;
+
+        function showCupTooltip(unitEl) {
+          document.querySelectorAll('.t-unit.active-cup').forEach(el => el.classList.remove('active-cup'));
+          unitEl.classList.add('active-cup');
+
+          const comp = unitEl.getAttribute('data-comp');
+          const season = unitEl.getAttribute('data-season');
+          const weight = unitEl.getAttribute('data-weight');
+
+          cupTip.innerHTML = `
+            <div class="ct-comp">🏆 ${comp}</div>
+            <div class="ct-season">Temporada ${season}</div>
+            <div class="ct-pts">Ponderación: ${weight}</div>
+          `;
+
+          const rect = unitEl.getBoundingClientRect();
+          const clampedX = Math.min(Math.max(rect.left + rect.width / 2, 95), window.innerWidth - 95);
+          cupTip.style.left = clampedX + 'px';
+          cupTip.style.top = rect.top + 'px';
+          cupTip.classList.add('show');
+
+          clearTimeout(tipTimer);
+          tipTimer = setTimeout(() => {
+            cupTip.classList.remove('show');
+            unitEl.classList.remove('active-cup');
+          }, 3200);
+        }
+
+        vitrinaEl.addEventListener('click', (e) => {
+          const unit = e.target.closest('.t-unit');
+          if (unit) {
+            e.stopPropagation();
+            showCupTooltip(unit);
+          }
+        });
+
+        document.addEventListener('click', () => {
+          cupTip.classList.remove('show');
+          document.querySelectorAll('.t-unit.active-cup').forEach(el => el.classList.remove('active-cup'));
+        });
+        window.addEventListener('scroll', () => {
+          if (cupTip.classList.contains('show')) cupTip.classList.remove('show');
+        }, { passive: true });
       }
 
       // 9. BOTÓN DE WHATSAPP

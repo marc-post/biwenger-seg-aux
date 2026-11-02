@@ -2,34 +2,33 @@ name: Actualizar Biwenger Automático
 
 on:
   schedule:
-    # Martes y Viernes a las 16:30 UTC (17:30 en Madrid)
     - cron: '30 16 * * 2,5'
-  workflow_dispatch: # Permite lanzarlo manualmente desde la web de GitHub
+  workflow_dispatch:
 
 jobs:
   actualizar:
-  runs-on: ubuntu-latest
-  steps:
-    - name: Copiar repositorio
-      uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copiar repositorio
+        uses: actions/checkout@v4
 
-    - name: Configurar Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
 
-    - name: Instalar dependencias
-      run: pip install requests
+      - name: Instalar dependencias
+        run: pip install requests
 
-    - name: Ejecutar script de actualización
-      env:
-        BIWENGER_TOKEN: ${{ secrets.BIWENGER_TOKEN }}
-      run: python biwenger_admin.py
+      - name: Ejecutar script de actualización
+        env:
+          BIWENGER_TOKEN: ${{ secrets.BIWENGER_TOKEN }}
+        run: python biwenger_admin.py
 
-    - name: Subir cambios a la web
-      run: |
-        git config --global user.name "Biwenger Bot"
-        git config --global user.email "bot@users.noreply.github.com"
-        git add -A
-        git commit -m "Actualización automática GitHub Actions" || exit 0
-        git push
+      - name: Subir cambios a la web
+        run: |
+          git config --global user.name "Biwenger Bot"
+          git config --global user.email "bot@users.noreply.github.com"
+          git add -A
+          git commit -m "Actualización automática GitHub Actions" || exit 0
+          git push

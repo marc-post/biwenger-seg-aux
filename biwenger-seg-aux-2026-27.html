@@ -1277,7 +1277,7 @@
 <!-- DATOS REALES INYECTADOS DE LA LIGA 1444772 -->
 <script id="biwenger-live-data" type="application/json">
 {
-  "ultima_actualizacion": "04/11/2026 17:24",
+  "ultima_actualizacion": "04/11/2026 17:44",
   "jornada_liga_actual": 11,
   "ronda_torneo_actual": 10,
   "bote_total_euros": 200,
@@ -6782,8 +6782,18 @@
   ]
 }
 </script>
-
-<script>
+   // Forzar limpieza de caché local si cambia la fecha de actualización
+const VERSION_WEB = "04-11-2026-V3"; // Sube el número o fecha si vuelves a hacer cambios gordos
+if (localStorage.getItem('biwenger_cache_ver') !== VERSION_WEB) {
+    localStorage.setItem('biwenger_cache_ver', VERSION_WEB);
+    if (window.caches) {
+        caches.keys().then(names => {
+            names.forEach(name => caches.delete(name));
+        });
+    }
+    // Recarga forzada de la página ignorando la caché del navegador una sola vez
+    window.location.reload(true);
+}
   // Menú lateral móvil
   const drawer = document.getElementById('drawer');
   const overlay = document.getElementById('overlay');
